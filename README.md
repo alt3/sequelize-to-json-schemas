@@ -76,7 +76,7 @@ My new awesome-package created using [package-skeleton](https://www.npmjs.com/pa
 [![Build Status](https://img.shields.io/travis/amercier/npm-package-skeleton/master.svg)](https://travis-ci.org/amercier/npm-package-skeleton)
 
 [![Dependency Status](http://img.shields.io/gemnasium/amercier/npm-package-skeleton.svg)](https://gemnasium.com/amercier/npm-package-skeleton)
-[![NPM Downloads](https://img.shields.io/npm/dm/npm-package-skeleton.svg)](https://www.npmjs.com/package/npm-package-skeleton)
+[![NPM Downloads](https://img.shields.io/npm/dm/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
 [![Test Coverage](https://img.shields.io/codecov/c/github/amercier/npm-package-skeleton/master.svg)](https://codecov.io/github/amercier/npm-package-skeleton?branch=master)
 [![API Documentation](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/badge.svg)](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/)
 [![Code Climate](https://img.shields.io/codeclimate/github/amercier/npm-package-skeleton.svg)](https://codeclimate.com/github/amercier/npm-package-skeleton)
