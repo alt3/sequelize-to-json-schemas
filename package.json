@@ -13,8 +13,8 @@
     "prepublish": "npm run transpile",
     "doc": "rm -rf esdoc && esdoc -c esdoc.json",
     "lint": "eslint .",
-    "test": "npm run lint && npm run doc && rm -rf coverage && istanbul cover _mocha -- specs --compilers js:babel-register",
-    "start": "npm run lint && npm run doc && mocha specs --compilers js:babel-register --watch --growl"
+    "test": "npm run lint && rm -rf coverage && istanbul cover _mocha -- specs --recursive --compilers js:babel-register",
+    "start": "npm run lint && mocha specs --recursive --compilers js:babel-register --watch --growl"
   },
   "main": "dist/lib/index.js",
   "keywords": [
