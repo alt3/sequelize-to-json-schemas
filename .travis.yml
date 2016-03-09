@@ -4,7 +4,7 @@ matrix:
   include:
   - node_js: 5.8 # Latest stable
     env: REPORT_COVERAGE=true
-  - node_js: 4.3 # LTS
+  - node_js: 4.4 # LTS
     env: NPM_DEPLOY=true
   - node_js: 0.10 # Minimum supported
 script:
