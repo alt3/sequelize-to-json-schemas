@@ -85,7 +85,7 @@ My new awesome-package created using [package-skeleton](https://www.npmjs.com/pa
 Installation
 ------------
 
-    npm install --save-dev package-skeleton
+    npm install --save package-skeleton
 
 Usage
 -----
