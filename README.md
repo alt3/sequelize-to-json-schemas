@@ -30,25 +30,26 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 
 1. Clone this repository  
    <small>or alternatively: create a new one, then rebase from this one</small>
-2. Replace the following occurrences
+2. Set initial version (ex: `0.1.0`) in `package.json`
+3. Replace the following occurrences
   - [ ] `amercier/npm-package-skeleton` → *your repo slug*
   - [ ] `npm-package-skeleton` → *your project name*
   - [ ] `package-skeleton` → *your NPM package name*
   - [ ] `Alex Mercier` → *your name*
   - [ ] `pro.alexandre.mercier@gmail.com` → *your public email address*
   - [ ] `http://amercier.com` → *your website*
-3. Import project in CI tools:
+4. Import project in CI tools:
   - [ ] [Travis CI](https://travis-ci.org/)
   - [ ] [Codecov](https://codecov.io/)
   - [ ] [Code Climate](https://codeclimate.com/github/signup)
   - [ ] [Gemnasium](https://gemnasium.com/)
   - [ ] [ESDoc](https://doc.esdoc.org/-/generate.html)
-4. Add the following environment variables in your new Travis CI project's settings:
+5. Add the following environment variables in your new Travis CI project's settings:
   - [ ] `NPM_AUTH_TOKEN`: NPM authentication token, used for automatic NPM releasing. See [documentation](https://docs.travis-ci.com/user/deployment/npm).
   - [ ] `CODECOV_TOKEN`: Codecov project's token, used for code coverage reporting to Codecov.
   - [ ] `CODECLIMATE_REPO_TOKEN`: CodeClimate project's token, used for code coverage reporting to CodeClimate.
-5. (Optional) Enable [GreenKeeper](http://greenkeeper.io/): `greenkeeper enable`.
-6. (Optional) Add [plugin-add-module-exports Babel plugin](https://www.npmjs.com/package/babel-plugin-add-module-exports) to avoid users of your packages having to use `.default` in ES5 style (see install documentation below).
+6. (Optional) Enable [GreenKeeper](http://greenkeeper.io/): `greenkeeper enable`.
+7. (Optional) Add [plugin-add-module-exports Babel plugin](https://www.npmjs.com/package/babel-plugin-add-module-exports) to avoid users of your packages having to use `.default` in ES5 style (see install documentation below).
 
 ## Usage
 
