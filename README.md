@@ -50,6 +50,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
   - [ ] `CODECLIMATE_REPO_TOKEN`: CodeClimate project's token, used for code coverage reporting to CodeClimate.
 6. (Optional) Enable [GreenKeeper](http://greenkeeper.io/): `greenkeeper enable`.
 7. (Optional) Add [plugin-add-module-exports Babel plugin](https://www.npmjs.com/package/babel-plugin-add-module-exports) to avoid users of your packages having to use `.default` in ES5 style (see install documentation below).
+8. Cleanup `README.md` by removing all documentation related to the skeleton.
 
 ## Usage
 
@@ -63,14 +64,10 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 - New package version is automatically released after tests have passed
 
 ---
-
-> **Note:** the content after this is the actual package documentation (to be edited after cloning).
-
+## **Note:** the content after this is the actual package documentation (to be edited after cloning).
 
 npm-package-skeleton
 ====================
-
-My new awesome-package created using [package-skeleton](https://www.npmjs.com/package-skeleton).
 
 [![Latest Stable Version](https://img.shields.io/npm/v/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
 [![License](https://img.shields.io/npm/l/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
