@@ -1,6 +1,6 @@
 {
   "name": "package-skeleton",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Skeleton of a simple NPM Package with Babel and CI already configured.",
   "license": "MIT",
   "repository": "amercier/npm-package-skeleton",
