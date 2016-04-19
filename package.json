@@ -45,7 +45,6 @@
     "esdoc": "^0.4.6",
     "eslint": "^2.5.1",
     "eslint-config-airbnb": "^7.0.0",
-    "eslint-plugin-react": "^4.2.3",
     "istanbul": "^1.0.0-alpha.2",
     "mocha": "^2.4.5",
     "sinon": "^1.17.3"
