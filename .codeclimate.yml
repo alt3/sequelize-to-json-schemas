@@ -10,5 +10,10 @@ engines:
     enabled: true
 ratings:
   paths:
-  - '**.js'
-exclude_paths: []
+  - '**/*.js'
+exclude_paths:
+- .nyc_output
+- coverage
+- dist
+- esdoc
+- node_modules
