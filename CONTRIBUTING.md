@@ -86,4 +86,4 @@ This project follows [Airbnb Javascript Style Guide](https://github.com/airbnb/j
 License
 -------
 
-MIT © Alex Mercier (see [LICENSE](LICENSE)).
+ISC © Alex Mercier (see [LICENSE.md](LICENSE.md)).
