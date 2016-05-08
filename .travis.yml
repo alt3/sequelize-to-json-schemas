@@ -8,7 +8,7 @@ matrix:
     env: NPM_DEPLOY=true
   - node_js: 0.10 # Minimum supported
 script:
-- npm test
+- npm test -- -- --timeout 10000
 - '[[ "$BUILD_DOCS" != true ]] || npm run doc' # Ensures ESDoc generation doesn't fail
 after_success:
 - '[[ "$REPORT_COVERAGE" != true ]] || cat coverage/lcov.info | ./node_modules/.bin/codecov'
