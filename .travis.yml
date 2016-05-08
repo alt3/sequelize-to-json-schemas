@@ -23,4 +23,4 @@ deploy:
     condition: $NPM_DEPLOY = true # Prevents publishing on each matrix build
 cache:
   directories:
-  - $HOME/.npm
+  - $HOME/.nvm
