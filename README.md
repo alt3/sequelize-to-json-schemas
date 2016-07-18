@@ -5,7 +5,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 
 #### Pre-configured development tools
 
-- [<img alt="Babel" src="https://babeljs.io/favicon.ico" height="16"> Babel](https://babeljs.io/)
+- [<img alt="Babel" src="https://babeljs.io/favicon-16x16.png" height="16"> Babel](https://babeljs.io/)
 - [<img alt="ESLint" src="http://eslint.org/img/favicon.512x512.png" height="16"> ESLint](http://eslint.org/)
 - [<img alt="Mocha" src="https://mochajs.org/favicon.ico" height="16"> Mocha](https://mochajs.org/)
 - [<img alt="Chai" src="http://chaijs.com/img/favicon.ico" height="16"> Chai](http://chaijs.com/)
