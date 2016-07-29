@@ -54,6 +54,9 @@
     "rimraf": "^2.5.3",
     "sinon": "^1.17.4"
   },
+  "engines" : {
+    "node" : ">=4.0"
+  },
   "nyc": {
     "exclude": "**",
     "reporter": [
