@@ -46,7 +46,7 @@
     "codeclimate-test-reporter": "^0.3.1",
     "codecov": "^1.0.1",
     "esdoc": "^0.4.7",
-    "eslint": "^2.8.0",
+    "eslint": "^3.2.0",
     "eslint-config-airbnb-base": "^3.0.0",
     "eslint-plugin-import": "^1.10.1",
     "mocha": "^2.5.0",
