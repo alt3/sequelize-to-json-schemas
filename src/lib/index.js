@@ -2,6 +2,8 @@
  * Exported module
  * @type {Boolean}
  */
-const myModule = true;
+function myModule() {
+  return true;
+}
 
 export default myModule;
