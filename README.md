@@ -25,6 +25,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 #### Recommended tools
 
 - [<img alt="GreenKeeper" src="http://greenkeeper.io/favicon-16x16.png" height="16"> GreenKeeper](http://greenkeeper.io/)
+- [<img alt="Snyk" src="https://res.cloudinary.com/snyk/image/upload/favicon/favicon.ico" height="16"> Snyk](https://snyk.io/)
 
 ## Getting started
 
@@ -49,8 +50,9 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
   - [ ] `CODECOV_TOKEN`: Codecov project's token, used for code coverage reporting to Codecov.
   - [ ] `CODECLIMATE_REPO_TOKEN`: CodeClimate project's token, used for code coverage reporting to CodeClimate.
 6. (Optional) Enable [GreenKeeper](http://greenkeeper.io/): `greenkeeper enable`.
-7. (Optional) Add [plugin-add-module-exports Babel plugin](https://www.npmjs.com/package/babel-plugin-add-module-exports) to avoid users of your packages having to use `.default` in ES5 style (see install documentation below).
-8. Cleanup `README.md` by removing all documentation related to the skeleton.
+7. (Optional) Enable [Snyk](https://snyk.io/) monitoring: `snyk monitor`.
+8. (Optional) Add [plugin-add-module-exports Babel plugin](https://www.npmjs.com/package/babel-plugin-add-module-exports) to avoid users of your packages having to use `.default` in ES5 style (see install documentation below).
+9. Cleanup `README.md` by removing all documentation related to the skeleton.
 
 ## Usage
 
