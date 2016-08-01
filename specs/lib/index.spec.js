@@ -7,7 +7,7 @@ describe('myModule', () => {
     expect(myModule).to.exist;
   });
 
-  it('is true', () => {
-    expect(myModule).to.be.true;
+  it('returns true', () => {
+    expect(myModule()).to.be.true;
   });
 });
