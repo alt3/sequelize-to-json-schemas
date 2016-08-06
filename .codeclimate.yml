@@ -4,6 +4,8 @@ engines:
     config:
       languages:
       - javascript
+    exclude_paths:
+    - specs
   eslint:
     enabled: true
     channel: 'eslint-2'
