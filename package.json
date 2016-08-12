@@ -55,7 +55,6 @@
     "sinon": "^1.17.5"
   },
   "nyc": {
-    "exclude": "specs/**/*.spec.js",
     "sourceMap": false,
     "instrument": false,
     "reporter": [
