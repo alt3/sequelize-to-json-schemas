@@ -2,9 +2,9 @@ sudo: false
 language: node_js
 matrix:
   include:
-  - node_js: 6.3 # Current
+  - node_js: 6 # Current
     env: BUILD_DOCS=true REPORT_COVERAGE=true
-  - node_js: 4.4 # LTS
+  - node_js: 4 # LTS
     env: NPM_DEPLOY=true
   - node_js: 4.0 # Minimum supported
 script:
