@@ -17,6 +17,9 @@
     "start": "export NODE_ENV=development; npm run mocha -- --watch --growl",
     "test": "export NODE_ENV=test; npm run lint && rimraf coverage && nyc npm run mocha"
   },
+  "files": [
+    "dist"
+  ],
   "main": "dist/lib/index.js",
   "keywords": [
     "package",
