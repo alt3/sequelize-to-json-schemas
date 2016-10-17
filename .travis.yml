@@ -6,7 +6,6 @@ matrix:
     env: BUILD_DOCS=true REPORT_COVERAGE=true
   - node_js: 4 # LTS
     env: NPM_DEPLOY=true
-  - node_js: 4.0 # Minimum supported
 script:
 - npm test -- -- --timeout 10000
 - '[[ "$BUILD_DOCS" != true ]] || npm run doc' # Ensures ESDoc generation doesn't fail
