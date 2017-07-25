@@ -9,18 +9,18 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 - [<img alt="ESLint" src="http://eslint.org/img/favicon.512x512.png" height="16"> ESLint](http://eslint.org/)
 - [<img alt="Mocha" src="https://mochajs.org/favicon.ico" height="16"> Mocha](https://mochajs.org/)
 - [<img alt="Chai" src="http://chaijs.com/img/favicon.ico" height="16"> Chai](http://chaijs.com/)
-- [SinonJS](http://sinonjs.org/)
+- [<img alt="SinonJS" src="http://sinonjs.org/assets/images/favicon.png" height="16"> SinonJS](http://sinonjs.org/)
 - [Istanbul](https://github.com/gotwarlost/istanbul)
 - [<img alt="EditorConfig" src="http://editorconfig.org/favicon.ico" height="16"> EditorConfig](http://editorconfig.org/)
 
 #### Pre-configured CI tools
 
-- [<img alt="Travis CI" src="https://cdn.travis-ci.org/images/favicon-662edf026745110e8203d8cf38d1d325.png" height="16"> Travis CI](https://travis-ci.org/) continuous integration platform
-- [<img alt="NPM" src="https://www.npmjs.com/static/images/touch-icons/favicon.ico" height="16"> NPM automatic releasing](https://docs.travis-ci.com/user/deployment/npm)
-- [<img alt="Codecov" src="https://d234q63orb21db.cloudfront.net/ad63907877249140772dff929ad1c340e424962a/media/images/favicon.png" height="16"> Codecov](https://codecov.io/) code coverage reporting
+- [<img alt="Travis CI" src="https://cdn.travis-ci.org/images/favicon-076a22660830dc325cc8ed70e7146a59.png" height="16"> Travis CI](https://travis-ci.org/) continuous integration platform
+- [<img alt="NPM" src="https://www.npmjs.com/static/images/touch-icons/favicon-16x16.png" height="16"> NPM automatic releasing](https://docs.travis-ci.com/user/deployment/npm)
+- [<img alt="Codecov" src="https://d234q63orb21db.cloudfront.net/685e381330164f79197bc0e7f75035c6f1b9d7d0/media/images/favicon.png" height="16"> Codecov](https://codecov.io/) code coverage reporting
 - [<img alt="Code Climate" src="https://codeclimate.com/favicon.png" height="16"> Code Climate](https://codeclimate.com/)
 - [<img alt="Gemnasium" src="https://gemnasium.com/assets/favicon.png" height="16"> Gemnasium](https://gemnasium.com/)
-- [ESDoc](https://esdoc.org/)
+- [<img alt="ESDoc" src="https://esdoc.org/favicon.ico" height="16"> ESDoc](https://esdoc.org/)
 
 #### Recommended tools
 
