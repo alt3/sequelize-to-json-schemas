@@ -10,7 +10,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 - [<img alt="Mocha" src="https://mochajs.org/favicon.ico" height="16"> Mocha](https://mochajs.org/)
 - [<img alt="Chai" src="http://chaijs.com/img/favicon.ico" height="16"> Chai](http://chaijs.com/)
 - [<img alt="SinonJS" src="http://sinonjs.org/assets/images/favicon.png" height="16"> SinonJS](http://sinonjs.org/)
-- [Istanbul](https://github.com/gotwarlost/istanbul)
+- [<img alt="Istanbul" src="https://istanbul.js.org/assets/istanbul-logo.png" height="16"> Istanbul](https://github.com/gotwarlost/istanbul)
 - [<img alt="EditorConfig" src="http://editorconfig.org/favicon.ico" height="16"> EditorConfig](http://editorconfig.org/)
 
 #### Pre-configured CI tools
