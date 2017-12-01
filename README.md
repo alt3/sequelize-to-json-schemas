@@ -29,9 +29,32 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 
 ## Getting started
 
-1. Clone this repository  
-   <small>or alternatively: create a new one, then rebase from this one</small>
+1. Add this project as `skeleton` remote:
+  - For a new project:
+    ```sh
+    mkdir my-project && cd my-project
+    git init
+    git remote add skeleton https://github.com/amercier/npm-package-skeleton.git
+    git remote set-url skeleton --push "Error: skeleton remote is read-only"
+    git pull origin master
+    git remote add origin <YOUR GIT REPOSITORY URL>
+    git push -u origin master
+    ```
+  - For an existing project:<br>
+    <br>
+    **Warning:** this will erase all existing code and git
+    history on master branch, use `git reflog` if you ever need to rollback.
+    ```sh
+    git remote add skeleton https://github.com/amercier/npm-package-skeleton.git
+    git remote set-url skeleton --push "Error: skeleton remote is read-only"
+    git show-ref --verify --quiet refs/heads/master || git branch master # Create master branch if needed
+    [[ refs/heads/master == $(git symbolic-ref --quiet HEAD) ]] || git checkout master # Switch to master branch
+    git reset --hard skeleton/master # Warning: this rewrites git history
+    git push -f -u origin master
+    ```
+
 2. Set initial version (ex: `0.1.0`) in `package.json`
+
 3. Replace the following occurrences
   - [ ] `amercier/npm-package-skeleton` → *your repo slug*
   - [ ] `npm-package-skeleton` → *your project name*
@@ -39,19 +62,25 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
   - [ ] `Alex Mercier` → *your name*
   - [ ] `pro.alexandre.mercier@gmail.com` → *your public email address*
   - [ ] `http://amercier.com` → *your website*
+
 4. Import project in CI tools:
   - [ ] [Travis CI](https://travis-ci.org/)
   - [ ] [Codecov](https://codecov.io/)
   - [ ] [Code Climate](https://codeclimate.com/github/signup)
   - [ ] [Gemnasium](https://gemnasium.com/)
   - [ ] [ESDoc](https://doc.esdoc.org/-/generate.html)
+
 5. Add the following environment variables in your new Travis CI project's settings:
   - [ ] `NPM_AUTH_TOKEN`: NPM authentication token, used for automatic NPM releasing. See [documentation](https://docs.travis-ci.com/user/deployment/npm).
   - [ ] `CODECOV_TOKEN`: Codecov project's token, used for code coverage reporting to Codecov.
   - [ ] `CODECLIMATE_REPO_TOKEN`: CodeClimate project's token, used for code coverage reporting to CodeClimate.
+
 6. (Optional) Enable [GreenKeeper](http://greenkeeper.io/): `greenkeeper enable`.
+
 7. (Optional) Enable [Snyk](https://snyk.io/) monitoring: `snyk monitor`.
+
 8. (Optional) Add [plugin-add-module-exports Babel plugin](https://www.npmjs.com/package/babel-plugin-add-module-exports) to avoid users of your packages having to use `.default` in ES5 style (see install documentation below).
+
 9. Cleanup `README.md` by removing all documentation related to the skeleton.
 
 ## Usage
