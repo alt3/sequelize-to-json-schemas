@@ -65,6 +65,11 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 - Travis build runs on tagged commit
 - New package version is automatically released after tests have passed
 
+License
+-------
+
+This project is released under [ISC License](LICENSE.md).
+
 ---
 ## **Note:** the content after this is the actual package documentation (to be edited after cloning).
 
@@ -99,3 +104,9 @@ Usage
 ### ES2015+
 
     import xxx from 'package-skeleton';
+
+
+License
+-------
+
+This project is released under [ISC License](LICENSE.md).

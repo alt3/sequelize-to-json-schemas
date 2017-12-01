@@ -82,8 +82,3 @@ Coding standards
 ----------------
 
 This project follows [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript). It is enforced at build time by [ESLint](http://eslint.org/).
-
-License
--------
-
-ISC © Alex Mercier (see [LICENSE.md](LICENSE.md)).
