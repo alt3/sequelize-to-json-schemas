@@ -2,17 +2,21 @@ sudo: false
 language: node_js
 matrix:
   include:
-  - node_js: node # Current
-    env: BUILD_DOCS=true REPORT_COVERAGE=true
-  - node_js: --lts # LTS
-    env: NPM_DEPLOY=true
-  - node_js: 4 # Minimum required
+    - node_js: node # Current
+      env: BUILD_DOCS=true REPORT_COVERAGE=true
+    - node_js: --lts # LTS
+      env: NPM_DEPLOY=true
+    - node_js: 4 # Minimum required
+before_script:
+  - '[[ "$REPORT_COVERAGE" != true ]] || curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
+  - '[[ "$REPORT_COVERAGE" != true ]] || chmod +x ./cc-test-reporter'
+  - '[[ "$REPORT_COVERAGE" != true ]] || ./cc-test-reporter before-build'
 script:
-- npm test -- -- --timeout 10000
-- '[[ "$BUILD_DOCS" != true ]] || npm run doc' # Ensures ESDoc generation doesn't fail
-after_success:
-- '[[ "$REPORT_COVERAGE" != true ]] || cat coverage/lcov.info | ./node_modules/.bin/codecov'
-- '[[ "$REPORT_COVERAGE" != true ]] || cat coverage/lcov.info | ./node_modules/.bin/codeclimate-test-reporter'
+  - npm test -- -- --timeout 10000
+  - '[[ "$BUILD_DOCS" != true ]] || npm run doc' # Ensures ESDoc generation doesn't fail
+  - '[[ "$REPORT_COVERAGE" != true ]] || codecov'
+after_script:
+  - '[[ "$REPORT_COVERAGE" != true ]] || ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT'
 deploy:
   provider: npm
   email: pro.alexandre.mercier@gmail.com
@@ -23,4 +27,4 @@ deploy:
     condition: $NPM_DEPLOY = true # Prevents publishing on each matrix build
 cache:
   directories:
-  - $HOME/.nvm
+    - $HOME/.nvm
