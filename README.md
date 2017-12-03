@@ -113,6 +113,7 @@ npm-package-skeleton
 [![Test Coverage](https://img.shields.io/codecov/c/github/amercier/npm-package-skeleton/master.svg)](https://codecov.io/github/amercier/npm-package-skeleton?branch=master)
 [![API Documentation](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/badge.svg)](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/amercier/npm-package-skeleton.svg)](https://codeclimate.com/github/amercier/npm-package-skeleton)
+[![Greenkeeper](https://badges.greenkeeper.io/amercier/npm-package-skeleton.svg)](https://github.com/amercier/npm-package-skeleton/issues?q=label%3Agreenkeeper)
 
 <sup><sub>_Created with [npm-p&#97;ckage-skeleton](https://github.com/&#97;mercier/npm-p&#97;ckage-skeleton)._</sup></sub>
 
