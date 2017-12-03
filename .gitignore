@@ -3,4 +3,5 @@
 /dist
 /esdoc
 /node_modules
-npm-debug.log
+/cc-test-reporter
+/npm-debug.log

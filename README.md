@@ -72,8 +72,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 
 5. Add the following environment variables in your new Travis CI project's settings:
   - [ ] `NPM_AUTH_TOKEN`: NPM authentication token, used for automatic NPM releasing. See [documentation](https://docs.travis-ci.com/user/deployment/npm).
-  - [ ] `CODECOV_TOKEN`: Codecov project's token, used for code coverage reporting to Codecov.
-  - [ ] `CODECLIMATE_REPO_TOKEN`: CodeClimate project's token, used for code coverage reporting to CodeClimate.
+  - [ ] `CC_TEST_REPORTER_ID`: CodeClimate project's token, used for code coverage reporting to CodeClimate.
 
 6. (Optional) Enable [GreenKeeper](http://greenkeeper.io/): `greenkeeper enable`.
 
