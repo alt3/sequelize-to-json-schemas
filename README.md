@@ -37,7 +37,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
     git remote add skeleton https://github.com/amercier/npm-package-skeleton.git
     git remote set-url skeleton --push "Error: skeleton remote is read-only"
     git remote add origin <YOUR GIT REPOSITORY URL>
-    git pull origin master
+    git pull skeleton master
     git push -u origin master
     ```
   - For an existing project:<br>
