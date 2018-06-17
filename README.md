@@ -5,7 +5,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 
 #### Pre-configured development tools
 
-- [<img alt="Babel" src="https://babeljs.io/favicon-16x16.png" height="16"> Babel](https://babeljs.io/)
+- [<img alt="Babel" src="https://babeljs.io/img/favicon.png" height="16"> Babel](https://babeljs.io/)
 - [<img alt="ESLint" src="http://eslint.org/img/favicon.512x512.png" height="16"> ESLint](http://eslint.org/)
 - [<img alt="Mocha" src="https://mochajs.org/favicon.ico" height="16"> Mocha](https://mochajs.org/)
 - [<img alt="Chai" src="http://chaijs.com/img/favicon.ico" height="16"> Chai](http://chaijs.com/)
@@ -16,10 +16,9 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 #### Pre-configured CI tools
 
 - [<img alt="Travis CI" src="https://cdn.travis-ci.org/images/favicon-076a22660830dc325cc8ed70e7146a59.png" height="16"> Travis CI](https://travis-ci.org/) continuous integration platform
-- [<img alt="NPM" src="https://www.npmjs.com/static/images/touch-icons/favicon-16x16.png" height="16"> NPM automatic releasing](https://docs.travis-ci.com/user/deployment/npm)
+- [<img alt="NPM" src="https://static.npmjs.com/da3ab40fb0861d15c83854c29f5f2962.png" height="16"> NPM automatic releasing](https://docs.travis-ci.com/user/deployment/npm)
 - [<img alt="Codecov" src="https://d234q63orb21db.cloudfront.net/685e381330164f79197bc0e7f75035c6f1b9d7d0/media/images/favicon.png" height="16"> Codecov](https://codecov.io/) code coverage reporting
 - [<img alt="Code Climate" src="https://codeclimate.com/favicon.png" height="16"> Code Climate](https://codeclimate.com/)
-- [<img alt="Gemnasium" src="https://gemnasium.com/assets/favicon.png" height="16"> Gemnasium](https://gemnasium.com/)
 - [<img alt="ESDoc" src="https://esdoc.org/favicon.ico" height="16"> ESDoc](https://esdoc.org/)
 
 #### Recommended tools
@@ -67,7 +66,6 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
   - [ ] [Travis CI](https://travis-ci.org/)
   - [ ] [Codecov](https://codecov.io/)
   - [ ] [Code Climate](https://codeclimate.com/github/signup)
-  - [ ] [Gemnasium](https://gemnasium.com/)
   - [ ] [ESDoc](https://doc.esdoc.org/-/generate.html)
 
 5. Add the following environment variables in your new Travis CI project's settings:
@@ -105,15 +103,15 @@ npm-package-skeleton
 ====================
 
 [![Latest Stable Version](https://img.shields.io/npm/v/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
-[![License](https://img.shields.io/npm/l/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
 [![Build Status](https://img.shields.io/travis/amercier/npm-package-skeleton/master.svg)](https://travis-ci.org/amercier/npm-package-skeleton)
-
-[![Dependency Status](http://img.shields.io/gemnasium/amercier/npm-package-skeleton.svg)](https://gemnasium.com/amercier/npm-package-skeleton)
 [![NPM Downloads](https://img.shields.io/npm/dm/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
+
+[![Dependency Status](https://img.shields.io/david/amercier/npm-package-skeleton.svg)](https://david-dm.org/amercier/npm-package-skeleton)
+[![devDependency Status](https://img.shields.io/david/dev/amercier/npm-package-skeleton.svg)](https://david-dm.org/amercier/npm-package-skeleton#info=devDependencies)
 [![Test Coverage](https://img.shields.io/codecov/c/github/amercier/npm-package-skeleton/master.svg)](https://codecov.io/github/amercier/npm-package-skeleton?branch=master)
 [![API Documentation](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/badge.svg)](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/)
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/amercier/npm-package-skeleton.svg)](https://codeclimate.com/github/amercier/npm-package-skeleton)
-[![Greenkeeper](https://badges.greenkeeper.io/amercier/npm-package-skeleton.svg)](https://github.com/amercier/npm-package-skeleton/issues?q=label%3Agreenkeeper)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability-percentage/amercier/npm-package-skeleton.svg)](https://codeclimate.com/github/amercier/npm-package-skeleton)
+
 
 <sup><sub>_Created with [npm-p&#97;ckage-skeleton](https://github.com/&#97;mercier/npm-p&#97;ckage-skeleton)._</sup></sub>
 
@@ -138,4 +136,4 @@ Usage
 License
 -------
 
-This project is released under [ISC License](LICENSE.md).
+[![License](https://img.shields.io/npm/l/package-skeleton.svg)](LICENSE.md)
