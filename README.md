@@ -119,6 +119,8 @@ npm-package-skeleton
 Installation
 ------------
 
+Prerequisites: [Node.js](https://nodejs.org/) 6+, **npm** 3+.
+
     npm install --save package-skeleton
 
 Usage
