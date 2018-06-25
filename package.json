@@ -57,6 +57,10 @@
     "rimraf": "^2.6.2",
     "sinon": "^6.0.1"
   },
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
   "nyc": {
     "sourceMap": false,
     "instrument": false,
