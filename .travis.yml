@@ -5,7 +5,7 @@ matrix:
       env: BUILD_DOCS=true REPORT_COVERAGE=true
     - node_js: --lts # LTS
       env: NPM_DEPLOY=true
-    - node_js: 4 # Minimum required
+    - node_js: 6 # Minimum required
 before_script:
   - '[[ "$REPORT_COVERAGE" != true ]] || curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
   - '[[ "$REPORT_COVERAGE" != true ]] || chmod +x ./cc-test-reporter'
