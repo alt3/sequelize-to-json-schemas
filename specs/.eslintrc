@@ -1,10 +1,9 @@
 {
   "extends": "../.eslintrc",
   "env": {
-    "mocha": true
+    "jest": true
   },
   "rules": {
-    "no-unused-expressions": 0,
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
   }
 }
