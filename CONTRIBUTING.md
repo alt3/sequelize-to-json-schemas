@@ -13,20 +13,16 @@ TL;DR
 
 | Command         | Description |
 |-----------------|-------------|
-| `npm test`      | Runs test suite once using Mocha. Generates code coverage report in the `coverage` directory (run `open coverage/index.html` to view full HTML report). |
-| `npm start`     | Runs test once, watch for changes in dev/test files, then re-runs tests automatically when a file changes. <br><small>_**Note:** as opposed as `npm test`, it doesn't generate a code coverage report._</small> |
-| `npm run lint`  | Runs ESLint linter. <br><small>_**Note:** this is automatically run before the test suite by `npm test`, but not by `npm start`_.</small> |
-| `npm run doc`   | Generates API documentation in `esdoc` folder. <br><small>_**Note:** this is not expected to be run manually since ESDoc hosting service runs it for you._</small>  |
-| `npm transpile` | Transpile all files from `src` directory to `dist`, using Babel. <br><small>_**Note:** this is not expected to be run manually since it is automatically run before NPM packaging (`package.json`'s `prepublish` script)._</small> |
-
-
+| `npm test`      | Runs test suite once using [Jest](http://jestjs.io/). |
+| `npm start`     | Runs test once, watch for changes in dev/test files, then re-runs tests automatically when a file changes. |
+| `npm run lint`  | Runs [ESLint](https://eslint.org/) linter. |
 
 Getting started
 ---------------
 
 #### Step 1. Checkout repository
 
-_**Prerequisites:** you need to have `git`, `node` (>=0.10) and `npm` installed_.
+_**Prerequisites:** you need to have `git`, `node` (>=6) and `npm` installed_.
 
 ```bash
 git clone https://github.com/amercier/npm-package-skeleton.git
@@ -47,30 +43,22 @@ npm test
 ```
 
 ```log
-> package-skeleton@0.1.0-alpha.2 test /.../npm-package-skeleton
-> npm run lint && rm -rf coverage && istanbul cover _mocha -- specs --recursive --compilers js:babel-register
+> package-skeleton@1.0.4 test ./npm-package-skeleton
+> jest
 
-
-> package-skeleton@0.1.0-alpha.2 lint /.../npm-package-skeleton
-> eslint .
-
-
-
+ PASS  specs/lib/index.spec.js
   myModule
-    ✓ exists
-    ✓ is true
+    ✓ exists (4ms)
+    ✓ returns true
 
-
-  2 passing (21ms)
-
-
-----------|----------|----------|----------|----------|----------------|
-File      |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
-----------|----------|----------|----------|----------|----------------|
-All files |      100 |      100 |      100 |      100 |                |
- index.js |      100 |      100 |      100 |      100 |                |
-----------|----------|----------|----------|----------|----------------|
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.558s, estimated 1s
+Ran all test suites.
 ```
+
+**Note:** Use `npm test -- --coverage` to generate code coverage report in the `coverage` directory, and `open coverage/index.html` to view full HTML report.
 
 #### Step 4. Run tests (TDD mode)
 
@@ -82,3 +70,17 @@ Coding standards
 ----------------
 
 This project follows [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript). It is enforced at build time by [ESLint](http://eslint.org/).
+
+```bash
+npm lint
+```
+
+**Note:** this is automatically run before the test suite by `npm test`, but not by `npm start`
+
+Other commands
+--------------
+
+| Command             | Description |
+|---------------------|-------------|
+| `npm run doc`       | Generates API documentation in `esdoc` folder. Not expected to be run manually, since ESDoc hosting service runs it already.  |
+| `npm run transpile` | Transpile all files from `src` directory to `dist`, using Babel. Not expected to be run manually, since it is automatically run before NPM packaging (`package.json`'s `prepublish` script). |

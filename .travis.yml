@@ -11,7 +11,7 @@ before_script:
   - '[[ "$REPORT_COVERAGE" != true ]] || chmod +x ./cc-test-reporter'
   - '[[ "$REPORT_COVERAGE" != true ]] || ./cc-test-reporter before-build'
 script:
-  - npm test -- -- --timeout 10000
+  - npm test -- --coverage
   - '[[ "$BUILD_DOCS" != true ]] || npm run doc' # Ensures ESDoc generation doesn't fail
   - '[[ "$REPORT_COVERAGE" != true ]] || codecov'
 after_script:

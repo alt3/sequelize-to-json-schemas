@@ -1,13 +1,12 @@
-import { expect } from 'chai';
 import myModule from '../../src/lib/index';
 
 /** @test {myModule} */
 describe('myModule', () => {
   it('exists', () => {
-    expect(myModule).to.exist;
+    expect(myModule).toBeDefined();
   });
 
   it('returns true', () => {
-    expect(myModule()).to.be.true;
+    expect(myModule()).toBe(true);
   });
 });
