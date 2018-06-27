@@ -80,7 +80,7 @@ npm lint
 Other commands
 --------------
 
-| Command             | Description |
-|---------------------|-------------|
-| `npm run doc`       | Generates API documentation in `esdoc` folder. Not expected to be run manually, since ESDoc hosting service runs it already.  |
-| `npm run transpile` | Transpile all files from `src` directory to `dist`, using Babel. Not expected to be run manually, since it is automatically run before NPM packaging (`package.json`'s `prepublish` script). |
+| Command         | Description |
+|-----------------|-------------|
+| `npm run doc`   | Generates API documentation in `esdoc` folder. Not expected to be run manually, since [ESDoc](https://esdoc.org/) hosting service runs it already.  |
+| `npm run build` | Transpile all files from `src` directory to `dist`, using [Babel](https://babeljs.io/). Not expected to be run manually, since it is automatically run before NPM packaging (`package.json`'s `prepublish` script). |

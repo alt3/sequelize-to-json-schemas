@@ -7,6 +7,7 @@ matrix:
       env: NPM_DEPLOY=true
     - node_js: 6 # Minimum required
 before_script:
+  - npm run lint
   - '[[ "$REPORT_COVERAGE" != true ]] || curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter'
   - '[[ "$REPORT_COVERAGE" != true ]] || chmod +x ./cc-test-reporter'
   - '[[ "$REPORT_COVERAGE" != true ]] || ./cc-test-reporter before-build'
