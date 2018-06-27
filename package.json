@@ -25,7 +25,7 @@
   "files": [
     "dist"
   ],
-  "main": "dist/lib/index.js",
+  "main": "dist/index.js",
   "keywords": [
     "package",
     "skeleton",
