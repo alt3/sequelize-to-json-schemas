@@ -15,7 +15,7 @@
     "build": "run-s build:*",
     "prepublish": "run-s build",
     "doc:clean": "rimraf esdoc",
-    "doc:generate": "esdoc -c esdoc.json",
+    "doc:generate": "esdoc",
     "doc": "run-s doc:*",
     "lint": "eslint --ignore-path .gitignore .",
     "start": "cross-env NODE_ENV=development jest --watch --notify",
@@ -89,6 +89,15 @@
       "lcov",
       "text",
       "html"
+    ]
+  },
+  "esdoc": {
+    "source": "./src",
+    "destination": "./esdoc",
+    "plugins": [
+      {
+        "name": "esdoc-standard-plugin"
+      }
     ]
   }
 }
