@@ -6,6 +6,8 @@ matrix:
     - node_js: --lts # LTS
       env: NPM_DEPLOY=true
     - node_js: 6 # Minimum required
+install:
+  - npm install --loglevel http # Prevent timeouts for inactivity
 before_script:
   - npm run lint
 script:
