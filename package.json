@@ -20,7 +20,7 @@
     "lint": "eslint --ignore-path .gitignore .",
     "start": "cross-env NODE_ENV=development jest --watch --notify",
     "test": "jest",
-    "pre-commit": "run-p lint 'test -- --onlyChanged'"
+    "pre-commit": "run-p lint 'test -- --lastCommit'"
   },
   "files": [
     "dist"
