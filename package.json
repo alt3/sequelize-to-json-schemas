@@ -91,6 +91,30 @@
       "html"
     ]
   },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "browser": false
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.spec.js"
+        ],
+        "env": {
+          "jest": true
+        },
+        "rules": {
+          "import/no-extraneous-dependencies": [
+            "error",
+            {
+              "devDependencies": true
+            }
+          ]
+        }
+      }
+    ]
+  },
   "esdoc": {
     "source": "./src",
     "destination": "./esdoc",
