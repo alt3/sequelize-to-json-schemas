@@ -15,7 +15,6 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 - [<img alt="Travis CI" src="https://cdn.travis-ci.org/images/favicon-076a22660830dc325cc8ed70e7146a59.png" height="16"> Travis CI](https://travis-ci.org/) continuous integration platform
 - [<img alt="NPM" src="https://static.npmjs.com/da3ab40fb0861d15c83854c29f5f2962.png" height="16"> NPM automatic releasing](https://docs.travis-ci.com/user/deployment/npm)
 - [<img alt="Codecov" src="https://d234q63orb21db.cloudfront.net/685e381330164f79197bc0e7f75035c6f1b9d7d0/media/images/favicon.png" height="16"> Codecov](https://codecov.io/) code coverage reporting
-- [<img alt="Code Climate" src="https://codeclimate.com/favicon.png" height="16"> Code Climate](https://codeclimate.com/)
 - [<img alt="ESDoc" src="https://esdoc.org/favicon.ico" height="16"> ESDoc](https://esdoc.org/)
 
 #### Recommended tools
@@ -62,12 +61,10 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 4. Import project in CI tools:
   - [ ] [Travis CI](https://travis-ci.org/)
   - [ ] [Codecov](https://codecov.io/)
-  - [ ] [Code Climate](https://codeclimate.com/github/signup)
   - [ ] [ESDoc](https://doc.esdoc.org/-/generate.html)
 
 5. Add the following environment variables in your new Travis CI project's settings:
   - [ ] `NPM_AUTH_TOKEN`: NPM authentication token, used for automatic NPM releasing. See [documentation](https://docs.travis-ci.com/user/deployment/npm).
-  - [ ] `CC_TEST_REPORTER_ID`: CodeClimate project's token, used for code coverage reporting to CodeClimate.
 
 6. (Optional) Enable [GreenKeeper](http://greenkeeper.io/): `greenkeeper enable`.
 
@@ -107,11 +104,8 @@ npm-package-skeleton
 [![devDependency Status](https://img.shields.io/david/dev/amercier/npm-package-skeleton.svg)](https://david-dm.org/amercier/npm-package-skeleton#info=devDependencies)
 [![Test Coverage](https://img.shields.io/codecov/c/github/amercier/npm-package-skeleton/master.svg)](https://codecov.io/github/amercier/npm-package-skeleton?branch=master)
 [![API Documentation](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/badge.svg)](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/)
-[![Code Climate](https://img.shields.io/codeclimate/maintainability-percentage/amercier/npm-package-skeleton.svg)](https://codeclimate.com/github/amercier/npm-package-skeleton)
-
 
 <sup><sub>_Created with [npm-p&#97;ckage-skeleton](https://github.com/&#97;mercier/npm-p&#97;ckage-skeleton)._</sup></sub>
-
 
 Installation
 ------------
