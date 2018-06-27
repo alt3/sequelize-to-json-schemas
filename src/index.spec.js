@@ -1,4 +1,4 @@
-import myModule from '../../src/lib/index';
+import myModule from '.';
 
 /** @test {myModule} */
 describe('myModule', () => {
