@@ -13,7 +13,7 @@
     "build:clean": "rimraf dist",
     "build:transpile": "babel --ignore *.spec.js -d dist src",
     "build": "run-s build:*",
-    "prepublish": "run-s build",
+    "prepublishOnly": "run-s build",
     "doc:clean": "rimraf esdoc",
     "doc:generate": "esdoc",
     "doc": "run-s doc:*",
