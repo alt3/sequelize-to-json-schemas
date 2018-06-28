@@ -18,6 +18,7 @@ deploy:
   provider: npm
   email: pro.alexandre.mercier@gmail.com
   api_key: $NPM_AUTH_TOKEN
+  skip_cleanup: true
   on:
     tags: true
     repo: amercier/npm-package-skeleton # Prevents publishing on PRs
