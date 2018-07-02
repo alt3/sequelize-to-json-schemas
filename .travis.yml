@@ -14,6 +14,8 @@ script:
   - npm test -- --coverage
   - '[[ "$BUILD_DOCS" != true ]] || npm run doc' # Ensures ESDoc generation doesn't fail
   - '[[ "$REPORT_COVERAGE" != true ]] || codecov'
+after_success:
+  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash <(curl https://gist.githubusercontent.com/amercier/9d41002c79ac8e9fbd36bc1815d934b1/raw/) amercier/npm-package-skeleton; fi'
 deploy:
   provider: npm
   email: pro.alexandre.mercier@gmail.com
