@@ -101,7 +101,7 @@ npm-package-skeleton
 [![Build Status](https://img.shields.io/travis/amercier/npm-package-skeleton/master.svg)](https://travis-ci.org/amercier/npm-package-skeleton)
 [![NPM Downloads](https://img.shields.io/npm/dm/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
 
-[![Dependency Status](https://img.shields.io/david/amercier/npm-package-skeleton.svg)](https://david-dm.org/amercier/npm-package-skeleton)
+[![dependencies Status](https://david-dm.org/amercier/npm-package-skeleton/status.svg)](https://david-dm.org/amercier/npm-package-skeleton)
 [![Test Coverage](https://img.shields.io/codecov/c/github/amercier/npm-package-skeleton/master.svg)](https://codecov.io/github/amercier/npm-package-skeleton?branch=master)
 [![API Documentation](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/badge.svg)](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/)
 
@@ -128,7 +128,7 @@ Contributing
 
 Please refer to the [guidelines for contributing](./CONTRIBUTING.md).
 
-[![devDependency Status](https://img.shields.io/david/dev/amercier/npm-package-skeleton.svg)](https://david-dm.org/amercier/npm-package-skeleton#info=devDependencies)
+[![devDependencies Status](https://david-dm.org/amercier/npm-package-skeleton/dev-status.svg)](https://david-dm.org/amercier/npm-package-skeleton?type=dev)
 
 License
 -------
