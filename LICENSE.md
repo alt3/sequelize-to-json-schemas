@@ -1,5 +1,4 @@
-ISC License (ISC)
-=================
+# ISC License (ISC)
 
 Copyright (c) 2016, Alex Mercier <pro.alexandre.mercier@gmail.com>
 
