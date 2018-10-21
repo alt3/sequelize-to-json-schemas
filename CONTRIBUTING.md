@@ -1,24 +1,20 @@
-Contributing
-============
+# Contributing
 
-Issues
-------
+## Issues
 
 Feel free to [open an issue](https://github.com/amercier/npm-package-skeleton/issues/new),
 or propose a [pull request](https://github.com/amercier/npm-package-skeleton/pulls).
 To prevent duplication, please look at [existing issues](https://github.com/amercier/npm-package-skeleton/issues?q=is%3Aissue) before posting a new one.
 
-TL;DR
------
+## TL;DR
 
-| Command         | Description |
-|-----------------|-------------|
-| `npm test`      | Runs test suite once using [Jest](http://jestjs.io/). |
-| `npm start`     | Runs test once, watch for changes in dev/test files, then re-runs tests automatically when a file changes. |
-| `npm run lint`  | Runs [ESLint](https://eslint.org/) linter. |
+| Command        | Description                                                                                                |
+| -------------- | ---------------------------------------------------------------------------------------------------------- |
+| `npm test`     | Runs test suite once using [Jest](http://jestjs.io/).                                                      |
+| `npm start`    | Runs test once, watch for changes in dev/test files, then re-runs tests automatically when a file changes. |
+| `npm run lint` | Runs [ESLint](https://eslint.org/) linter.                                                                 |
 
-Getting started
----------------
+## Getting started
 
 #### Step 1. Checkout repository
 
@@ -66,8 +62,7 @@ Ran all test suites.
 npm start
 ```
 
-Coding standards
-----------------
+## Coding standards
 
 This project follows [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript). It is enforced at build time by [ESLint](http://eslint.org/).
 
@@ -77,10 +72,9 @@ npm lint
 
 **Note:** this is automatically run before the test suite by `npm test`, but not by `npm start`
 
-Other commands
---------------
+## Other commands
 
-| Command         | Description |
-|-----------------|-------------|
-| `npm run doc`   | Generates API documentation in `esdoc` folder. Not expected to be run manually, since [ESDoc](https://esdoc.org/) hosting service runs it already.  |
+| Command         | Description                                                                                                                                                                                                             |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run doc`   | Generates API documentation in `esdoc` folder. Not expected to be run manually, since [ESDoc](https://esdoc.org/) hosting service runs it already.                                                                      |
 | `npm run build` | Transpile all files from `src` directory to `dist`, using [Babel](https://babeljs.io/). Not expected to be run manually, since it is automatically run before NPM packaging (`package.json`'s `prepublishOnly` script). |
