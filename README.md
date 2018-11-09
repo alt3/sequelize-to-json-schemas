@@ -34,7 +34,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
   git remote set-url skeleton --push "Error: skeleton remote is read-only" # Disable pushing on skeleton
   git config remote.skeleton.tagOpt --no-tags # Disable fetching tags on skeleton
   git remote add origin <YOUR GIT REPOSITORY URL>
-  git pull skeleton master
+  git pull skeleton master --no-tags
   git push -u origin master
   ```
 - For an existing project:<br>
@@ -46,7 +46,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
   git remote set-url skeleton --push "Error: skeleton remote is read-only"
   git show-ref --verify --quiet refs/heads/master || git branch master # Create master branch if needed
   [[ refs/heads/master == $(git symbolic-ref --quiet HEAD) ]] || git checkout master # Switch to master branch
-  git fetch skeleton
+  git fetch skeleton --no-tags
   git reset --hard skeleton/master # Warning: this rewrites git history
   git push -f -u origin master
   ```
