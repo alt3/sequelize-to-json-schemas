@@ -46,6 +46,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
   git remote set-url skeleton --push "Error: skeleton remote is read-only"
   git show-ref --verify --quiet refs/heads/master || git branch master # Create master branch if needed
   [[ refs/heads/master == $(git symbolic-ref --quiet HEAD) ]] || git checkout master # Switch to master branch
+  git fetch skeleton
   git reset --hard skeleton/master # Warning: this rewrites git history
   git push -f -u origin master
   ```
