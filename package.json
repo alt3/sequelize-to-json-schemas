@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build:clean": "rimraf dist",
-    "build:transpile": "babel --ignore *.spec.js -d dist src",
+    "build:transpile": "babel --ignore '**/*.spec.js' -d dist src",
     "build": "run-s build:*",
     "prepublishOnly": "run-s build",
     "doc:clean": "rimraf esdoc",
