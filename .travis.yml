@@ -3,9 +3,10 @@ matrix:
   include:
     - node_js: node # Current
       env: BUILD_DOCS=true REPORT_COVERAGE=true
-    - node_js: --lts # LTS
+    - node_js: lts/* # Latest LTS
       env: NPM_DEPLOY=true
-    - node_js: 6 # Minimum required
+    - node_js: lts/carbon
+    - node_js: lts/boron # Minimum required
 install:
   - npm install --loglevel http # Prevent timeouts for inactivity
 before_script:
