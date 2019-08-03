@@ -4,6 +4,12 @@
 /node_modules/
 /npm-debug.log
 
+# Editors
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 # Lockfiles for apps, but not for packages.
 # https://github.com/sindresorhus/ama/issues/479#issuecomment-310661514
 /package-lock.json
