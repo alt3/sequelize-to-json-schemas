@@ -1,15 +1,20 @@
 {
-  "name": "package-skeleton",
-  "version": "1.0.5",
-  "description": "Skeleton of a simple NPM Package with Babel and CI already configured.",
-  "license": "ISC",
+  "name": "sequelize-to-json-schemas",
+  "version": "0.0.1",
+  "description": "Convert Sequelize models to various JSON Schema variants using the Strategy Pattern.",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/amercier/npm-package-skeleton"
+    "url": "git@github.com:alt3/sequelize-to-json-schemas.git"
   },
-  "author": "Alex Mercier <pro.alexandre.mercier@gmail.com> (http://amercier.com)",
+  "author": {
+    "name": "ALT3 B.V.",
+    "url": "https://github.com/alt3/sequelize-to-json-schemas"
+  },
+  "contributors": [],
+  "bugs": "https://github.com/alt3/sequelize-to-json-schemas/issues",
   "engines": {
-    "node": ">=6",
+    "node": ">=8",
     "npm": ">=3"
   },
   "scripts": {
@@ -31,19 +36,14 @@
   ],
   "main": "dist/index.js",
   "keywords": [
-    "package",
-    "skeleton",
-    "example",
-    "node",
-    "npm",
-    "babel",
-    "ci",
-    "code",
-    "codecov",
-    "coverage",
-    "eslint",
-    "gemnasium",
-    "jest"
+    "javascript",
+    "sequelize",
+    "json-schema",
+    "strategy-pattern",
+    "swagger",
+    "openapi",
+    "oas",
+    "oasv3"
   ],
   "dependencies": {},
   "devDependencies": {
