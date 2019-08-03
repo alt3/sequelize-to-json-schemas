@@ -14,7 +14,6 @@ Convert Sequelize models into any of the following JSON Schema variants:
 - [<img alt="ESLint" src="https://eslint.org/img/favicon.512x512.png" height="16"> ESLint](https://eslint.org/) with [`airbnb-base` config](https://www.npmjs.com/package/eslint-config-airbnb-base)
 - [<img alt="Prettier" src="https://prettier.io/icon.png" height="16"> Prettier](https://prettier.io/)
 - [<img alt="Jest" src="https://jestjs.io/img/favicon/favicon.ico" height="16"> Jest](https://jestjs.io/)
-- [<img alt="EditorConfig" src="https://editorconfig.org/favicon.ico" height="16"> EditorConfig](https://editorconfig.org/)
 
 ## Usage
 
