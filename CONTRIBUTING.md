@@ -1,5 +1,9 @@
 # Contributing
 
+## Guidelines
+
+- [Directory structure for Javascript/Node modules](https://gist.github.com/tracker1/59f2c13044315f88bee9#file-01-directory-structure-md)
+
 ## Issues
 
 Feel free to [open an issue](https://github.com/amercier/npm-package-skeleton/issues/new),
