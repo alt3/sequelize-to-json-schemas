@@ -5,7 +5,7 @@
  * Test file, used for developing.
  */
 const Sequelize = require('sequelize-mock'); // mock Sequelize
-const JsonSchemaGenerator = require('./lib'); // uses `index.js` like probably npm does
+const JsonSchemaGenerator = require('./lib/json-schema-generator'); // uses `index.js` like probably npm does
 const JsonSchema6Strategy = require('./lib/strategies/json-schema-v6');
 // const OpenApi3Strategy = require('./lib/strategies/openapi-v3');
 
@@ -54,3 +54,6 @@ const strategy = new JsonSchema6Strategy({
 
 // Generate the schema
 generator.generate(userModel, strategy);
+
+// debug
+console.log(generator.generate(userModel, strategy));

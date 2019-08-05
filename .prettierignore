@@ -1,6 +1,10 @@
 # Ignore everything:
 /*
 
-# Except myapp:
+# Except these directories:
 !/lib
 !/test
+
+# Except these files:
+!CONTRIBUTING.md
+!README.md
