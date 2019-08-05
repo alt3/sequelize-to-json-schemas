@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-console */
 
 /**
  *
@@ -7,19 +8,18 @@
 const Sequelize = require('sequelize-mock'); // mock Sequelize
 const { SchemaManager, JsonSchema6Strategy } = require('./lib');
 
-// const SchemaStrategy = require('./lib/strategies/json-schema-v6');
-// const SchemaStrategy = require('./lib/strategies/openapi-v3');
-
 // sequelize mocking
 const sequelize = new Sequelize(); // mocked database connection
 
 const userModel = sequelize.define('user', {
+  // id
   id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
     allowNull: false,
     primaryKey: true,
   },
+  // email
   email: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -27,7 +27,17 @@ const userModel = sequelize.define('user', {
     validate: {
       isEmail: true,
     },
+    jsonSchema: {
+      title: 'Email Address',
+      exclude: true,
+      comment: 'This will be the comment',
+      examples: [ // should allow both string and array
+        'Example 1',
+        'Example 2',
+      ],
+    },
   },
+  // rootFolder
   rootFolder: {
     type: Sequelize.UUID,
   },
@@ -43,6 +53,9 @@ const userModel = sequelize.define('user', {
   },
 });
 
+// eslint-disable-next-line no-underscore-dangle
+console.log(userModel._defaults);
+
 // Initialize the SchemaManager with non-strategy-specific options
 const generator = new SchemaManager({
   baseUri: 'https://api.example.com',
@@ -57,4 +70,4 @@ const strategy = new JsonSchema6Strategy({
 generator.generate(userModel, strategy);
 
 // debug
-console.log(generator.generate(userModel, strategy));
+// console.log(generator.generate(userModel, strategy));
