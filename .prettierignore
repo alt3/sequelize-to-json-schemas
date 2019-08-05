@@ -1,0 +1,6 @@
+# Ignore everything:
+/*
+
+# Except myapp:
+!/lib
+!/test

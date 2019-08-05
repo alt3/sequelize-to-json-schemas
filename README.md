@@ -8,6 +8,12 @@ Convert Sequelize models into any of the following JSON Schema variants:
 
 > PR a new strategy if your variant is missing.
 
+## TODO/Notes:
+
+- [ ] support sequelize 4, 5 (and 6?)
+- [ ]
+
+
 #### Development tools
 
 - [<img alt="Babel" src="https://babeljs.io/img/favicon.png" height="16"> Babel](https://babeljs.io/)
