@@ -1,15 +1,11 @@
 {
   "plugins": [],
-  "recurseDepth": 10,
   "source": {
-    "include": "./lib/",
-    "exclude": [
-      "./lib/strategies/"
-    ]
+    "include": "./lib/"
   },
   "opts": {
     "destination": "./docs/",
-    "recurse": true
+    "recurse": false
   },
   "sourceType": "module",
   "tags": {
