@@ -5,7 +5,7 @@
   },
   "opts": {
     "destination": "./docs/",
-    "recurse": false
+    "recurse": true
   },
   "sourceType": "module",
   "tags": {

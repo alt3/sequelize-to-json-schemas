@@ -8,12 +8,10 @@ Convert Sequelize models into any of the following JSON Schema variants:
 
 > PR a new strategy if your variant is missing.
 
-
 ## TODO/Notes:
 
 - [ ] support sequelize 4, 5 (and 6?)
 - [ ] use http or https schema pointers
-
 
 #### Development tools
 

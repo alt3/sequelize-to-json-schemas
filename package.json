@@ -50,6 +50,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsdoc": "^15.8.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-unicorn": "^8.0.0",
     "husky": "^2.0.0",
@@ -89,6 +90,7 @@
   "eslintConfig": {
     "extends": [
       "airbnb-base",
+      "plugin:jsdoc/recommended",
       "plugin:prettier/recommended",
       "plugin:unicorn/recommended",
       "prettier",
