@@ -1,0 +1,19 @@
+{
+  "plugins": [],
+  "source": {
+    "include": "./lib/"
+  },
+  "opts": {
+    "destination": "./docs/",
+    "recurse": true
+  },
+  "sourceType": "module",
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc","closure"]
+  },
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  }
+}
