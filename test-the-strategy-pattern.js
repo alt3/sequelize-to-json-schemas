@@ -2,8 +2,7 @@
 /* eslint-disable no-console */
 
 /**
- *
- * Test file, used for developing.
+ * Test runner used for Rapid Development.
  */
 
 // ============================================================================
@@ -15,9 +14,8 @@ const sequelize = new Sequelize({
   dialect: 'mysql'
 });
 
-const userModel = sequelize.import("./test/models/user.js").build(); // build() required or model will be an untestable `Function` and not a `Sequelize.Model`
-// console.log(userModel.rawAttributes);
-
+// we MUST chain build() or model will be an untestable `Function` instead of a real `Sequelize.Model`
+const userModel = sequelize.import("./test/models/user.js").build();
 
 // ============================================================================
 // Test the SchemaManager and strategies
@@ -35,7 +33,7 @@ const strategy = new JsonSchema6Strategy({
 });
 
 // Generate the schema
-schemaManager.generate(userModel, strategy);
+const result = schemaManager.generate(userModel, strategy);
 
-// debug
-// console.log(schemaManager.generate(userModel, strategy));
+// debug result produced by the manager (work in progress)
+console.log(result);
