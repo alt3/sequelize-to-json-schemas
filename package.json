@@ -90,7 +90,6 @@
   "eslintConfig": {
     "extends": [
       "airbnb-base",
-      "plugin:jsdoc/recommended",
       "plugin:prettier/recommended",
       "plugin:unicorn/recommended",
       "prettier",
