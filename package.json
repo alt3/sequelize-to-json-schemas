@@ -40,7 +40,7 @@
     "oasv3"
   ],
   "dependencies": {
-    "lodash.merge": "^4.6.2",
+    "lodash": "^4.17.15",
     "pluralize": "^8.0.0"
   },
   "devDependencies": {
