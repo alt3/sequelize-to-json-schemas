@@ -28,12 +28,15 @@ const schemaManager = new SchemaManager({
   baseUri: 'https://api.example.com',
 });
 
-// Initialize the JsonSchema6Strategy with strategy-specific options
-//  const strategy = new OpenApi3Strategy();
-const strategy = new JsonSchema6Strategy();
+// Generate JSON Schema v6 schema
+const json6strategy = new JsonSchema6Strategy();
+let schema = schemaManager.generate(userModel, json6strategy);
+console.log('JSON Schema v6:')
+console.log(schema);
 
-// Generate the schema
-const result = schemaManager.generate(userModel, strategy);
+// Generate OpenAPI v3 schema
+const openapi3strategy = new OpenApi3Strategy();
+schema = schemaManager.generate(userModel, openapi3strategy);
+console.log('OpenAPI v3:');
+console.log(schema);
 
-// debug result produced by the manager (work in progress)
-console.log(result);
