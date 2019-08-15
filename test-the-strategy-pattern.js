@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 
 /**
  * Test runner used for Rapid Development.
@@ -20,7 +21,7 @@ const userModel = sequelize.import("./test/models/user.js").build();
 // ============================================================================
 // Test the SchemaManager and strategies
 // ============================================================================
-const { SchemaManager, JsonSchema6Strategy } = require('./lib');
+const { SchemaManager, JsonSchema6Strategy, OpenApi3Strategy } = require('./lib');
 
 // Initialize the SchemaManager with non-strategy-specific options
 const schemaManager = new SchemaManager({
@@ -28,9 +29,8 @@ const schemaManager = new SchemaManager({
 });
 
 // Initialize the JsonSchema6Strategy with strategy-specific options
-const strategy = new JsonSchema6Strategy({
-  woot: 'whatever',
-});
+//  const strategy = new OpenApi3Strategy();
+const strategy = new JsonSchema6Strategy();
 
 // Generate the schema
 const result = schemaManager.generate(userModel, strategy);
