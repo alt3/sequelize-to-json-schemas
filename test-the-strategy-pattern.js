@@ -11,6 +11,8 @@
 // ============================================================================
 const Sequelize = require('sequelize');
 
+const { DataTypes } = Sequelize;
+
 const sequelize = new Sequelize({
   dialect: 'mysql'
 });
@@ -28,15 +30,31 @@ const schemaManager = new SchemaManager({
   baseUri: 'https://api.example.com',
 });
 
+// ----------------------------------
 // Generate JSON Schema v6 schema
+// ----------------------------------
 const json6strategy = new JsonSchema6Strategy();
-let schema = schemaManager.generate(userModel, json6strategy);
-console.log('JSON Schema v6:')
-console.log(schema);
+let userSchema = schemaManager.generate(userModel, json6strategy);
 
+console.log('JSON Schema v6:')
+console.log(userSchema);
+
+// ----------------------------------
 // Generate OpenAPI v3 schema
+// ----------------------------------
 const openapi3strategy = new OpenApi3Strategy();
-schema = schemaManager.generate(userModel, openapi3strategy);
+userSchema = schemaManager.generate(userModel, openapi3strategy);
+
 console.log('OpenAPI v3:');
-console.log(schema);
+console.log(userSchema);
+
+// OpenApi requires more than just the model schema for validation so we insert it into the wrapper
+const validationSchema = require('./test/strategies/json-api-v3/schema-validation-wrapper');
+
+validationSchema.components.schemas.users = userSchema;
+console.log('Validation schema object:');
+console.log(validationSchema);
+
+console.log('Validation schema as JSON string:');
+console.log(JSON.stringify(validationSchema, null, 2));
 
