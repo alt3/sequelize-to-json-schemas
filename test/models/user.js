@@ -33,16 +33,20 @@ module.exports = sequelize => {
       // STRING (default)
       _STRING_: {
         type: DataTypes.STRING,
+      },
+
+      _STRING_ALLOWNULL_: {
+        type: DataTypes.STRING,
         allowNull: true, // nice test because this should become `nullable: true` for OpenApi
       },
 
       // STRING(1234)
-      _STRING_LENGTH_: {
+      _STRING_50_: {
         type: DataTypes.STRING(50),
       },
 
       // STRING.BINARY
-      _STRING_BINARY_: {
+      _STRING_DOT_BINARY_: {
         type: DataTypes.STRING.BINARY,
       },
 
