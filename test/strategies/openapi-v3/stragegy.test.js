@@ -30,17 +30,17 @@ describe('OpenAPI v3 strategy (#integration)', function() {
       });
     });
 
-    // describe('Validation', function() {
-    //   it('passes schema validation against the Swagger Parser', async () => {
-    //     expect.assertions(1);
+    describe('Validation', function() {
+      it('passes Swagger Parser schema validation', async () => {
+        expect.assertions(1);
 
-    //     // https://github.com/APIDevTools/swagger-parser/issues/77
-    //     // @todo: enable once fixed, now blocks husky pre-commit hooks
-    //     const result = await SwaggerParser.validate(_.cloneDeep(schemaWrapper));
+        // https://github.com/APIDevTools/swagger-parser/issues/77
+        // @todo: enable once fixed, now blocks husky pre-commit hooks
+        const result = await SwaggerParser.validate(_.cloneDeep(schemaWrapper));
 
-    //     expect(result).toHaveProperty('info');
-    //   });
-    // });
+        expect(result).toHaveProperty('info');
+      });
+    });
 
     // @todo this should be detected by eslint-plugin-jest no-disabled-tests (but is not)
     // test('', function() {

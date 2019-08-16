@@ -41,6 +41,7 @@ let userSchema = schemaManager.generate(userModel, json6strategy);
 
 console.log('JSON Schema v6:')
 console.log(userSchema);
+console.log(JSON.stringify(userSchema, null, 2));
 
 // ----------------------------------
 // Generate OpenAPI v3 schema
