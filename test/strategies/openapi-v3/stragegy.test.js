@@ -46,6 +46,11 @@ describe('OpenAPI v3 strategy (#integration)', function() {
     // test('', function() {
     //   console.log('Does nothing');
     // });
+
+    // @todo add this to the test suite, it should throw an exception
+    // Model.rawAttributes._FAKE_TYPE_ = {
+    //   type: "FAKETYPE"
+    // };
   });
 });
 
