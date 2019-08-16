@@ -15,30 +15,56 @@ describe('OpenAPI v3 strategy (#integration)', function() {
     const schemaManager = new SchemaManager();
     const strategy = new OpenApi3Strategy();
 
-    // generate schemae and insert into the wrapper
-    const schema = schemaManager.generate(userModel.build(), strategy);
-    schemaWrapper.components.schemas.users = schema;
+    // ------------------------------------------------------------------------
+    // generate schema and insert into the wrapper
+    // ------------------------------------------------------------------------
+    const modelSchema = schemaManager.generate(userModel.build(), strategy);
+    schemaWrapper.components.schemas.users = modelSchema;
 
-    describe('Properties', function() {
-      it("has a version 3 'openapi' property", function() {
+    // convenience variable pointing to the model schema
+    const modelNode = schemaWrapper.components.schemas.users.properties;
+
+    // ------------------------------------------------------------------------
+    // make sure the wrapper is properly generated
+    // ------------------------------------------------------------------------
+    describe('Tree structure', function() {
+      it('has leaf ./openapi with string version 3.n.n', function() {
         expect(schemaWrapper).toHaveProperty('openapi');
         expect(schemaWrapper.openapi).toMatch(/^3\.\d\.\d/); // 3.n.n
       });
 
-      it("has a non-empty 'schemas' property", function() {
-        expect(Object.keys(schemaWrapper.components.schemas).length).toBeGreaterThan(0);
+      it('it has non-empty container ./components/schemas/users', function() {
+        expect(schemaWrapper.components.schemas).toHaveProperty('users');
+        expect(Object.keys(schemaWrapper.components.schemas.users).length).toBeGreaterThan(0);
       });
     });
 
+    // ------------------------------------------------------------------------
+    // real-time validation of the wrapper and generated model schema
+    // ------------------------------------------------------------------------
     describe('Validation', function() {
       it('passes Swagger Parser schema validation', async () => {
         expect.assertions(1);
-
         // https://github.com/APIDevTools/swagger-parser/issues/77
         // @todo: enable once fixed, now blocks husky pre-commit hooks
         const result = await SwaggerParser.validate(_.cloneDeep(schemaWrapper));
-
         expect(result).toHaveProperty('info');
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // _STRING_ALLOWNULL_
+    // ------------------------------------------------------------------------
+    describe('Attribute _STRING_ALLOWNULL_', function() {
+      it("has property 'type' with value 'string'", function() {
+        expect(modelNode).toHaveProperty('_STRING_ALLOWNULL_');
+        expect(modelNode._STRING_ALLOWNULL_).toHaveProperty('type');
+        expect(modelNode._STRING_ALLOWNULL_.type).toEqual('string');
+      });
+
+      it("has property 'nullable' with value 'true'", function() {
+        expect(modelNode._STRING_ALLOWNULL_).toHaveProperty('nullable');
+        expect(modelNode._STRING_ALLOWNULL_.nullable).toBe(true);
       });
     });
 
