@@ -24,6 +24,8 @@
     "lint": "run-p lint:*",
     "start": "npx nodemon index.js",
     "test": "jest",
+    "test:integration": "jest -t #integration",
+    "test:unit": "jest -t #unit",
     "test:watch": "jest --watch"
   },
   "files": [

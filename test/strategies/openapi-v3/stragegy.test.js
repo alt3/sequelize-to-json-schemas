@@ -10,7 +10,7 @@ const schemaWrapper = require('./schema-validation-wrapper');
 const sequelize = new Sequelize({ dialect: 'mysql' });
 const userModel = sequelize.import('../../models/user.js'); // without `.build()` so we can manipulate if need be
 
-describe('OpenAPI v3 strategy', function() {
+describe('OpenAPI v3 strategy (#integration)', function() {
   describe('Default options', function() {
     const schemaManager = new SchemaManager();
     const strategy = new OpenApi3Strategy();
