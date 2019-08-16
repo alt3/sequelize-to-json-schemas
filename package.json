@@ -23,7 +23,8 @@
     "lint:prettier": "prettier --list-different '**/*.{js,json,md,yml}'",
     "lint": "run-p lint:*",
     "start": "npx nodemon index.js",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "files": [
     "dist"
@@ -55,7 +56,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-unicorn": "^8.0.0",
     "husky": "^2.0.0",
-    "jest": "^23.6.0",
+    "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
     "lint-staged": "^8.0.4",
     "mysql2": "^1.6.5",
@@ -92,9 +93,7 @@
     "extends": [
       "airbnb-base",
       "plugin:prettier/recommended",
-      "plugin:unicorn/recommended",
-      "prettier",
-      "prettier/unicorn"
+      "plugin:unicorn/recommended"
     ],
     "env": {
       "browser": false
