@@ -33,10 +33,4 @@ module.exports = Object.freeze({
   components: {
     schemas: {},
   },
-  tags: [
-    {
-      name: 'users',
-      description: 'A users service',
-    },
-  ],
 });
