@@ -9,13 +9,16 @@
 // ============================================================================
 // Please note that we do not need an active database connection to test models.
 // ============================================================================
+const _ = require('lodash'); // limit later to `merge`, `capitalize`, etc.
+
 const Sequelize = require('sequelize');
 
 const { DataTypes } = Sequelize;
-
 const sequelize = new Sequelize({
   dialect: 'mysql'
 });
+
+const SwaggerParser = require('swagger-parser');
 
 // we MUST chain build() or model will be an untestable `Function` instead of a real `Sequelize.Model`
 const userModel = sequelize.import("./test/models/user.js").build();
@@ -58,3 +61,16 @@ console.log(validationSchema);
 console.log('Validation schema as JSON string:');
 console.log(JSON.stringify(validationSchema, null, 2));
 
+console.log('Validating generated full schema against swagger-parser:');
+
+async function validateSchema () {
+  try {
+    const api = await SwaggerParser.validate(_.cloneDeep(validationSchema));
+    console.log("API name: %s, Version: %s", api.info.title, api.info.version);
+  }
+  catch(error) {
+    console.error(error);
+  }
+}
+
+validateSchema();
