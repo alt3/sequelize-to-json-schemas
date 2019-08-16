@@ -52,6 +52,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.15.1",
     "eslint-plugin-jsdoc": "^15.8.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-unicorn": "^8.0.0",
@@ -96,7 +97,8 @@
       "plugin:unicorn/recommended"
     ],
     "env": {
-      "browser": false
+      "browser": false,
+      "jest/globals": true
     },
     "overrides": [
       {
@@ -115,6 +117,9 @@
           ]
         }
       }
+    ],
+    "plugins": [
+      "jest"
     ]
   },
   "esdoc": {
