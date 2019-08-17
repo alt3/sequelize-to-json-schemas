@@ -82,10 +82,8 @@ module.exports = sequelize => {
           isEmail: true,
         },
         jsonSchema: {
-          title: 'Email Address',
-          exclude: true,
-          comment: 'This will be the comment',
-          examples: ['Example 1', 'Example 2'],
+          description: 'User defined attribute description',
+          examples: ['User defined example 1', 'User defined example 1'],
         },
       },
 
