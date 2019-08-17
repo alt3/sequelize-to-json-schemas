@@ -61,12 +61,12 @@ module.exports = sequelize => {
         type: DataTypes.UUID, // could be v1 or v4 ??
       },
 
-      // INET is a good design-driving test as the TypeMapper returned value (array) breaks OpenApi v3.
-      // The INET type holds an IPv4 or IPv6 host address, and optionally its subnet. Takes 7 or 19 bytes
+      // INET is a good design-driving test as the TypeMapper returned value (array) breaks both OpenApi v3
+      // and JSON Schema v7. Sequelize description: the INET type holds an IPv4 or IPv6 host address, and
+      //  optionally its subnet. Takes 7 or 19 bytes
       // @todo disabled until the mapper is fixed, note there
       // _INET_: {
-      //   type: Sequelize.INET,
-      //   allowNull: false,
+      //   type: Sequelize.INET
       // },
 
       // ----------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-const SwaggerParser = require('swagger-parser');
+const Ajv = require('ajv');
 const Sequelize = require('sequelize');
 const { SchemaManager, JsonSchema7Strategy } = require('../../../lib');
 
@@ -78,9 +78,18 @@ describe('Test for the JSON Schema Draft-07 strategy (#integration)', function()
     // confirm the document is valid JSON Schema Draft-07
     // ------------------------------------------------------------------------
     describe('Document:', function() {
-      // validate document using ajv
       it('successfully validates as JSON Schema Draft-07', async () => {
-        expect(12).toEqual(12);
+        expect.assertions(1);
+
+        // validate document using ajv
+        const ajv = new Ajv();
+
+        const valid = ajv.validate('http://json-schema.org/draft-07/schema#', schema);
+        if (!valid) {
+          console.log(ajv.errors);
+        }
+
+        expect(valid).toBe(true);
       });
     });
   });
