@@ -2,9 +2,8 @@
 
 Convert Sequelize models into any of the following JSON Schema variants:
 
-- JSON Schema v6
-- Swagger/OpenAPI v2
-- Swagger/OpenAPI v3
+- JSON Schema v7
+- OpenAPI v3
 
 > PR a new strategy if your variant is missing.
 

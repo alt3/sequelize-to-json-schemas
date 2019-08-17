@@ -26,7 +26,7 @@ const userModel = sequelize.import("./test/models/user.js").build();
 // ============================================================================
 // Test the SchemaManager and strategies
 // ============================================================================
-const { SchemaManager, JsonSchema6Strategy, OpenApi3Strategy } = require('./lib');
+const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('./lib');
 
 // Initialize the SchemaManager with non-strategy-specific options
 const schemaManager = new SchemaManager({
@@ -34,12 +34,12 @@ const schemaManager = new SchemaManager({
 });
 
 // ----------------------------------
-// Generate JSON Schema v6 schema
+// Generate JSON Schema v7 schema
 // ----------------------------------
-const json6strategy = new JsonSchema6Strategy();
-let userSchema = schemaManager.generate(userModel, json6strategy);
+const json7strategy = new JsonSchema7Strategy();
+let userSchema = schemaManager.generate(userModel, json7strategy);
 
-console.log('JSON Schema v6:')
+console.log('JSON Schema v7:')
 console.log(userSchema);
 console.log(JSON.stringify(userSchema, null, 2));
 
