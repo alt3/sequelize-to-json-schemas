@@ -23,9 +23,9 @@
     "lint:prettier": "prettier --list-different '**/*.{js,json,md,yml}'",
     "lint": "run-p lint:*",
     "start": "npx nodemon index.js",
-    "test": "jest",
-    "test:integration": "jest -t #integration",
-    "test:unit": "jest -t #unit",
+    "test": "jest --verbose",
+    "test:integration": "jest --testNamePattern, #integration",
+    "test:unit": "jest --testNamePattern, #unit",
     "test:watch": "jest --watch"
   },
   "files": [
