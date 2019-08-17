@@ -38,7 +38,10 @@ const schemaManager = new SchemaManager({
 // Generate JSON Schema v7 schema
 // ----------------------------------
 const json7strategy = new JsonSchema7Strategy();
-let userSchema = schemaManager.generate(userModel, json7strategy);
+let userSchema = schemaManager.generate(userModel, json7strategy, {
+  title: 'MyUser',
+  description: 'My Description',
+});
 
 console.log('JSON Schema v7:')
 console.log(userSchema);
@@ -48,7 +51,13 @@ console.log(JSON.stringify(userSchema, null, 2));
 // Generate OpenAPI v3 schema
 // ----------------------------------
 const openapi3strategy = new OpenApi3Strategy();
-userSchema = schemaManager.generate(userModel, openapi3strategy);
+userSchema = schemaManager.generate(userModel, openapi3strategy, {
+  title: 'MyUser',
+  description: 'My Description',
+  exclude: [
+    '_UUIDV4_',
+  ]
+});
 
 console.log('OpenAPI v3:');
 console.log(userSchema);

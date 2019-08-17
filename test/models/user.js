@@ -57,7 +57,7 @@ module.exports = sequelize => {
       },
 
       // UUIDv4
-      _UUIDv4_: {
+      _UUIDV4_: {
         type: DataTypes.UUID, // could be v1 or v4 ??
       },
 
@@ -93,7 +93,7 @@ module.exports = sequelize => {
     allowNull: false,
   };
 
-  // delete Model.rawAttributes.email;
+  // delete Model.rawAttributes._ATTRIBUTE_NAME_;
 
   Model.refreshAttributes();
 
