@@ -2,8 +2,6 @@
 
 Convert Sequelize models into various JSON Schema variants.
 
-## Supported Schemas
-
 - JSON Schema v7
 - OpenAPI v3
 

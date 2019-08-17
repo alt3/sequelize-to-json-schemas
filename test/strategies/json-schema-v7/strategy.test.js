@@ -20,6 +20,12 @@ describe('Test for the JSON Schema Draft-07 strategy (#integration)', function()
     // confirm sequelize model properties render as expected
     // ------------------------------------------------------------------------
     describe('Sequelize model properties:', function() {
+      const schemaUri = 'https://json-schema.org/draft-07/schema#';
+      it(`has property '$schema' with value '${schemaUri}'`, function() {
+        expect(schema).toHaveProperty('$schema');
+        expect(schema.$schema).toEqual('https://json-schema.org/draft-07/schema#');
+      });
+
       it("has property '$id' with value '/user.json'", function() {
         expect(schema).toHaveProperty('$id');
         expect(schema.$id).toEqual('/user.json');
@@ -86,7 +92,7 @@ describe('Test for the JSON Schema Draft-07 strategy (#integration)', function()
 
         const valid = ajv.validate('http://json-schema.org/draft-07/schema#', schema);
         if (!valid) {
-          console.log(ajv.errors);
+          console.log(ajv.errors); // eslint-disable-line no-console
         }
 
         expect(valid).toBe(true);
