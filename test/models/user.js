@@ -70,27 +70,14 @@ module.exports = sequelize => {
       // },
 
       // ----------------------------------------------------------------------
-      // additions to sequelize datatypes, used to check overrides etc.
+      // attribute using all available user-definable properties
       // ----------------------------------------------------------------------
-
-      // email
-      _EMAIL_: {
+      _USER_DEFINED_PROPERTIES_: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-          isEmail: true,
-        },
         jsonSchema: {
           description: 'User defined attribute description',
           examples: ['User defined example 1', 'User defined example 1'],
         },
-      },
-
-      // password
-      _PASSWORD_: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
     },
     // sequelize options

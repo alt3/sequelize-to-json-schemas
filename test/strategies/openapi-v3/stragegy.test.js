@@ -40,9 +40,9 @@ describe('OpenAPI v3 strategy (#integration)', function() {
     });
 
     // ------------------------------------------------------------------------
-    // make sure (special?) attributes are rendered as expected
+    // make sure sequelize attributes are rendered as expected
     // ------------------------------------------------------------------------
-    describe('Attribute', function() {
+    describe('Sequelize attributes', function() {
       describe('_STRING_ALLOWNULL_', function() {
         it("has property 'type' with value 'string'", function() {
           expect(modelNode).toHaveProperty('_STRING_ALLOWNULL_');
@@ -53,6 +53,24 @@ describe('OpenAPI v3 strategy (#integration)', function() {
         it("has property 'nullable' with value 'true'", function() {
           expect(modelNode._STRING_ALLOWNULL_).toHaveProperty('nullable');
           expect(modelNode._STRING_ALLOWNULL_.nullable).toBe(true);
+        });
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // make sure user-definable attribute properties are rendered as expected
+    // ------------------------------------------------------------------------
+    describe('User definable properties', function() {
+      describe('_USER_DEFINED_PROPERTIES_', function() {
+        it("has property 'description' of type 'string'", function() {
+          expect(modelNode).toHaveProperty('_USER_DEFINED_PROPERTIES_');
+          expect(modelNode._USER_DEFINED_PROPERTIES_).toHaveProperty('description');
+          expect(typeof modelNode._USER_DEFINED_PROPERTIES_.description).toBe('string');
+        });
+
+        it("has property 'example' of type 'array'", function() {
+          expect(modelNode._USER_DEFINED_PROPERTIES_).toHaveProperty('example');
+          expect(Array.isArray(modelNode._USER_DEFINED_PROPERTIES_.example)).toBe(true);
         });
       });
     });
