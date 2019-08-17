@@ -1,10 +1,9 @@
 /**
- * To validate OpenApi schemas we need more than just the schemas produced
- * by sequelize-to-any-json-schema. This skeleton provides the surrounding
- * schema required to pass validation (where `components/schemas` will be
- * filled with the content provided by the OpenApi6Strategy produced schema.
- *
- * Please note that we also need to set the root key (e.g. `users`)
+ * Unfortunately the generated model schema by itself is not enough to
+ * validate against the OpenAPI 3.0 standard as that requires additional
+ * nodes like `info`. Before running Swagger Parser we therefore insert
+ * the model schema into this skeleton which contains the minimum
+ * structure required to pass validation.
  */
 
 module.exports = Object.freeze({
@@ -30,6 +29,10 @@ module.exports = Object.freeze({
     },
   },
   components: {
-    schemas: {},
+    schemas: {
+      users: {
+        // model schema will be inserted here
+      },
+    },
   },
 });
