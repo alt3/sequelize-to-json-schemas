@@ -8,8 +8,6 @@
  * @see https://sequelize.org/master/manual/data-types.html
  */
 
-/* eslint-disable no-underscore-dangle */
-
 const Sequelize = require('sequelize');
 
 const { DataTypes } = Sequelize;

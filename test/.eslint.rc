@@ -1,6 +1,0 @@
-// disable this rule for this directory allprevent hits on `describe`, `test`, `it`, etc.
-{
-  rules: {
-    "func-names": 0
-  }
-}

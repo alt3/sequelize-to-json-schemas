@@ -126,14 +126,24 @@
           "test/**/*.test.js"
         ],
         "rules": {
-          "func-names": "off",
-          "no-underscore-dangle": "off"
+          "func-names": "off"
+        }
+      },
+      {
+        "files": [
+          "lib/strategies/**/*.js"
+        ],
+        "rules": {
+          "class-methods-use-this": "off"
         }
       }
     ],
     "plugins": [
       "jest"
-    ]
+    ],
+    "rules": {
+      "no-underscore-dangle": "off"
+    }
   },
   "esdoc": {
     "source": "./src",

@@ -44,7 +44,7 @@ let userSchema = schemaManager.generate(userModel, json7strategy, {
 });
 
 console.log('JSON Schema v7:')
-console.log(userSchema);
+// console.log(userSchema);
 console.log(JSON.stringify(userSchema, null, 2));
 
 // ----------------------------------
@@ -60,7 +60,7 @@ userSchema = schemaManager.generate(userModel, openapi3strategy, {
 });
 
 console.log('OpenAPI v3:');
-console.log(userSchema);
+// console.log(userSchema);
 
 // OpenApi requires more than just the model schema for validation so we insert it into the wrapper
 const validationSchema = require('./test/strategies/openapi-v3/schema-validation-wrapper');
