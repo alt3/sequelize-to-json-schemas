@@ -26,7 +26,7 @@ schema = SchemaManager.generate(sequelizeModel, strategy);
 
 ## TODO/Notes:
 
-- [ ] support sequelize 4, 5 (and 6?)
+- [ ] add ci test for sequelize 4, 5
 - [ ] use http or https schema pointers
 
 #### Development tools
