@@ -63,7 +63,7 @@ console.log('OpenAPI v3:');
 // console.log(userSchema);
 
 // OpenApi requires more than just the model schema for validation so we insert it into the wrapper
-const validationSchema = require('./test/strategies/openapi-v3/schema-validation-wrapper');
+const validationSchema = require('./test/strategies/openapi-v3-validation-wrapper');
 
 validationSchema.components.schemas.users = userSchema;
 console.log('Validation schema object:');
