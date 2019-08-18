@@ -10,8 +10,8 @@ const schemaWrapper = require('./openapi-v3-validation-wrapper');
 const sequelize = new Sequelize({ dialect: 'mysql' }); // no database connection required
 const userModel = sequelize.import('../models/user.js'); // without `.build()` so we can manipulate if need be
 
-describe('Test for the OpenAPI 3.0 strategy (#integration)', function() {
-  describe('Default options', function() {
+describe('OpenApi3Strategy', function() {
+  describe('Test output using default options', function() {
     // ------------------------------------------------------------------------
     // generate schema
     // ------------------------------------------------------------------------
@@ -22,7 +22,7 @@ describe('Test for the OpenAPI 3.0 strategy (#integration)', function() {
     // ------------------------------------------------------------------------
     // confirm sequelize model properties render as expected
     // ------------------------------------------------------------------------
-    describe('Sequelize model properties:', function() {
+    describe('Ensure schema.model:', function() {
       it("has property 'title' with value 'users'", function() {
         expect(schema).toHaveProperty('title');
         expect(schema.title).toEqual('User');
@@ -37,7 +37,7 @@ describe('Test for the OpenAPI 3.0 strategy (#integration)', function() {
     // ------------------------------------------------------------------------
     // confirm sequelize attributes render as expected
     // ------------------------------------------------------------------------
-    describe('Sequelize attributes:', function() {
+    describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
       describe('_STRING_ALLOWNULL_', function() {
         it("has property 'type' of type 'string'", function() {
           expect(schema.properties).toHaveProperty('_STRING_ALLOWNULL_');
@@ -55,17 +55,17 @@ describe('Test for the OpenAPI 3.0 strategy (#integration)', function() {
     // ------------------------------------------------------------------------
     // confirm user-definable attribute properties render as expected
     // ------------------------------------------------------------------------
-    describe('User definable attribute properties:', function() {
-      describe('_USER_DEFINED_PROPERTIES_', function() {
+    describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
+      describe('_USER_ENRICHED_PROPERTIES_', function() {
         it("has property 'description' of type 'string'", function() {
-          expect(schema.properties).toHaveProperty('_USER_DEFINED_PROPERTIES_');
-          expect(schema.properties._USER_DEFINED_PROPERTIES_).toHaveProperty('description');
-          expect(typeof schema.properties._USER_DEFINED_PROPERTIES_.description).toBe('string');
+          expect(schema.properties).toHaveProperty('_USER_ENRICHED_PROPERTIES_');
+          expect(schema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('description');
+          expect(typeof schema.properties._USER_ENRICHED_PROPERTIES_.description).toBe('string');
         });
 
         it("has property 'example' of type 'array'", function() {
-          expect(schema.properties._USER_DEFINED_PROPERTIES_).toHaveProperty('example');
-          expect(Array.isArray(schema.properties._USER_DEFINED_PROPERTIES_.example)).toBe(true);
+          expect(schema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('example');
+          expect(Array.isArray(schema.properties._USER_ENRICHED_PROPERTIES_.example)).toBe(true);
         });
       });
     });
@@ -73,7 +73,7 @@ describe('Test for the OpenAPI 3.0 strategy (#integration)', function() {
     // ------------------------------------------------------------------------
     // confirm the document is valid OpenAPI 3.0
     // ------------------------------------------------------------------------
-    describe('Document:', function() {
+    describe('Ensure that the resultant document:', function() {
       schemaWrapper.components.schemas.users = schema;
 
       it("has leaf /openapi with string containing version '3.n.n'", function() {

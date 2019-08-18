@@ -70,7 +70,7 @@ module.exports = sequelize => {
       // ----------------------------------------------------------------------
       // attribute using all available user-definable properties
       // ----------------------------------------------------------------------
-      _USER_DEFINED_PROPERTIES_: {
+      _USER_ENRICHED_PROPERTIES_: {
         type: DataTypes.STRING,
         jsonSchema: {
           description: 'User defined attribute description',

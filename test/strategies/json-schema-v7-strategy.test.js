@@ -7,8 +7,8 @@ const { SchemaManager, JsonSchema7Strategy } = require('../../lib');
 const sequelize = new Sequelize({ dialect: 'mysql' }); // no database connection required
 const userModel = sequelize.import('../models/user.js'); // without `.build()` so we can manipulate if need be
 
-describe('Test for the JSON Schema Draft-07 strategy (#integration)', function() {
-  describe('Default options', function() {
+describe('JsonSchema7Strategy', function() {
+  describe('Test output using default options', function() {
     // ------------------------------------------------------------------------
     // generate schema
     // ------------------------------------------------------------------------
@@ -19,7 +19,7 @@ describe('Test for the JSON Schema Draft-07 strategy (#integration)', function()
     // ------------------------------------------------------------------------
     // confirm sequelize model properties render as expected
     // ------------------------------------------------------------------------
-    describe('Sequelize model properties:', function() {
+    describe('Ensure schema.model:', function() {
       const schemaUri = 'https://json-schema.org/draft-07/schema#';
       it(`has property '$schema' with value '${schemaUri}'`, function() {
         expect(schema).toHaveProperty('$schema');
@@ -45,7 +45,7 @@ describe('Test for the JSON Schema Draft-07 strategy (#integration)', function()
     // ------------------------------------------------------------------------
     // confirm sequelize attributes render as expected
     // ------------------------------------------------------------------------
-    describe('Sequelize attributes:', function() {
+    describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
       describe('_STRING_ALLOWNULL_', function() {
         it("has property 'type' of type 'array'", function() {
           expect(schema.properties).toHaveProperty('_STRING_ALLOWNULL_');
@@ -65,17 +65,17 @@ describe('Test for the JSON Schema Draft-07 strategy (#integration)', function()
     // ------------------------------------------------------------------------
     // confirm user-definable attribute properties render as expected
     // ------------------------------------------------------------------------
-    describe('User definable attribute properties:', function() {
-      describe('_USER_DEFINED_PROPERTIES_', function() {
+    describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
+      describe('_USER_ENRICHED_PROPERTIES_', function() {
         it("has property 'description' of type 'string'", function() {
-          expect(schema.properties).toHaveProperty('_USER_DEFINED_PROPERTIES_');
-          expect(schema.properties._USER_DEFINED_PROPERTIES_).toHaveProperty('description');
-          expect(typeof schema.properties._USER_DEFINED_PROPERTIES_.description).toBe('string');
+          expect(schema.properties).toHaveProperty('_USER_ENRICHED_PROPERTIES_');
+          expect(schema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('description');
+          expect(typeof schema.properties._USER_ENRICHED_PROPERTIES_.description).toBe('string');
         });
 
         it("has property 'examples' of type 'array'", function() {
-          expect(schema.properties._USER_DEFINED_PROPERTIES_).toHaveProperty('examples');
-          expect(Array.isArray(schema.properties._USER_DEFINED_PROPERTIES_.examples)).toBe(true);
+          expect(schema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('examples');
+          expect(Array.isArray(schema.properties._USER_ENRICHED_PROPERTIES_.examples)).toBe(true);
         });
       });
     });
@@ -83,7 +83,7 @@ describe('Test for the JSON Schema Draft-07 strategy (#integration)', function()
     // ------------------------------------------------------------------------
     // confirm the document is valid JSON Schema Draft-07
     // ------------------------------------------------------------------------
-    describe('Document:', function() {
+    describe('Ensure that the resultant document:', function() {
       it('successfully validates as JSON Schema Draft-07', async () => {
         expect.assertions(1);
 
