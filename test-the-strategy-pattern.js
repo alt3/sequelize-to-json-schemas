@@ -31,7 +31,7 @@ const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('./lib'
 // Initialize the SchemaManager with non-strategy-specific options
 const schemaManager = new SchemaManager({
   baseUri: 'https://api.example.com',
-  relativePaths: true,
+  absolutePaths: true,
 });
 
 // ----------------------------------
