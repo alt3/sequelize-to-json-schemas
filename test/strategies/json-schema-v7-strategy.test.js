@@ -11,7 +11,7 @@ describe('JsonSchema7Strategy', function() {
     // ------------------------------------------------------------------------
     const schemaManager = new SchemaManager();
     const strategy = new JsonSchema7Strategy();
-    const schema = schemaManager.generate(models.user.build(), strategy);
+    const schema = schemaManager.generate(models.user, strategy);
 
     // ------------------------------------------------------------------------
     // confirm sequelize model properties render as expected

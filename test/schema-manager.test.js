@@ -11,7 +11,7 @@ describe('SchemaManager', function() {
     describe('Ensure default values:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user.build(), strategy);
+      const schema = schemaManager.generate(models.user, strategy);
 
       it(`produce relative paths for models`, function() {
         expect(schema.$id).toEqual('/user.json');
@@ -30,7 +30,7 @@ describe('SchemaManager', function() {
         baseUri: 'https://alt3.io',
       });
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user.build(), strategy);
+      const schema = schemaManager.generate(models.user, strategy);
 
       it(`produces absolute paths for models`, function() {
         expect(schema.$id).toEqual('https://alt3.io/user.json');
@@ -50,7 +50,7 @@ describe('SchemaManager', function() {
         absolutePaths: false,
       });
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user.build(), strategy);
+      const schema = schemaManager.generate(models.user, strategy);
 
       it(`ignores baseUri and produces relative paths for models`, function() {
         expect(schema.$id).toEqual('/user.json');
@@ -69,7 +69,7 @@ describe('SchemaManager', function() {
     describe('Ensure default model options:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user.build(), strategy);
+      const schema = schemaManager.generate(models.user, strategy);
 
       it(`produce auto-generated model.title`, function() {
         expect(schema.title).toEqual('User');
@@ -86,7 +86,7 @@ describe('SchemaManager', function() {
     describe('Ensure custom model option:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user.build(), strategy, {
+      const schema = schemaManager.generate(models.user, strategy, {
         title: 'Custom Model Title',
         description: 'Custom Model Description',
         examples: ['Some Example'],
@@ -107,7 +107,7 @@ describe('SchemaManager', function() {
     describe('Ensure attribute exclusions:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user.build(), strategy, {
+      const schema = schemaManager.generate(models.user, strategy, {
         exclude: ['_STRING_', '_STRING_50_'],
       });
 
@@ -130,7 +130,7 @@ describe('SchemaManager', function() {
     describe('Ensure attribute inclusions:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user.build(), strategy, {
+      const schema = schemaManager.generate(models.user, strategy, {
         include: ['_STRING_', '_STRING_50_'],
       });
 
