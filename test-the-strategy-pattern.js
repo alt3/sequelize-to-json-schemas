@@ -41,6 +41,14 @@ const json7strategy = new JsonSchema7Strategy();
 let userSchema = schemaManager.generate(userModel, json7strategy, {
   title: 'MyUser',
   description: 'My Description',
+  // include: [
+  //   '_STRING_',
+  //   '_STRING_50_',
+  // ],
+  // exclude: [
+  //   '_STRING_',
+  //   '_STRING_50_',
+  // ]
 });
 
 console.log('JSON Schema v7:')

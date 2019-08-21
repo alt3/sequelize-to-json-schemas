@@ -69,7 +69,7 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // test default options
     // ------------------------------------------------------------------------
-    describe('Ensure default generate() options:', function() {
+    describe('Ensure default model options:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(userModel.build(), strategy);
@@ -86,7 +86,7 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // test custom model properties
     // ------------------------------------------------------------------------
-    describe('Ensure custom generate() option:', function() {
+    describe('Ensure custom model option:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(userModel.build(), strategy, {
@@ -105,7 +105,49 @@ describe('SchemaManager', function() {
     });
 
     // ------------------------------------------------------------------------
-    // @todo add a test for include/exclude
+    // test attribute exclusion
     // ------------------------------------------------------------------------
+    describe('Ensure attribute exclusions:', function() {
+      const schemaManager = new SchemaManager();
+      const strategy = new JsonSchema7Strategy();
+      const schema = schemaManager.generate(userModel.build(), strategy, {
+        exclude: ['_STRING_', '_STRING_50_'],
+      });
+
+      it(`exclude attribute _STRING_`, function() {
+        expect(schema.properties._STRING_).toBeUndefined();
+      });
+
+      it(`exclude attribute _STRING_50_`, function() {
+        expect(schema.properties._STRING_50_).toBeUndefined();
+      });
+
+      it(`do not exclude other attribues`, function() {
+        expect(schema.properties).toHaveProperty('id');
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // test attribute inclusion
+    // ------------------------------------------------------------------------
+    describe('Ensure attribute inclusions:', function() {
+      const schemaManager = new SchemaManager();
+      const strategy = new JsonSchema7Strategy();
+      const schema = schemaManager.generate(userModel.build(), strategy, {
+        include: ['_STRING_', '_STRING_50_'],
+      });
+
+      it(`include attribute _STRING_`, function() {
+        expect(schema.properties).toHaveProperty('_STRING_');
+      });
+
+      it(`include attribute _STRING_50_`, function() {
+        expect(schema.properties).toHaveProperty('_STRING_50_');
+      });
+
+      it(`do not include other attributes`, function() {
+        expect(Object.keys(schema.properties).length).toBe(2);
+      });
+    });
   });
 });
