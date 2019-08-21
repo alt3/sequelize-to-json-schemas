@@ -1,5 +1,5 @@
 /**
- * Sequelize model definition for testing User hasOne, Profile belongsTo.
+ * Sequelize model definition for testing User hasMany, Document belongsTo.
  */
 
 const Sequelize = require('sequelize');
@@ -14,7 +14,7 @@ const { DataTypes } = Sequelize;
  */
 module.exports = sequelize => {
   const Model = sequelize.define(
-    'profile',
+    'document',
     {
       id: {
         type: DataTypes.INTEGER,

@@ -15,11 +15,15 @@ database.Sequelize = Sequelize;
 database.sequelize = sequelize;
 
 // models
-database.user = require('./user.js')(sequelize, Sequelize);
-database.profile = require('./profile.js')(sequelize, Sequelize);
+database.user = require('./user')(sequelize, Sequelize);
+database.profile = require('./profile')(sequelize, Sequelize);
+database.document = require('./document')(sequelize, Sequelize);
 
 // associations
 database.user.hasOne(database.profile);
 database.profile.belongsTo(database.user);
+
+database.user.hasMany(database.document);
+database.document.belongsTo(database.user);
 
 module.exports = database;
