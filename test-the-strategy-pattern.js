@@ -5,40 +5,20 @@
 /**
  * Test runner used for Rapid Development.
  */
-
-// ============================================================================
-// Please note that we do not need an active database connection to test models.
-// ============================================================================
 const _ = require('lodash'); // limit later to `merge`, `capitalize`, etc.
-
-const Sequelize = require('sequelize');
-
-const { DataTypes } = Sequelize;
-const sequelize = new Sequelize({
-  dialect: 'mysql'
-});
-
 const SwaggerParser = require('swagger-parser');
-
-// we MUST chain build() or model will be an untestable `Function` instead of a real `Sequelize.Model`
-const userModel = sequelize.import("./test/models/user.js").build();
-
-// ============================================================================
-// Test the SchemaManager and strategies
-// ============================================================================
+const models = require('./test/models');
 const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('./lib');
 
-// Initialize the SchemaManager with non-strategy-specific options
+// Initialize the SchemaManager with global configuration options
 const schemaManager = new SchemaManager({
   baseUri: 'https://api.example.com',
   absolutePaths: true,
 });
 
-// ----------------------------------
-// Generate JSON Schema v7 schema
-// ----------------------------------
+// Generate a JSON Schema Draft-07 schema for the user model
 const json7strategy = new JsonSchema7Strategy();
-let userSchema = schemaManager.generate(userModel, json7strategy, {
+let userSchema = schemaManager.generate(models.user, json7strategy, {
   title: 'MyUser',
   description: 'My Description',
   // include: [
@@ -55,11 +35,13 @@ console.log('JSON Schema v7:')
 // console.log(userSchema);
 console.log(JSON.stringify(userSchema, null, 2));
 
+// console.log(models.user.associations);
+
 // ----------------------------------
 // Generate OpenAPI v3 schema
 // ----------------------------------
 const openapi3strategy = new OpenApi3Strategy();
-userSchema = schemaManager.generate(userModel, openapi3strategy, {
+userSchema = schemaManager.generate(models.user, openapi3strategy, {
   title: 'MyUser',
   description: 'My Description',
   exclude: [

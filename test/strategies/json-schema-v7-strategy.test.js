@@ -1,11 +1,8 @@
 /* eslint-disable no-unused-vars */
 
 const Ajv = require('ajv');
-const Sequelize = require('sequelize');
+const models = require('../models');
 const { SchemaManager, JsonSchema7Strategy } = require('../../lib');
-
-const sequelize = new Sequelize({ dialect: 'mysql' }); // no database connection required
-const userModel = sequelize.import('../models/user.js'); // without `.build()` so we can manipulate if need be
 
 describe('JsonSchema7Strategy', function() {
   describe('Test output using default options', function() {
@@ -14,7 +11,7 @@ describe('JsonSchema7Strategy', function() {
     // ------------------------------------------------------------------------
     const schemaManager = new SchemaManager();
     const strategy = new JsonSchema7Strategy();
-    const schema = schemaManager.generate(userModel.build(), strategy);
+    const schema = schemaManager.generate(models.user.build(), strategy);
 
     // ------------------------------------------------------------------------
     // confirm sequelize model properties render as expected

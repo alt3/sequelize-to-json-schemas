@@ -1,14 +1,10 @@
 /* eslint-disable no-unused-vars */
 
 const _ = require('lodash'); // limit later to `merge`, `capitalize`, etc.
-
-const Sequelize = require('sequelize');
 const SwaggerParser = require('swagger-parser');
+const models = require('../models');
 const { SchemaManager, OpenApi3Strategy } = require('../../lib');
 const schemaWrapper = require('./openapi-v3-validation-wrapper');
-
-const sequelize = new Sequelize({ dialect: 'mysql' }); // no database connection required
-const userModel = sequelize.import('../models/user.js'); // without `.build()` so we can manipulate if need be
 
 describe('OpenApi3Strategy', function() {
   describe('Test output using default options', function() {
@@ -17,7 +13,7 @@ describe('OpenApi3Strategy', function() {
     // ------------------------------------------------------------------------
     const schemaManager = new SchemaManager();
     const strategy = new OpenApi3Strategy();
-    const schema = schemaManager.generate(userModel.build(), strategy);
+    const schema = schemaManager.generate(models.user.build(), strategy);
 
     // ------------------------------------------------------------------------
     // confirm sequelize model properties render as expected

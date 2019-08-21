@@ -1,10 +1,7 @@
 /* eslint-disable no-unused-vars */
 
-const Sequelize = require('sequelize');
+const models = require('./models');
 const { SchemaManager, JsonSchema7Strategy } = require('../lib');
-
-const sequelize = new Sequelize({ dialect: 'mysql' }); // no database connection required
-const userModel = sequelize.import('./models/user.js'); // without `.build()` so we can manipulate if need be
 
 describe('SchemaManager', function() {
   describe('Test configuration options for the class constructor', function() {
@@ -14,7 +11,7 @@ describe('SchemaManager', function() {
     describe('Ensure default values:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(userModel.build(), strategy);
+      const schema = schemaManager.generate(models.user.build(), strategy);
 
       it(`produce relative paths for models`, function() {
         expect(schema.$id).toEqual('/user.json');
@@ -33,7 +30,7 @@ describe('SchemaManager', function() {
         baseUri: 'https://alt3.io',
       });
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(userModel.build(), strategy);
+      const schema = schemaManager.generate(models.user.build(), strategy);
 
       it(`produces absolute paths for models`, function() {
         expect(schema.$id).toEqual('https://alt3.io/user.json');
@@ -53,7 +50,7 @@ describe('SchemaManager', function() {
         absolutePaths: false,
       });
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(userModel.build(), strategy);
+      const schema = schemaManager.generate(models.user.build(), strategy);
 
       it(`ignores baseUri and produces relative paths for models`, function() {
         expect(schema.$id).toEqual('/user.json');
@@ -72,7 +69,7 @@ describe('SchemaManager', function() {
     describe('Ensure default model options:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(userModel.build(), strategy);
+      const schema = schemaManager.generate(models.user.build(), strategy);
 
       it(`produce auto-generated model.title`, function() {
         expect(schema.title).toEqual('User');
@@ -89,7 +86,7 @@ describe('SchemaManager', function() {
     describe('Ensure custom model option:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(userModel.build(), strategy, {
+      const schema = schemaManager.generate(models.user.build(), strategy, {
         title: 'Custom Model Title',
         description: 'Custom Model Description',
         examples: ['Some Example'],
@@ -110,7 +107,7 @@ describe('SchemaManager', function() {
     describe('Ensure attribute exclusions:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(userModel.build(), strategy, {
+      const schema = schemaManager.generate(models.user.build(), strategy, {
         exclude: ['_STRING_', '_STRING_50_'],
       });
 
@@ -133,7 +130,7 @@ describe('SchemaManager', function() {
     describe('Ensure attribute inclusions:', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(userModel.build(), strategy, {
+      const schema = schemaManager.generate(models.user.build(), strategy, {
         include: ['_STRING_', '_STRING_50_'],
       });
 

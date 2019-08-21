@@ -16,7 +16,7 @@ const { DataTypes } = Sequelize;
  * Initialize User definition
  *
  * @param sequelize Sequelize Instance
- * @returns {UserClass} Returns the Users model
+ * @returns {UserClass} Returns the User model
  */
 module.exports = sequelize => {
   const Model = sequelize.define(
@@ -92,8 +92,6 @@ module.exports = sequelize => {
   };
 
   // delete Model.rawAttributes._ATTRIBUTE_NAME_;
-
-  Model.refreshAttributes();
 
   return Model;
 };
