@@ -1,5 +1,7 @@
 # sequelize-to-json-schemas
 
+![NPM Version](https://img.shields.io/npm/v/@alt3/sequelize-to-json-schemas?style=flat-square)
+
 Convert Sequelize models into various JSON Schema variants (using the Strategy Pattern).
 
 ## Supported Schemas
@@ -19,7 +21,7 @@ npm install @alt3/sequelize-to-json-schemas --save
 
 <!-- prettier-ignore-start -->
 ```javascript
-const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('sequelize-to-json-schemas');
+const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('@alt3/sequelize-to-json-schemas');
 const schemaManager = new SchemaManager();
 
 // generate a JSON Schema Draft-07 model schema
