@@ -1,13 +1,13 @@
 # sequelize-to-json-schemas
 
-Convert Sequelize models into various JSON Schema variants. Uses the Strategy Pattern.
+Convert Sequelize models into various JSON Schema variants (using the Strategy Pattern).
 
-## Available Strategies
+## Supported Schemas
 
 - JSON Schema v7
 - OpenAPI v3
 
-> More strategies welcome, [examples found here](https://github.com/alt3/sequelize-to-json-schemas/tree/master/lib/strategies)
+> More welcome, [examples found here](https://github.com/alt3/sequelize-to-json-schemas/tree/master/lib/strategies)
 
 ## Installation
 
@@ -33,6 +33,13 @@ schema = SchemaManager.generate(userModel, new OpenApi3Strategy());
 - understandable code
 - compatible with Sequelize v4 and v5
 - generates valid schemas (test suite using [ajv](https://github.com/epoberezkin/ajv) and [Swagger Parser](https://github.com/APIDevTools/swagger-parser) validators)
+
+## Strategy Pattern
+
+This library uses the Strategy Pattern to achieve the following:
+
+- create rock-solid core functionality only once
+- simplify support for new/upcoming schema variants
 
 ## License
 
