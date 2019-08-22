@@ -1,6 +1,6 @@
 {
   "name": "@alt3/sequelize-to-json-schemas",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Convert Sequelize models into various JSON Schema variants (using the Strategy Pattern)",
   "license": "MIT",
   "repository": {
@@ -31,7 +31,7 @@
   "files": [
     "lib"
   ],
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "keywords": [
     "javascript",
     "sequelize",

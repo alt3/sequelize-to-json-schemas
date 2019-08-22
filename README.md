@@ -12,20 +12,24 @@ Convert Sequelize models into various JSON Schema variants (using the Strategy P
 ## Installation
 
 ```bash
-npm install @alt3/sequelize-to-json-schemas
+npm install @alt3/sequelize-to-json-schemas@"<1.0.0" --save
 ```
 
 ## Example
 
 ```javascript
-const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('sequelize-to-json-schema');
+const {
+  SchemaManager,
+  JsonSchema7Strategy,
+  OpenApi3Strategy,
+} = require('sequelize-to-json-schemas');
 const schemaManager = new SchemaManager();
 
 // generate a JSON Schema Draft-07 model schema
-let schema = SchemaManager.generate(userModel, new JsonSchema7Strategy());
+let schema = schemaManager.generate(userModel, new JsonSchema7Strategy());
 
 // and/or the OpenAPI 3.0 equivalent
-schema = SchemaManager.generate(userModel, new OpenApi3Strategy());
+schema = schemaManager.generate(userModel, new OpenApi3Strategy());
 ```
 
 ## Additional Information
