@@ -7,22 +7,19 @@ Convert Sequelize models into various JSON Schema variants (using the Strategy P
 - JSON Schema v7
 - OpenAPI v3
 
-> More welcome, [examples found here](https://github.com/alt3/sequelize-to-json-schemas/tree/master/lib/strategies)
+> More strategies welcome, [inspiration found here](https://github.com/alt3/sequelize-to-json-schemas/tree/master/lib/strategies)
 
 ## Installation
 
 ```bash
-npm install @alt3/sequelize-to-json-schemas@"<1.0.0" --save
+npm install @alt3/sequelize-to-json-schemas --save
 ```
 
 ## Example
 
+<!-- prettier-ignore-start -->
 ```javascript
-const {
-  SchemaManager,
-  JsonSchema7Strategy,
-  OpenApi3Strategy,
-} = require('sequelize-to-json-schemas');
+const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('sequelize-to-json-schemas');
 const schemaManager = new SchemaManager();
 
 // generate a JSON Schema Draft-07 model schema
@@ -31,19 +28,53 @@ let schema = schemaManager.generate(userModel, new JsonSchema7Strategy());
 // and/or the OpenAPI 3.0 equivalent
 schema = schemaManager.generate(userModel, new OpenApi3Strategy());
 ```
+<!-- prettier-ignore-end -->
 
 ## Additional Information
 
 - understandable code
 - compatible with Sequelize v4 and v5
 - generates valid schemas (test suite using [ajv](https://github.com/epoberezkin/ajv) and [Swagger Parser](https://github.com/APIDevTools/swagger-parser) validators)
+- uses the Strategy Pattern for (rock solid) core functionality while easily implementing new schema variants
 
-## Strategy Pattern
+## Configuration
 
-This library uses the Strategy Pattern to achieve the following:
+To configure global options use the SchemaManager initialization:
 
-- create rock-solid core functionality only once
-- simplify support for new/upcoming schema variants
+```javascript
+const schemaManager = new SchemaManager({
+  baseUri: '/',
+  absolutePaths: true,
+});
+```
+
+To configure (per) model options use the `generate()` method:
+
+```javascript
+const userSchema = schemaManager.generate(userModel, strategy, {
+  title: 'MyUser',
+  description: 'My Description',
+  exclude: ['someAttribute'],
+});
+```
+
+To enrich your attributes add one or more `jsonSchema` options to your Sequelize attribute definitions:
+
+```javascript
+module.exports = sequelize => {
+  const Model = sequelize.define('user', {
+    userName: {
+      type: DataTypes.STRING,
+      jsonSchema: {
+        description: 'My attribute description',
+        examples: ['My example 1', 'My example 2'],
+      },
+    },
+  });
+
+  return Model;
+};
+```
 
 ## License
 
