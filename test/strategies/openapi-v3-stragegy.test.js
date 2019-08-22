@@ -13,20 +13,20 @@ describe('OpenApi3Strategy', function() {
     // ------------------------------------------------------------------------
     const schemaManager = new SchemaManager();
     const strategy = new OpenApi3Strategy();
-    const schema = schemaManager.generate(models.user, strategy);
+    const userSchema = schemaManager.generate(models.user, strategy);
 
     // ------------------------------------------------------------------------
     // confirm sequelize model properties render as expected
     // ------------------------------------------------------------------------
-    describe('Ensure schema.model:', function() {
+    describe('Ensure User schema.model:', function() {
       it("has property 'title' with value 'users'", function() {
-        expect(schema).toHaveProperty('title');
-        expect(schema.title).toEqual('User');
+        expect(userSchema).toHaveProperty('title');
+        expect(userSchema.title).toEqual('User');
       });
 
       it("has property 'type' with value 'object'", function() {
-        expect(schema).toHaveProperty('type');
-        expect(schema.type).toEqual('object');
+        expect(userSchema).toHaveProperty('type');
+        expect(userSchema.type).toEqual('object');
       });
     });
 
@@ -36,14 +36,14 @@ describe('OpenApi3Strategy', function() {
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
       describe('_STRING_ALLOWNULL_', function() {
         it("has property 'type' of type 'string'", function() {
-          expect(schema.properties).toHaveProperty('_STRING_ALLOWNULL_');
-          expect(schema.properties._STRING_ALLOWNULL_).toHaveProperty('type');
-          expect(schema.properties._STRING_ALLOWNULL_.type).toEqual('string');
+          expect(userSchema.properties).toHaveProperty('_STRING_ALLOWNULL_');
+          expect(userSchema.properties._STRING_ALLOWNULL_).toHaveProperty('type');
+          expect(userSchema.properties._STRING_ALLOWNULL_.type).toEqual('string');
         });
 
         it("has property 'nullable' of type 'boolean'", function() {
-          expect(schema.properties._STRING_ALLOWNULL_).toHaveProperty('nullable');
-          expect(typeof schema.properties._STRING_ALLOWNULL_.nullable).toEqual('boolean');
+          expect(userSchema.properties._STRING_ALLOWNULL_).toHaveProperty('nullable');
+          expect(typeof userSchema.properties._STRING_ALLOWNULL_.nullable).toEqual('boolean');
         });
       });
     });
@@ -54,23 +54,35 @@ describe('OpenApi3Strategy', function() {
     describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
       describe('_USER_ENRICHED_PROPERTIES_', function() {
         it("has property 'description' of type 'string'", function() {
-          expect(schema.properties).toHaveProperty('_USER_ENRICHED_PROPERTIES_');
-          expect(schema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('description');
-          expect(typeof schema.properties._USER_ENRICHED_PROPERTIES_.description).toBe('string');
+          expect(userSchema.properties).toHaveProperty('_USER_ENRICHED_PROPERTIES_');
+          expect(userSchema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('description');
+          expect(typeof userSchema.properties._USER_ENRICHED_PROPERTIES_.description).toBe(
+            'string',
+          );
         });
 
         it("has property 'example' of type 'array'", function() {
-          expect(schema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('example');
-          expect(Array.isArray(schema.properties._USER_ENRICHED_PROPERTIES_.example)).toBe(true);
+          expect(userSchema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('example');
+          expect(Array.isArray(userSchema.properties._USER_ENRICHED_PROPERTIES_.example)).toBe(
+            true,
+          );
         });
       });
     });
 
     // ------------------------------------------------------------------------
     // confirm the document is valid OpenAPI 3.0
+    //
+    // Please note that we MUST include the profiles and documents schemas or
+    // the $refs will not resolve causing the validation to fail.
     // ------------------------------------------------------------------------
     describe('Ensure that the resultant document:', function() {
-      schemaWrapper.components.schemas.users = schema;
+      schemaWrapper.components.schemas.users = userSchema;
+      schemaWrapper.components.schemas.profiles = schemaManager.generate(models.profile, strategy);
+      schemaWrapper.components.schemas.documents = schemaManager.generate(
+        models.document,
+        strategy,
+      );
 
       it("has leaf /openapi with string containing version '3.n.n'", function() {
         expect(schemaWrapper).toHaveProperty('openapi');

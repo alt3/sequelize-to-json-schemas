@@ -143,7 +143,7 @@ describe('SchemaManager', function() {
       });
 
       it(`do not include other attributes`, function() {
-        expect(Object.keys(schema.properties).length).toBe(2);
+        expect(Object.keys(schema.properties).length).toBe(4); // 2 left + 1 HasOne + 1 HasMany
       });
     });
   });

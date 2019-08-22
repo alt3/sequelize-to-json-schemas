@@ -11,10 +11,10 @@ Convert Sequelize models into various JSON Schema variants like:
 const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('./lib');
 const schemaManager = new SchemaManager();
 
-// now generate a JSON Schema Draft-07 schema
-const schema = SchemaManager.generate(sequelizeModel, new JsonSchema7Strategy());
+// generate a JSON Schema Draft-07 schema
+let schema = SchemaManager.generate(userModel, new JsonSchema7Strategy());
 
-// and an OpenAPI 3.0 schema
+// and the OpenAPI 3.0 equivalent
 schema = SchemaManager.generate(sequelizeModel, new OpenApi3Strategy());
 ```
 

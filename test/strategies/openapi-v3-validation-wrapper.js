@@ -32,6 +32,15 @@ module.exports = Object.freeze({
         },
       },
     },
+    '/documents': {
+      get: {
+        responses: {
+          '404': {
+            description: 'not found',
+          },
+        },
+      },
+    },
   },
   components: {
     schemas: {
