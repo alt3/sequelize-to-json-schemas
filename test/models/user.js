@@ -28,6 +28,17 @@ module.exports = sequelize => {
         allowNull: false,
       },
 
+      // CITEXT
+      _CITEXT_: {
+        type: DataTypes.CITEXT,
+      },
+
+      // INTEGER
+      _INTEGER: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+
       // STRING
       _STRING_: {
         type: DataTypes.STRING,
@@ -48,10 +59,9 @@ module.exports = sequelize => {
         type: DataTypes.STRING.BINARY,
       },
 
-      // INTEGER
-      _INTEGER: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
+      // TEXT
+      _TEXT_: {
+        type: DataTypes.TEXT,
       },
 
       // UUIDv4

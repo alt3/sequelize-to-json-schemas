@@ -34,6 +34,14 @@ describe('OpenApi3Strategy', function() {
     // confirm sequelize attributes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
+      describe('_CITEXT_', function() {
+        it("has property 'type' of type 'string'", function() {
+          expect(userSchema.properties).toHaveProperty('_CITEXT_');
+          expect(userSchema.properties._CITEXT_).toHaveProperty('type');
+          expect(userSchema.properties._CITEXT_.type).toEqual('string');
+        });
+      });
+
       describe('_STRING_ALLOWNULL_', function() {
         it("has property 'type' of type 'string'", function() {
           expect(userSchema.properties).toHaveProperty('_STRING_ALLOWNULL_');
@@ -44,6 +52,14 @@ describe('OpenApi3Strategy', function() {
         it("has property 'nullable' of type 'boolean'", function() {
           expect(userSchema.properties._STRING_ALLOWNULL_).toHaveProperty('nullable');
           expect(typeof userSchema.properties._STRING_ALLOWNULL_.nullable).toEqual('boolean');
+        });
+      });
+
+      describe('_TEXT_', function() {
+        it("has property 'type' of type 'string'", function() {
+          expect(userSchema.properties).toHaveProperty('_TEXT_');
+          expect(userSchema.properties._TEXT_).toHaveProperty('type');
+          expect(userSchema.properties._TEXT_.type).toEqual('string');
         });
       });
     });
