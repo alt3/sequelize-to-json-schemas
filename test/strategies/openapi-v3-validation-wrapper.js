@@ -21,18 +21,21 @@ module.exports = Object.freeze({
             description: 'not found',
           },
         },
-        description: 'Retrieves a list of all users from the API.',
-        summary: '',
-        tags: ['users'],
-        security: [],
+      },
+    },
+    '/profiles': {
+      get: {
+        responses: {
+          '404': {
+            description: 'not found',
+          },
+        },
       },
     },
   },
   components: {
     schemas: {
-      users: {
-        // model schema will be inserted here
-      },
+      // model schemas will be inserted here
     },
   },
 });
