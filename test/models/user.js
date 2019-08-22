@@ -28,7 +28,7 @@ module.exports = sequelize => {
         allowNull: false,
       },
 
-      // STRING (default)
+      // STRING
       _STRING_: {
         type: DataTypes.STRING,
       },
@@ -48,7 +48,7 @@ module.exports = sequelize => {
         type: DataTypes.STRING.BINARY,
       },
 
-      // INTEGER (default)
+      // INTEGER
       _INTEGER: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
