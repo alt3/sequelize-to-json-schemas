@@ -43,7 +43,7 @@ describe('JsonSchema7Strategy', function() {
     // confirm sequelize attributes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
-      describe('_CI_', function() {
+      describe('_CITEXT_', function() {
         it("has property 'type' of type 'string'", function() {
           expect(schema.properties).toHaveProperty('_CITEXT_');
           expect(schema.properties._CITEXT_).toHaveProperty('type');
