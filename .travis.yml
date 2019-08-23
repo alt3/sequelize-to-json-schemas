@@ -1,0 +1,40 @@
+language: node_js
+
+node_js:
+  - 8
+  - 10
+  - 12
+
+sudo: false
+
+env:
+  matrix:
+    - SEQ_VERSION=4
+    - SEQ_VERSION=5
+
+  global:
+    - TEST=1
+
+matrix:
+  fast_finish: true
+
+  include:
+    - node_js: 10
+      env: TEST=0 LINT=1
+
+    - node_js: 10
+      env: TEST=0 COVERAGE=1
+
+before_script:
+ - sh -c "if [ '$TEST' = '1' ]; then npm install sequelize@^$SEQ_VERSION.0.0; fi"
+
+script:
+  - sh -c "if [ '$TEST' = '1' ]; then npm run test; fi"
+  - sh -c "if [ '$LINT' = '1' ]; then npm run lint; fi"
+  - sh -c "if [ '$COVERAGE' = '1' ]; then npm run coverage; fi"
+
+after_success:
+  - if [[ $COVERAGE == 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
+
+notifications:
+  email: false
