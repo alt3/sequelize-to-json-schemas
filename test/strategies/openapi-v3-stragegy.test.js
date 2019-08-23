@@ -3,6 +3,7 @@
 const _ = require('lodash'); // limit later to `merge`, `capitalize`, etc.
 const SwaggerParser = require('swagger-parser');
 const models = require('../models');
+const supportedDataType = require('../utils/supported-datatype');
 const { SchemaManager, OpenApi3Strategy } = require('../../lib');
 const schemaWrapper = require('./openapi-v3-validation-wrapper');
 
@@ -34,34 +35,40 @@ describe('OpenApi3Strategy', function() {
     // confirm sequelize attributes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
-      describe('_CITEXT_', function() {
-        it("has property 'type' of type 'string'", function() {
-          expect(userSchema.properties).toHaveProperty('_CITEXT_');
-          expect(userSchema.properties._CITEXT_).toHaveProperty('type');
-          expect(userSchema.properties._CITEXT_.type).toEqual('string');
+      if (supportedDataType('CITEXT')) {
+        describe('_CITEXT_', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(userSchema.properties).toHaveProperty('_CITEXT_');
+            expect(userSchema.properties._CITEXT_).toHaveProperty('type');
+            expect(userSchema.properties._CITEXT_.type).toEqual('string');
+          });
         });
-      });
+      }
 
-      describe('_STRING_ALLOWNULL_', function() {
-        it("has property 'type' of type 'string'", function() {
-          expect(userSchema.properties).toHaveProperty('_STRING_ALLOWNULL_');
-          expect(userSchema.properties._STRING_ALLOWNULL_).toHaveProperty('type');
-          expect(userSchema.properties._STRING_ALLOWNULL_.type).toEqual('string');
-        });
+      if (supportedDataType('STRING')) {
+        describe('_STRING_ALLOWNULL_', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(userSchema.properties).toHaveProperty('_STRING_ALLOWNULL_');
+            expect(userSchema.properties._STRING_ALLOWNULL_).toHaveProperty('type');
+            expect(userSchema.properties._STRING_ALLOWNULL_.type).toEqual('string');
+          });
 
-        it("has property 'nullable' of type 'boolean'", function() {
-          expect(userSchema.properties._STRING_ALLOWNULL_).toHaveProperty('nullable');
-          expect(typeof userSchema.properties._STRING_ALLOWNULL_.nullable).toEqual('boolean');
+          it("has property 'nullable' of type 'boolean'", function() {
+            expect(userSchema.properties._STRING_ALLOWNULL_).toHaveProperty('nullable');
+            expect(typeof userSchema.properties._STRING_ALLOWNULL_.nullable).toEqual('boolean');
+          });
         });
-      });
+      }
 
-      describe('_TEXT_', function() {
-        it("has property 'type' of type 'string'", function() {
-          expect(userSchema.properties).toHaveProperty('_TEXT_');
-          expect(userSchema.properties._TEXT_).toHaveProperty('type');
-          expect(userSchema.properties._TEXT_.type).toEqual('string');
+      if (supportedDataType('TEXT')) {
+        describe('_TEXT_', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(userSchema.properties).toHaveProperty('_TEXT_');
+            expect(userSchema.properties._TEXT_).toHaveProperty('type');
+            expect(userSchema.properties._TEXT_.type).toEqual('string');
+          });
         });
-      });
+      }
     });
 
     // ------------------------------------------------------------------------

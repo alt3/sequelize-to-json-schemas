@@ -2,6 +2,8 @@
 
 const Ajv = require('ajv');
 const models = require('../models');
+const supportedDataType = require('../utils/supported-datatype');
+
 const { SchemaManager, JsonSchema7Strategy } = require('../../lib');
 
 describe('JsonSchema7Strategy', function() {
@@ -43,36 +45,42 @@ describe('JsonSchema7Strategy', function() {
     // confirm sequelize attributes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
-      describe('_CITEXT_', function() {
-        it("has property 'type' of type 'string'", function() {
-          expect(schema.properties).toHaveProperty('_CITEXT_');
-          expect(schema.properties._CITEXT_).toHaveProperty('type');
-          expect(schema.properties._CITEXT_.type).toEqual('string');
+      if (supportedDataType('CITEXT')) {
+        describe('_CITEXT_', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(schema.properties).toHaveProperty('_CITEXT_');
+            expect(schema.properties._CITEXT_).toHaveProperty('type');
+            expect(schema.properties._CITEXT_.type).toEqual('string');
+          });
         });
-      });
+      }
 
-      describe('_STRING_ALLOWNULL_', function() {
-        it("has property 'type' of type 'array'", function() {
-          expect(schema.properties).toHaveProperty('_STRING_ALLOWNULL_');
-          expect(schema.properties._STRING_ALLOWNULL_).toHaveProperty('type');
-          expect(Array.isArray(schema.properties._STRING_ALLOWNULL_.type)).toBe(true);
-        });
+      if (supportedDataType('STRING')) {
+        describe('_STRING_ALLOWNULL_', function() {
+          it("has property 'type' of type 'array'", function() {
+            expect(schema.properties).toHaveProperty('_STRING_ALLOWNULL_');
+            expect(schema.properties._STRING_ALLOWNULL_).toHaveProperty('type');
+            expect(Array.isArray(schema.properties._STRING_ALLOWNULL_.type)).toBe(true);
+          });
 
-        it("has property 'type' with two values named 'string' and 'null'", function() {
-          expect(Object.values(schema.properties._STRING_ALLOWNULL_.type)).toEqual([
-            'string',
-            'null',
-          ]);
+          it("has property 'type' with two values named 'string' and 'null'", function() {
+            expect(Object.values(schema.properties._STRING_ALLOWNULL_.type)).toEqual([
+              'string',
+              'null',
+            ]);
+          });
         });
-      });
+      }
 
-      describe('_TEXT_', function() {
-        it("has property 'type' of type 'string'", function() {
-          expect(schema.properties).toHaveProperty('_TEXT_');
-          expect(schema.properties._TEXT_).toHaveProperty('type');
-          expect(schema.properties._TEXT_.type).toEqual('string');
+      if (supportedDataType('TEXT')) {
+        describe('_TEXT_', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(schema.properties).toHaveProperty('_TEXT_');
+            expect(schema.properties._TEXT_).toHaveProperty('type');
+            expect(schema.properties._TEXT_.type).toEqual('string');
+          });
         });
-      });
+      }
     });
 
     // ------------------------------------------------------------------------

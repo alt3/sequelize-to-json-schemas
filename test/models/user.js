@@ -1,9 +1,11 @@
 /**
  * Sequelize attribute definitions for the `user` model.
  *
- * This model contains ALL known Sequelize DataTypes and is used by all
- * strategies to make sure the TypeMapper produces the correct types and
- * thus produces a result that passed schema-validation for the strategy.
+ * This model should contain attribute definitions for all known DataTypes.
+ * Please note that an attribute definitions will only be included in the
+ * model if the tested Sequelize version supports the DataType. For example
+ * Sequelize v4 does not support CITEXT so the _CITEXT_ attribute will not
+ * be present in the model when testing Sequelize v4.
  *
  * @see https://sequelize.org/master/manual/data-types.html
  */
@@ -11,6 +13,8 @@
 const Sequelize = require('sequelize');
 
 const { DataTypes } = Sequelize;
+
+const supportedDataType = require('../utils/supported-datatype');
 
 /**
  * Initialize User definition
@@ -27,66 +31,6 @@ module.exports = sequelize => {
         primaryKey: true,
         allowNull: false,
       },
-
-      // CITEXT
-      _CITEXT_: {
-        type: DataTypes.CITEXT,
-      },
-
-      // INTEGER
-      _INTEGER: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
-      },
-
-      // STRING
-      _STRING_: {
-        type: DataTypes.STRING,
-      },
-
-      _STRING_ALLOWNULL_: {
-        type: DataTypes.STRING,
-        allowNull: true, // nice test because this should become `nullable: true` for OpenApi
-      },
-
-      // STRING(1234)
-      _STRING_50_: {
-        type: DataTypes.STRING(50),
-      },
-
-      // STRING.BINARY
-      _STRING_DOT_BINARY_: {
-        type: DataTypes.STRING.BINARY,
-      },
-
-      // TEXT
-      _TEXT_: {
-        type: DataTypes.TEXT,
-      },
-
-      // UUIDv4
-      _UUIDV4_: {
-        type: DataTypes.UUID, // could be v1 or v4 ??
-      },
-
-      // INET is a good design-driving test as the TypeMapper returned value (array) breaks both OpenApi v3
-      // and JSON Schema v7. Sequelize description: the INET type holds an IPv4 or IPv6 host address, and
-      //  optionally its subnet. Takes 7 or 19 bytes
-      // @todo disabled until the mapper is fixed, note there
-      // _INET_: {
-      //   type: Sequelize.INET
-      // },
-
-      // ----------------------------------------------------------------------
-      // attribute using all available user-definable properties
-      // ----------------------------------------------------------------------
-      _USER_ENRICHED_PROPERTIES_: {
-        type: DataTypes.STRING,
-        jsonSchema: {
-          description: 'User defined attribute description',
-          examples: ['User defined example 1', 'User defined example 1'],
-        },
-      },
     },
     // sequelize options
     {
@@ -95,13 +39,64 @@ module.exports = sequelize => {
     },
   );
 
-  // dynamically add and remove attributes (useful for testing)
-  Model.rawAttributes._NEW = {
-    type: DataTypes.STRING,
-    allowNull: false,
-  };
+  // --------------------------------------------------------------------------
+  // Define ALL Sequelize DataTypes below, including their variations. Only
+  // added to the model if supported by this sequelize version.
+  // --------------------------------------------------------------------------
+  if (supportedDataType('CITEXT')) {
+    Model.rawAttributes._CITEXT_ = {
+      type: DataTypes.CITEXT,
+    };
+  }
 
-  // delete Model.rawAttributes._ATTRIBUTE_NAME_;
+  if (supportedDataType('INTEGER')) {
+    Model.rawAttributes._INTEGER_ = {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    };
+  }
+
+  if (supportedDataType('STRING')) {
+    Model.rawAttributes._STRING_ = {
+      type: DataTypes.STRING,
+    };
+
+    Model.rawAttributes._STRING_ALLOWNULL_ = {
+      type: DataTypes.STRING,
+      allowNull: true,
+    };
+
+    Model.rawAttributes._STRING_1234_ = {
+      type: DataTypes.STRING(1234),
+    };
+
+    Model.rawAttributes._STRING_DOT_BINARY_ = {
+      type: DataTypes.STRING.BINARY,
+    };
+  }
+
+  if (supportedDataType('TEXT')) {
+    Model.rawAttributes._TEXT_ = {
+      type: DataTypes.TEXT,
+    };
+  }
+
+  if (supportedDataType('UUIDV4')) {
+    Model.rawAttributes._STRING_DOT_BINARY_ = {
+      type: DataTypes.UUID,
+    };
+  }
+
+  // --------------------------------------------------------------------------
+  // Tests for user-definable attribute properties starting below.
+  // --------------------------------------------------------------------------
+  Model.rawAttributes._USER_ENRICHED_PROPERTIES_ = {
+    type: DataTypes.STRING,
+    jsonSchema: {
+      description: 'User defined attribute description',
+      examples: ['User defined example 1', 'User defined example 1'],
+    },
+  };
 
   return Model;
 };
