@@ -1,6 +1,11 @@
 # sequelize-to-json-schemas
 
 ![NPM Version](https://img.shields.io/npm/v/@alt3/sequelize-to-json-schemas?style=flat-square)
+![Build Status](https://img.shields.io/travis/alt3/sequelize-to-json-schemas/master.svg?style=flat-square)
+![NPM Total Downloads](https://img.shields.io/npm/dt/@alt3/sequelize-to-json-schemas.svg?style=flat-square)
+![Greenkeeper Enabled](https://badges.greenkeeper.io/alt3/sequelize-to-json-schemas.svg?style=flat-square)
+![Code Coverage](https://img.shields.io/codecov/c/github/alt3/sequelize-to-json-schemas.svg?style=flat-square)
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/alt3/sequelize-to-json-schemas?style=flat-square)
 
 Convert Sequelize models into various JSON Schema variants (using the Strategy Pattern).
 
