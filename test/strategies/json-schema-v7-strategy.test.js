@@ -21,22 +21,18 @@ describe('JsonSchema7Strategy', function() {
     describe('Ensure schema.model:', function() {
       const schemaUri = 'https://json-schema.org/draft-07/schema#';
       it(`has property '$schema' with value '${schemaUri}'`, function() {
-        expect(schema).toHaveProperty('$schema');
         expect(schema.$schema).toEqual('https://json-schema.org/draft-07/schema#');
       });
 
       it("has property '$id' with value '/user.json'", function() {
-        expect(schema).toHaveProperty('$id');
         expect(schema.$id).toEqual('/user.json');
       });
 
       it("has property 'title' with value 'users'", function() {
-        expect(schema).toHaveProperty('title');
         expect(schema.title).toEqual('User');
       });
 
       it("has property 'type' with value 'object'", function() {
-        expect(schema).toHaveProperty('type');
         expect(schema.type).toEqual('object');
       });
     });
@@ -48,8 +44,6 @@ describe('JsonSchema7Strategy', function() {
       if (supportedDataType('CITEXT')) {
         describe('CITEXT', function() {
           it("has property 'type' of type 'string'", function() {
-            expect(schema.properties).toHaveProperty('CITEXT');
-            expect(schema.properties.CITEXT).toHaveProperty('type');
             expect(schema.properties.CITEXT.type).toEqual('string');
           });
         });
@@ -58,29 +52,22 @@ describe('JsonSchema7Strategy', function() {
       if (supportedDataType('STRING')) {
         describe('STRING', function() {
           it("has property 'type' of type 'string'", function() {
-            expect(schema.properties).toHaveProperty('STRING');
-            expect(schema.properties.STRING).toHaveProperty('type');
             expect(schema.properties.STRING.type).toEqual('string');
           });
         });
 
         describe('STRING_1234', function() {
           it("has property 'type' of type 'string'", function() {
-            expect(schema.properties).toHaveProperty('STRING_1234');
-            expect(schema.properties.STRING_1234).toHaveProperty('type');
             expect(schema.properties.STRING_1234.type).toEqual('string');
           });
 
           it("has property 'maxLength' with value '1234'", function() {
-            expect(schema.properties.STRING_1234).toHaveProperty('maxLength');
             expect(schema.properties.STRING_1234.maxLength).toEqual(1234);
           });
         });
 
         describe('STRING_ALLOWNULL', function() {
           it("has property 'type' of type 'array'", function() {
-            expect(schema.properties).toHaveProperty('STRING_ALLOWNULL');
-            expect(schema.properties.STRING_ALLOWNULL).toHaveProperty('type');
             expect(Array.isArray(schema.properties.STRING_ALLOWNULL.type)).toBe(true);
           });
 
@@ -96,8 +83,6 @@ describe('JsonSchema7Strategy', function() {
       if (supportedDataType('TEXT')) {
         describe('TEXT', function() {
           it("has property 'type' of type 'string'", function() {
-            expect(schema.properties).toHaveProperty('TEXT');
-            expect(schema.properties.TEXT).toHaveProperty('type');
             expect(schema.properties.TEXT.type).toEqual('string');
           });
         });
@@ -110,13 +95,10 @@ describe('JsonSchema7Strategy', function() {
     describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
       describe('USER_ENRICHED_PROPERTIES', function() {
         it("has property 'description' of type 'string'", function() {
-          expect(schema.properties).toHaveProperty('USER_ENRICHED_PROPERTIES');
-          expect(schema.properties.USER_ENRICHED_PROPERTIES).toHaveProperty('description');
           expect(typeof schema.properties.USER_ENRICHED_PROPERTIES.description).toBe('string');
         });
 
         it("has property 'examples' of type 'array'", function() {
-          expect(schema.properties.USER_ENRICHED_PROPERTIES).toHaveProperty('examples');
           expect(Array.isArray(schema.properties.USER_ENRICHED_PROPERTIES.examples)).toBe(true);
         });
       });
