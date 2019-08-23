@@ -46,6 +46,27 @@ describe('OpenApi3Strategy', function() {
       }
 
       if (supportedDataType('STRING')) {
+        describe('STRING', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(userSchema.properties).toHaveProperty('STRING');
+            expect(userSchema.properties.STRING).toHaveProperty('type');
+            expect(userSchema.properties.STRING.type).toEqual('string');
+          });
+        });
+
+        describe('STRING_1234', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(userSchema.properties).toHaveProperty('STRING_1234');
+            expect(userSchema.properties.STRING_1234).toHaveProperty('type');
+            expect(userSchema.properties.STRING_1234.type).toEqual('string');
+          });
+
+          it("has property 'maxLength' with value '1234'", function() {
+            expect(userSchema.properties.STRING_1234).toHaveProperty('maxLength');
+            expect(userSchema.properties.STRING_1234.maxLength).toEqual(1234);
+          });
+        });
+
         describe('STRING_ALLOWNULL', function() {
           it("has property 'type' of type 'string'", function() {
             expect(userSchema.properties).toHaveProperty('STRING_ALLOWNULL');

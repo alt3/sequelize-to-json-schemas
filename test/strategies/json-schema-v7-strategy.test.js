@@ -56,6 +56,27 @@ describe('JsonSchema7Strategy', function() {
       }
 
       if (supportedDataType('STRING')) {
+        describe('STRING', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(schema.properties).toHaveProperty('STRING');
+            expect(schema.properties.STRING).toHaveProperty('type');
+            expect(schema.properties.STRING.type).toEqual('string');
+          });
+        });
+
+        describe('STRING_1234', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(schema.properties).toHaveProperty('STRING_1234');
+            expect(schema.properties.STRING_1234).toHaveProperty('type');
+            expect(schema.properties.STRING_1234.type).toEqual('string');
+          });
+
+          it("has property 'maxLength' with value '1234'", function() {
+            expect(schema.properties.STRING_1234).toHaveProperty('maxLength');
+            expect(schema.properties.STRING_1234.maxLength).toEqual(1234);
+          });
+        });
+
         describe('STRING_ALLOWNULL', function() {
           it("has property 'type' of type 'array'", function() {
             expect(schema.properties).toHaveProperty('STRING_ALLOWNULL');
