@@ -7,6 +7,10 @@ node_js:
 
 sudo: false
 
+branches:
+  only:
+    - master
+
 env:
   matrix:
     - SEQ_VERSION=4
