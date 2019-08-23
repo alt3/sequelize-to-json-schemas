@@ -60,13 +60,22 @@ describe('OpenApi3Strategy', function() {
           });
         });
 
+        describe('STRING_DOT_BINARY', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(userSchema.properties.STRING_DOT_BINARY.type).toEqual('string');
+          });
+
+          it("has property 'format' of type 'binary'", function() {
+            expect(userSchema.properties.STRING_DOT_BINARY.format).toEqual('binary');
+          });
+        });
+
         describe('STRING_ALLOWNULL', function() {
           it("has property 'type' of type 'string'", function() {
             expect(userSchema.properties.STRING_ALLOWNULL.type).toEqual('string');
           });
 
           it("has property 'nullable' of type 'boolean'", function() {
-            expect(userSchema.properties.STRING_ALLOWNULL).toHaveProperty('nullable');
             expect(typeof userSchema.properties.STRING_ALLOWNULL.nullable).toEqual('boolean');
           });
         });

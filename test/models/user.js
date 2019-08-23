@@ -82,7 +82,7 @@ module.exports = sequelize => {
   }
 
   if (supportedDataType('UUIDV4')) {
-    Model.rawAttributes.STRING_DOT_BINARY = {
+    Model.rawAttributes.UUIDV4 = {
       type: DataTypes.UUID,
     };
   }

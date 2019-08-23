@@ -66,6 +66,16 @@ describe('JsonSchema7Strategy', function() {
           });
         });
 
+        describe('STRING_DOT_BINARY', function() {
+          it("has property 'type' of type 'string'", function() {
+            expect(schema.properties.STRING_DOT_BINARY.type).toEqual('string');
+          });
+
+          it("has property 'format' of type 'binary'", function() {
+            expect(schema.properties.STRING_DOT_BINARY.format).toEqual('binary');
+          });
+        });
+
         describe('STRING_ALLOWNULL', function() {
           it("has property 'type' of type 'array'", function() {
             expect(Array.isArray(schema.properties.STRING_ALLOWNULL.type)).toBe(true);
