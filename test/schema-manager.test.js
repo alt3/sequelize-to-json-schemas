@@ -108,15 +108,15 @@ describe('SchemaManager', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
-        exclude: ['_STRING_', '_STRING_1234_'],
+        exclude: ['STRING', 'STRING_1234'],
       });
 
-      it(`exclude attribute _STRING_`, function() {
-        expect(schema.properties._STRING_).toBeUndefined();
+      it(`exclude attribute STRING`, function() {
+        expect(schema.properties.STRING).toBeUndefined();
       });
 
-      it(`exclude attribute _STRING_1234_`, function() {
-        expect(schema.properties._STRING_1234_).toBeUndefined();
+      it(`exclude attribute STRING_1234`, function() {
+        expect(schema.properties.STRING_1234).toBeUndefined();
       });
 
       it(`do not exclude other attribues`, function() {
@@ -131,15 +131,15 @@ describe('SchemaManager', function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
-        include: ['_STRING_', '_STRING_1234_'],
+        include: ['STRING', 'STRING_1234'],
       });
 
-      it(`include attribute _STRING_`, function() {
-        expect(schema.properties).toHaveProperty('_STRING_');
+      it(`include attribute STRING`, function() {
+        expect(schema.properties).toHaveProperty('STRING');
       });
 
-      it(`include attribute _STRING_1234_`, function() {
-        expect(schema.properties).toHaveProperty('_STRING_1234_');
+      it(`include attribute STRING_1234`, function() {
+        expect(schema.properties).toHaveProperty('STRING_1234');
       });
 
       it(`do not include other attributes`, function() {

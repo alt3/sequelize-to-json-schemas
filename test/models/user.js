@@ -44,45 +44,45 @@ module.exports = sequelize => {
   // added to the model if supported by this sequelize version.
   // --------------------------------------------------------------------------
   if (supportedDataType('CITEXT')) {
-    Model.rawAttributes._CITEXT_ = {
+    Model.rawAttributes.CITEXT = {
       type: DataTypes.CITEXT,
     };
   }
 
   if (supportedDataType('INTEGER')) {
-    Model.rawAttributes._INTEGER_ = {
+    Model.rawAttributes.INTEGER = {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     };
   }
 
   if (supportedDataType('STRING')) {
-    Model.rawAttributes._STRING_ = {
+    Model.rawAttributes.STRING = {
       type: DataTypes.STRING,
     };
 
-    Model.rawAttributes._STRING_ALLOWNULL_ = {
+    Model.rawAttributes.STRING_ALLOWNULL = {
       type: DataTypes.STRING,
       allowNull: true,
     };
 
-    Model.rawAttributes._STRING_1234_ = {
+    Model.rawAttributes.STRING_1234 = {
       type: DataTypes.STRING(1234),
     };
 
-    Model.rawAttributes._STRING_DOT_BINARY_ = {
+    Model.rawAttributes.STRING_DOT_BINARY = {
       type: DataTypes.STRING.BINARY,
     };
   }
 
   if (supportedDataType('TEXT')) {
-    Model.rawAttributes._TEXT_ = {
+    Model.rawAttributes.TEXT = {
       type: DataTypes.TEXT,
     };
   }
 
   if (supportedDataType('UUIDV4')) {
-    Model.rawAttributes._STRING_DOT_BINARY_ = {
+    Model.rawAttributes.STRING_DOT_BINARY = {
       type: DataTypes.UUID,
     };
   }
@@ -90,7 +90,7 @@ module.exports = sequelize => {
   // --------------------------------------------------------------------------
   // Tests for user-definable attribute properties starting below.
   // --------------------------------------------------------------------------
-  Model.rawAttributes._USER_ENRICHED_PROPERTIES_ = {
+  Model.rawAttributes.USER_ENRICHED_PROPERTIES = {
     type: DataTypes.STRING,
     jsonSchema: {
       description: 'User defined attribute description',

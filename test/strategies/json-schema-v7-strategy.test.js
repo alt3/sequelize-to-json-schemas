@@ -46,25 +46,25 @@ describe('JsonSchema7Strategy', function() {
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
       if (supportedDataType('CITEXT')) {
-        describe('_CITEXT_', function() {
+        describe('CITEXT', function() {
           it("has property 'type' of type 'string'", function() {
-            expect(schema.properties).toHaveProperty('_CITEXT_');
-            expect(schema.properties._CITEXT_).toHaveProperty('type');
-            expect(schema.properties._CITEXT_.type).toEqual('string');
+            expect(schema.properties).toHaveProperty('CITEXT');
+            expect(schema.properties.CITEXT).toHaveProperty('type');
+            expect(schema.properties.CITEXT.type).toEqual('string');
           });
         });
       }
 
       if (supportedDataType('STRING')) {
-        describe('_STRING_ALLOWNULL_', function() {
+        describe('STRING_ALLOWNULL', function() {
           it("has property 'type' of type 'array'", function() {
-            expect(schema.properties).toHaveProperty('_STRING_ALLOWNULL_');
-            expect(schema.properties._STRING_ALLOWNULL_).toHaveProperty('type');
-            expect(Array.isArray(schema.properties._STRING_ALLOWNULL_.type)).toBe(true);
+            expect(schema.properties).toHaveProperty('STRING_ALLOWNULL');
+            expect(schema.properties.STRING_ALLOWNULL).toHaveProperty('type');
+            expect(Array.isArray(schema.properties.STRING_ALLOWNULL.type)).toBe(true);
           });
 
           it("has property 'type' with two values named 'string' and 'null'", function() {
-            expect(Object.values(schema.properties._STRING_ALLOWNULL_.type)).toEqual([
+            expect(Object.values(schema.properties.STRING_ALLOWNULL.type)).toEqual([
               'string',
               'null',
             ]);
@@ -73,11 +73,11 @@ describe('JsonSchema7Strategy', function() {
       }
 
       if (supportedDataType('TEXT')) {
-        describe('_TEXT_', function() {
+        describe('TEXT', function() {
           it("has property 'type' of type 'string'", function() {
-            expect(schema.properties).toHaveProperty('_TEXT_');
-            expect(schema.properties._TEXT_).toHaveProperty('type');
-            expect(schema.properties._TEXT_.type).toEqual('string');
+            expect(schema.properties).toHaveProperty('TEXT');
+            expect(schema.properties.TEXT).toHaveProperty('type');
+            expect(schema.properties.TEXT.type).toEqual('string');
           });
         });
       }
@@ -87,16 +87,16 @@ describe('JsonSchema7Strategy', function() {
     // confirm user-definable attribute properties render as expected
     // ------------------------------------------------------------------------
     describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
-      describe('_USER_ENRICHED_PROPERTIES_', function() {
+      describe('USER_ENRICHED_PROPERTIES', function() {
         it("has property 'description' of type 'string'", function() {
-          expect(schema.properties).toHaveProperty('_USER_ENRICHED_PROPERTIES_');
-          expect(schema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('description');
-          expect(typeof schema.properties._USER_ENRICHED_PROPERTIES_.description).toBe('string');
+          expect(schema.properties).toHaveProperty('USER_ENRICHED_PROPERTIES');
+          expect(schema.properties.USER_ENRICHED_PROPERTIES).toHaveProperty('description');
+          expect(typeof schema.properties.USER_ENRICHED_PROPERTIES.description).toBe('string');
         });
 
         it("has property 'examples' of type 'array'", function() {
-          expect(schema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('examples');
-          expect(Array.isArray(schema.properties._USER_ENRICHED_PROPERTIES_.examples)).toBe(true);
+          expect(schema.properties.USER_ENRICHED_PROPERTIES).toHaveProperty('examples');
+          expect(Array.isArray(schema.properties.USER_ENRICHED_PROPERTIES.examples)).toBe(true);
         });
       });
     });

@@ -36,36 +36,36 @@ describe('OpenApi3Strategy', function() {
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
       if (supportedDataType('CITEXT')) {
-        describe('_CITEXT_', function() {
+        describe('CITEXT', function() {
           it("has property 'type' of type 'string'", function() {
-            expect(userSchema.properties).toHaveProperty('_CITEXT_');
-            expect(userSchema.properties._CITEXT_).toHaveProperty('type');
-            expect(userSchema.properties._CITEXT_.type).toEqual('string');
+            expect(userSchema.properties).toHaveProperty('CITEXT');
+            expect(userSchema.properties.CITEXT).toHaveProperty('type');
+            expect(userSchema.properties.CITEXT.type).toEqual('string');
           });
         });
       }
 
       if (supportedDataType('STRING')) {
-        describe('_STRING_ALLOWNULL_', function() {
+        describe('STRING_ALLOWNULL', function() {
           it("has property 'type' of type 'string'", function() {
-            expect(userSchema.properties).toHaveProperty('_STRING_ALLOWNULL_');
-            expect(userSchema.properties._STRING_ALLOWNULL_).toHaveProperty('type');
-            expect(userSchema.properties._STRING_ALLOWNULL_.type).toEqual('string');
+            expect(userSchema.properties).toHaveProperty('STRING_ALLOWNULL');
+            expect(userSchema.properties.STRING_ALLOWNULL).toHaveProperty('type');
+            expect(userSchema.properties.STRING_ALLOWNULL.type).toEqual('string');
           });
 
           it("has property 'nullable' of type 'boolean'", function() {
-            expect(userSchema.properties._STRING_ALLOWNULL_).toHaveProperty('nullable');
-            expect(typeof userSchema.properties._STRING_ALLOWNULL_.nullable).toEqual('boolean');
+            expect(userSchema.properties.STRING_ALLOWNULL).toHaveProperty('nullable');
+            expect(typeof userSchema.properties.STRING_ALLOWNULL.nullable).toEqual('boolean');
           });
         });
       }
 
       if (supportedDataType('TEXT')) {
-        describe('_TEXT_', function() {
+        describe('TEXT', function() {
           it("has property 'type' of type 'string'", function() {
-            expect(userSchema.properties).toHaveProperty('_TEXT_');
-            expect(userSchema.properties._TEXT_).toHaveProperty('type');
-            expect(userSchema.properties._TEXT_.type).toEqual('string');
+            expect(userSchema.properties).toHaveProperty('TEXT');
+            expect(userSchema.properties.TEXT).toHaveProperty('type');
+            expect(userSchema.properties.TEXT.type).toEqual('string');
           });
         });
       }
@@ -75,20 +75,16 @@ describe('OpenApi3Strategy', function() {
     // confirm user-definable attribute properties render as expected
     // ------------------------------------------------------------------------
     describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
-      describe('_USER_ENRICHED_PROPERTIES_', function() {
+      describe('USER_ENRICHED_PROPERTIES', function() {
         it("has property 'description' of type 'string'", function() {
-          expect(userSchema.properties).toHaveProperty('_USER_ENRICHED_PROPERTIES_');
-          expect(userSchema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('description');
-          expect(typeof userSchema.properties._USER_ENRICHED_PROPERTIES_.description).toBe(
-            'string',
-          );
+          expect(userSchema.properties).toHaveProperty('USER_ENRICHED_PROPERTIES');
+          expect(userSchema.properties.USER_ENRICHED_PROPERTIES).toHaveProperty('description');
+          expect(typeof userSchema.properties.USER_ENRICHED_PROPERTIES.description).toBe('string');
         });
 
         it("has property 'example' of type 'array'", function() {
-          expect(userSchema.properties._USER_ENRICHED_PROPERTIES_).toHaveProperty('example');
-          expect(Array.isArray(userSchema.properties._USER_ENRICHED_PROPERTIES_.example)).toBe(
-            true,
-          );
+          expect(userSchema.properties.USER_ENRICHED_PROPERTIES).toHaveProperty('example');
+          expect(Array.isArray(userSchema.properties.USER_ENRICHED_PROPERTIES.example)).toBe(true);
         });
       });
     });
