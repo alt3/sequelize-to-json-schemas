@@ -11,7 +11,7 @@ describe('StrategyInterface', function() {
   describe('Ensure we are testing against:', function() {
     const methodCount = Object.getOwnPropertyNames(StrategyInterface.prototype).length - 1; // excluding the constructor
 
-    it(`9 interface methods`, function() {
+    it(`8 interface methods`, function() {
       expect(methodCount).toEqual(9);
     });
   });
@@ -20,12 +20,6 @@ describe('StrategyInterface', function() {
   // test missing methods in the extended class
   // ------------------------------------------------------------------------
   describe('Ensure exceptions are thrown if child class has not implemented:', function() {
-    it('getOnlineSchemaUri()', function() {
-      expect(() => {
-        dummyStrategy.getOnlineSchemaUri();
-      }).toThrow("DummyStrategy has not implemented the 'getOnlineSchemaUri' interface method.");
-    });
-
     it('getPropertySchema()', function() {
       expect(() => {
         dummyStrategy.getPropertySchema();
