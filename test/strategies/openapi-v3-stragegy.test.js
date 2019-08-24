@@ -47,6 +47,33 @@ describe('OpenApi3Strategy', function() {
     });
 
     // ------------------------------------------------------------------------
+    // make sure associations render as expected
+    // ------------------------------------------------------------------------
+    describe('Ensure associations are properly generated and thus:', function() {
+      describe("user.HasOne(profile) generates singular property 'profile' with:", function() {
+        it("property '$ref' pointing to plural '#/components/schemas/profiles'", function() {
+          expect(userSchema.properties.profile.$ref).toEqual('#/components/schemas/profiles');
+        });
+      });
+
+      describe("user.HasMany(document) generates plural property 'documents' with:", function() {
+        it("property 'type' with value 'array'", function() {
+          expect(userSchema.properties.documents.type).toEqual('array');
+        });
+
+        it("property 'items.oneOf' of type 'array'", function() {
+          expect(Array.isArray(userSchema.properties.documents.items.oneOf)).toBe(true);
+        });
+
+        it("array 'items.oneOf' holding an object with '$ref' pointing to plural '#/components/schemas/documents'", function() {
+          expect(userSchema.properties.documents.items.oneOf[0]).toEqual({
+            $ref: '#/components/schemas/documents', // eslint-disable-line unicorn/prevent-abbreviations
+          });
+        });
+      });
+    });
+
+    // ------------------------------------------------------------------------
     // make sure the resultant document is valid OpenAPI 3.0
     //
     // Please note that we MUST include the profiles and documents schemas or

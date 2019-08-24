@@ -64,7 +64,27 @@ describe('JsonSchema7Strategy', function() {
     // make sure associations render as expected
     // ------------------------------------------------------------------------
     describe('Ensure associations are properly generated and thus:', function() {
-      // @todo
+      describe("user.HasOne(profile) generates singular property 'profile' with:", function() {
+        it("property '$ref' pointing to plural '#/definitions/profiles'", function() {
+          expect(schema.properties.profile.$ref).toEqual('#/definitions/profiles');
+        });
+      });
+
+      describe("user.HasMany(document) generates plural property 'documents' with:", function() {
+        it("property 'type' with value 'array'", function() {
+          expect(schema.properties.documents.type).toEqual('array');
+        });
+
+        it("property 'items.oneOf' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.documents.items.oneOf)).toBe(true);
+        });
+
+        it("array 'items.oneOf' holding an object with '$ref' pointing at plural '#/definitions/documents'", function() {
+          expect(schema.properties.documents.items.oneOf[0]).toEqual({
+            $ref: '#/definitions/documents', // eslint-disable-line unicorn/prevent-abbreviations
+          });
+        });
+      });
     });
 
     // ------------------------------------------------------------------------
