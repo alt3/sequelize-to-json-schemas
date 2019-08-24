@@ -22,7 +22,7 @@ Convert Sequelize models into various JSON Schema variants (using the Strategy P
 npm install @alt3/sequelize-to-json-schemas --save
 ```
 
-## Example
+## Usage
 
 <!-- prettier-ignore-start -->
 ```javascript
