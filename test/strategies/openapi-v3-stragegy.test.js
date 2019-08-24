@@ -43,10 +43,22 @@ describe('OpenApi3Strategy', function() {
         });
       }
 
+      if (supportedDataType('INTEGER')) {
+        describe('INTEGER', function() {
+          it("has property 'default' with integer value 0", function() {
+            expect(userSchema.properties.INTEGER.default).toEqual(0);
+          });
+        });
+      }
+
       if (supportedDataType('STRING')) {
         describe('STRING', function() {
           it("has property 'type' of type 'string'", function() {
             expect(userSchema.properties.STRING.type).toEqual('string');
+          });
+
+          it("has property 'default' with string value 'Default value for STRING'", function() {
+            expect(userSchema.properties.STRING.default).toEqual('Default value for STRING');
           });
         });
 

@@ -59,6 +59,7 @@ module.exports = sequelize => {
   if (supportedDataType('STRING')) {
     Model.rawAttributes.STRING = {
       type: DataTypes.STRING,
+      defaultValue: 'Default value for STRING',
     };
 
     Model.rawAttributes.STRING_ALLOWNULL = {

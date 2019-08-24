@@ -49,10 +49,22 @@ describe('JsonSchema7Strategy', function() {
         });
       }
 
+      if (supportedDataType('INTEGER')) {
+        describe('INTEGER', function() {
+          it("has property 'default' with integer value 0", function() {
+            expect(schema.properties.INTEGER.default).toEqual(0);
+          });
+        });
+      }
+
       if (supportedDataType('STRING')) {
         describe('STRING', function() {
           it("has property 'type' of type 'string'", function() {
             expect(schema.properties.STRING.type).toEqual('string');
+          });
+
+          it("has property 'default' with string value 'Default value for STRING'", function() {
+            expect(schema.properties.STRING.default).toEqual('Default value for STRING');
           });
         });
 
