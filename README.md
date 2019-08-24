@@ -14,7 +14,7 @@ Convert Sequelize models into various JSON Schema variants (using the Strategy P
 - JSON Schema v7
 - OpenAPI v3
 
-> More strategies welcome, [inspiration found here](https://github.com/alt3/sequelize-to-json-schemas/tree/master/lib/strategies)
+> More welcome, [inspiration found here](https://github.com/alt3/sequelize-to-json-schemas/tree/master/lib/strategies)
 
 ## Installation
 
