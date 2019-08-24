@@ -163,11 +163,10 @@
   "release-it": {
     "github": {
       "release": true,
-      "changelog": "npx auto-changelog --stdout --commit-limit false -u"
+      "changelog": "npx auto-changelog --stdout --commit-limit false"
     },
     "hooks": {
-      "before:bump": "npm run docs",
-      "after:bump": "npx auto-changelog -p"
+      "before:release": "npx auto-changelog -p --commit-limit false"
     }
   }
 }
