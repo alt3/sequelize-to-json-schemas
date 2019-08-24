@@ -14,8 +14,8 @@ branches:
 
 env:
   matrix:
-    - SEQ_VERSION=4
-    - SEQ_VERSION=5
+    - SEQUELIZE_VERSION=4
+    - SEQUELIZE_VERSION=5
 
   global:
     - TEST=1
@@ -31,7 +31,7 @@ matrix:
       env: TEST=0 COVERAGE=1
 
 before_script:
- - sh -c "if [ '$TEST' = '1' ]; then npm install sequelize@^$SEQ_VERSION.0.0; fi"
+ - sh -c "if [ '$TEST' = '1' ]; then npm install sequelize@^$SEQUELIZE_VERSION.0.0; fi"
 
 script:
   - sh -c "if [ '$TEST' = '1' ]; then npm run test; fi"
