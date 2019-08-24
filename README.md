@@ -11,8 +11,8 @@ Convert Sequelize models into various JSON Schema variants (using the Strategy P
 
 ## Supported Schemas
 
-- JSON Schema v7
-- OpenAPI v3
+- JSON Schema Draft-07
+- OpenAPI 3.0
 
 > More welcome, [inspiration found here](https://github.com/alt3/sequelize-to-json-schemas/tree/master/lib/strategies)
 
@@ -29,7 +29,7 @@ npm install @alt3/sequelize-to-json-schemas --save
 const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('@alt3/sequelize-to-json-schemas');
 const schemaManager = new SchemaManager();
 
-// generate a JSON Schema Draft-07 model schema
+// now generate a JSON Schema Draft-07 model schema
 let schema = schemaManager.generate(userModel, new JsonSchema7Strategy());
 
 // and/or the OpenAPI 3.0 equivalent
@@ -37,14 +37,15 @@ schema = schemaManager.generate(userModel, new OpenApi3Strategy());
 ```
 <!-- prettier-ignore-end -->
 
-## Additional Information
+## Main Goals
 
-- understandable code
-- compatible with Sequelize v4 and v5
-- generates valid schemas (test suite using [ajv](https://github.com/epoberezkin/ajv) and [Swagger Parser](https://github.com/APIDevTools/swagger-parser) validators)
-- uses the Strategy Pattern for (rock solid) core functionality while easily implementing new schema variants
+- understandable code, highly maintainable
+- support for Sequelize versions 4, 5 and beyond
+- valid schemas (enforced by the [ajv](https://github.com/epoberezkin/ajv) and [Swagger Parser](https://github.com/APIDevTools/swagger-parser) validators)
+- SchemaManager for single (rock solid) core functionality shared between all strategies
+- StrategyInterface for simplified implementation of new schema variants
 
-## Configuration
+## Configuration Options
 
 To configure global options use the SchemaManager initialization:
 
