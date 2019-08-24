@@ -1,5 +1,3 @@
-const models = require('./models');
-const { SchemaManager } = require('../lib');
 const StrategyInterface = require('../lib/strategy-interface');
 
 // create a dummy strategy so we can test non-implemented methods
@@ -22,60 +20,66 @@ describe('StrategyInterface', function() {
   // test missing methods in the extended class
   // ------------------------------------------------------------------------
   describe('Ensure exceptions are thrown if child class has not implemented:', function() {
-    const schemaManager = new SchemaManager();
-
     it('getOnlineSchemaUri()', function() {
       expect(() => {
-        schemaManager.generate(models.user, dummyStrategy);
-      }).toThrow(Error);
+        dummyStrategy.getOnlineSchemaUri();
+      }).toThrow("DummyStrategy has not implemented the 'getOnlineSchemaUri' interface method.");
     });
 
     it('getPropertySchema()', function() {
       expect(() => {
-        schemaManager.generate(models.user, dummyStrategy);
-      }).toThrow(Error);
+        dummyStrategy.getPropertySchema();
+      }).toThrow("DummyStrategy has not implemented the 'getPropertySchema' interface method.");
     });
 
     it('getPropertyId()', function() {
       expect(() => {
-        schemaManager.generate(models.user, dummyStrategy);
-      }).toThrow(Error);
+        dummyStrategy.getPropertyId();
+      }).toThrow("DummyStrategy has not implemented the 'getPropertyId' interface method.");
     });
 
     it('getPropertyTitle()', function() {
       expect(() => {
-        schemaManager.generate(models.user, dummyStrategy);
-      }).toThrow(Error);
+        dummyStrategy.getPropertyTitle();
+      }).toThrow("DummyStrategy has not implemented the 'getPropertyTitle' interface method.");
     });
 
     it('getPropertyDescription()', function() {
       expect(() => {
-        schemaManager.generate(models.user, dummyStrategy);
-      }).toThrow(Error);
+        dummyStrategy.getPropertyDescription();
+      }).toThrow(
+        "DummyStrategy has not implemented the 'getPropertyDescription' interface method.",
+      );
     });
 
     it('getPropertyExamples()', function() {
       expect(() => {
-        schemaManager.generate(models.user, dummyStrategy);
-      }).toThrow(Error);
+        dummyStrategy.getPropertyExamples();
+      }).toThrow("DummyStrategy has not implemented the 'getPropertyExamples' interface method.");
     });
 
     it('convertTypePropertyToAllowNull()', function() {
       expect(() => {
-        schemaManager.generate(models.user, dummyStrategy);
-      }).toThrow(Error);
+        dummyStrategy.convertTypePropertyToAllowNull();
+      }).toThrow(
+        "DummyStrategy has not implemented the 'convertTypePropertyToAllowNull' interface method.",
+      );
     });
 
     it('getPropertyForHasOneAssociation()', function() {
       expect(() => {
-        schemaManager.generate(models.user, dummyStrategy);
-      }).toThrow(Error);
+        dummyStrategy.getPropertyForHasOneAssociation();
+      }).toThrow(
+        "DummyStrategy has not implemented the 'getPropertyForHasOneAssociation' interface method.",
+      );
     });
 
     it('getPropertyForHasManyAssociation()', function() {
       expect(() => {
-        schemaManager.generate(models.user, dummyStrategy);
-      }).toThrow(Error);
+        dummyStrategy.getPropertyForHasManyAssociation();
+      }).toThrow(
+        "DummyStrategy has not implemented the 'getPropertyForHasManyAssociation' interface method.",
+      );
     });
   });
 });
