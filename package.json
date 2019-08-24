@@ -163,7 +163,7 @@
   "release-it": {
     "github": {
       "release": true,
-      "changelog": "npx auto-changelog --stdout --commit-limit false -u"
+      "changelog": "npx auto-changelog --stdout --commit-limit false"
     },
     "hooks": {
       "after:bump": "npx auto-changelog -p"
