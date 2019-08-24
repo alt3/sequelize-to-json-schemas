@@ -18,7 +18,7 @@
     "npm": ">=3"
   },
   "scripts": {
-    "coverage": "jest --collect-coverage",
+    "coverage": "--collect-coverage --collectCoverageFrom=./lib/**/*",
     "docs": "rimraf docs && npx jsdoc -c .jsdoc",
     "lint:eslint": "eslint --ignore-path .gitignore .",
     "lint:prettier": "prettier --list-different '**/*.{js,json,md,yml}'",
