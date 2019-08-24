@@ -11,8 +11,8 @@ describe('StrategyInterface', function() {
   describe('Ensure we are testing against:', function() {
     const methodCount = Object.getOwnPropertyNames(StrategyInterface.prototype).length - 1; // excluding the constructor
 
-    it(`9 interface methods`, function() {
-      expect(methodCount).toEqual(9);
+    it(`8 interface methods`, function() {
+      expect(methodCount).toEqual(8);
     });
   });
 
@@ -44,12 +44,6 @@ describe('StrategyInterface', function() {
       }).toThrow(
         "DummyStrategy has not implemented the 'getPropertyDescription' interface method.",
       );
-    });
-
-    it('getPropertyDefault()', function() {
-      expect(() => {
-        dummyStrategy.getPropertyDefault();
-      }).toThrow("DummyStrategy has not implemented the 'getPropertyDefault' interface method.");
     });
 
     it('getPropertyExamples()', function() {
