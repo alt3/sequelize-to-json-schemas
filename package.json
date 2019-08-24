@@ -19,7 +19,7 @@
   },
   "scripts": {
     "coverage": "jest --collect-coverage",
-    "docs": "npx del-cli './docs/*' '!./docs/README.md' && npx jsdoc -c .jsdoc ./docs/README.md",
+    "docs": "npx del-cli 'docs/*' '!docs/README.md' && npx jsdoc -c .jsdoc docs/README.md",
     "lint:eslint": "eslint --ignore-path .gitignore .",
     "lint:prettier": "prettier --list-different '**/*.{js,json,md,yml}'",
     "lint": "run-p lint:*",
@@ -166,6 +166,7 @@
       "changelog": "npx auto-changelog --stdout --commit-limit false -u"
     },
     "hooks": {
+      "before:bump": "npm run docs",
       "after:bump": "npx auto-changelog -p"
     }
   }
