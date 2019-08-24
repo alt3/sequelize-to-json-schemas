@@ -91,6 +91,9 @@
       "lcov",
       "text",
       "html"
+    ],
+    "collectCoverageFrom": [
+      "./lib/**/*"
     ]
   },
   "prettier": {
@@ -159,7 +162,11 @@
   },
   "release-it": {
     "github": {
-      "release": true
+      "release": true,
+      "changelog": "npx auto-changelog --stdout --commit-limit false -u"
+    },
+    "hooks": {
+      "after:bump": "npx auto-changelog -p"
     }
   }
 }
