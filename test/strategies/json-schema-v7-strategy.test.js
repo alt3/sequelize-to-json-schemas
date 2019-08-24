@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 
+/**
+ * Please note that we are ONLY testing strategy-specific behavior here. All
+ * non-strategy-specific tests are handled by the StrategyInterface test case.
+ */
 const Ajv = require('ajv');
 const models = require('../models');
-const supportedDataType = require('../utils/supported-datatype');
-
 const { SchemaManager, JsonSchema7Strategy } = require('../../lib');
 
 describe('JsonSchema7Strategy', function() {
@@ -18,7 +20,7 @@ describe('JsonSchema7Strategy', function() {
     // ------------------------------------------------------------------------
     // make sure sequelize model properties render as expected
     // ------------------------------------------------------------------------
-    describe('Ensure schema.model:', function() {
+    describe('Ensure model properties are rendered as expected and thus schema.model:', function() {
       const schemaUri = 'https://json-schema.org/draft-07/schema#';
       it(`has property '$schema' with value '${schemaUri}'`, function() {
         expect(schema.$schema).toEqual('https://json-schema.org/draft-07/schema#');
@@ -27,122 +29,60 @@ describe('JsonSchema7Strategy', function() {
       it("has property '$id' with value '/user.json'", function() {
         expect(schema.$id).toEqual('/user.json');
       });
-
-      it("has property 'title' with value 'users'", function() {
-        expect(schema.title).toEqual('User');
-      });
-
-      it("has property 'type' with value 'object'", function() {
-        expect(schema.type).toEqual('object');
-      });
     });
 
     // ------------------------------------------------------------------------
     // make sure sequelize DataTypes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
-      if (supportedDataType('CITEXT')) {
-        describe('CITEXT', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(schema.properties.CITEXT.type).toEqual('string');
-          });
-        });
-      }
-
-      if (supportedDataType('INTEGER')) {
-        describe('INTEGER', function() {
-          it("has property 'default' with integer value 0", function() {
-            expect(schema.properties.INTEGER.default).toEqual(0);
-          });
-        });
-      }
-
-      if (supportedDataType('STRING')) {
-        describe('STRING', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(schema.properties.STRING.type).toEqual('string');
-          });
-
-          it("has property 'default' with string value 'Default value for STRING'", function() {
-            expect(schema.properties.STRING.default).toEqual('Default value for STRING');
-          });
+      describe('STRING_ALLOWNULL', function() {
+        it("has property 'type' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.STRING_ALLOWNULL.type)).toBe(true);
         });
 
-        describe('STRING_1234', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(schema.properties.STRING_1234.type).toEqual('string');
-          });
-
-          it("has property 'maxLength' with value '1234'", function() {
-            expect(schema.properties.STRING_1234.maxLength).toEqual(1234);
-          });
+        it("has property 'type' with two values named 'string' and 'null'", function() {
+          expect(Object.values(schema.properties.STRING_ALLOWNULL.type)).toEqual([
+            'string',
+            'null',
+          ]);
         });
-
-        describe('STRING_DOT_BINARY', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(schema.properties.STRING_DOT_BINARY.type).toEqual('string');
-          });
-
-          it("has property 'format' of type 'binary'", function() {
-            expect(schema.properties.STRING_DOT_BINARY.format).toEqual('binary');
-          });
-        });
-
-        describe('STRING_ALLOWNULL', function() {
-          it("has property 'type' of type 'array'", function() {
-            expect(Array.isArray(schema.properties.STRING_ALLOWNULL.type)).toBe(true);
-          });
-
-          it("has property 'type' with two values named 'string' and 'null'", function() {
-            expect(Object.values(schema.properties.STRING_ALLOWNULL.type)).toEqual([
-              'string',
-              'null',
-            ]);
-          });
-        });
-      }
-
-      if (supportedDataType('TEXT')) {
-        describe('TEXT', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(schema.properties.TEXT.type).toEqual('string');
-          });
-        });
-      }
+      });
     });
 
     // ------------------------------------------------------------------------
-    // make sure sequelize attribute options render as expected
-    // ------------------------------------------------------------------------
-    describe('Ensure Sequelize attributes options render as expected and thus:', function() {
-      if (supportedDataType('INTEGER')) {
-        describe('INTEGER with defaultValue', function() {
-          it("has property 'default' with integer value 0", function() {
-            expect(schema.properties.INTEGER.default).toEqual(0);
-          });
-        });
-      }
-
-      if (supportedDataType('STRING')) {
-        describe('STRING with defaultValue', function() {
-          it("has property 'default' with string value 'Default value for STRING'", function() {
-            expect(schema.properties.STRING.default).toEqual('Default value for STRING');
-          });
-        });
-      }
-    });
-
-    // ------------------------------------------------------------------------
-    // confirm user-definable attribute properties render as expected
+    // make sure user-definable attribute properties render as expected
     // ------------------------------------------------------------------------
     describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
-      describe('USER_ENRICHED_PROPERTIES', function() {
-        it("has property 'description' of type 'string'", function() {
-          expect(typeof schema.properties.USER_ENRICHED_PROPERTIES.description).toBe('string');
+      describe('USER_ENRICHED_ATTRIBUTE', function() {
+        it("has property 'examples' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.USER_ENRICHED_ATTRIBUTE.examples)).toBe(true);
+        });
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // make sure associations render as expected
+    // ------------------------------------------------------------------------
+    describe('Ensure associations are properly generated and thus:', function() {
+      describe("user.HasOne(profile) generates singular property 'profile' with:", function() {
+        it("property '$ref' pointing to plural '#/definitions/profiles'", function() {
+          expect(schema.properties.profile.$ref).toEqual('#/definitions/profiles');
+        });
+      });
+
+      describe("user.HasMany(document) generates plural property 'documents' with:", function() {
+        it("property 'type' with value 'array'", function() {
+          expect(schema.properties.documents.type).toEqual('array');
         });
 
-        it("has property 'examples' of type 'array'", function() {
-          expect(Array.isArray(schema.properties.USER_ENRICHED_PROPERTIES.examples)).toBe(true);
+        it("property 'items.oneOf' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.documents.items.oneOf)).toBe(true);
+        });
+
+        it("array 'items.oneOf' holding an object with '$ref' pointing at plural '#/definitions/documents'", function() {
+          expect(schema.properties.documents.items.oneOf[0]).toEqual({
+            $ref: '#/definitions/documents', // eslint-disable-line unicorn/prevent-abbreviations
+          });
         });
       });
     });

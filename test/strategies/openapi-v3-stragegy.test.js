@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-vars */
 
+/**
+ * Please note that we are ONLY testing strategy-specific behavior here. All
+ * non-strategy-specific tests are handled by the StrategyInterface test case.
+ */
+
 const _ = require('lodash'); // limit later to `merge`, `capitalize`, etc.
 const SwaggerParser = require('swagger-parser');
 const models = require('../models');
-const supportedDataType = require('../utils/supported-datatype');
 const { SchemaManager, OpenApi3Strategy } = require('../../lib');
 const schemaWrapper = require('./openapi-v3-validation-wrapper');
 
@@ -17,111 +21,54 @@ describe('OpenApi3Strategy', function() {
     const userSchema = schemaManager.generate(models.user, strategy);
 
     // ------------------------------------------------------------------------
-    // make sure sequelize model properties render as expected
-    // ------------------------------------------------------------------------
-    describe('Ensure User schema.model:', function() {
-      it("has property 'title' with value 'users'", function() {
-        expect(userSchema).toHaveProperty('title');
-        expect(userSchema.title).toEqual('User');
-      });
-
-      it("has property 'type' with value 'object'", function() {
-        expect(userSchema).toHaveProperty('type');
-        expect(userSchema.type).toEqual('object');
-      });
-    });
-
-    // ------------------------------------------------------------------------
     // make sure sequelize DataTypes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
-      if (supportedDataType('CITEXT')) {
-        describe('CITEXT', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(userSchema.properties.CITEXT.type).toEqual('string');
-          });
-        });
-      }
-
-      if (supportedDataType('STRING')) {
-        describe('STRING', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(userSchema.properties.STRING.type).toEqual('string');
-          });
+      describe('STRING_ALLOWNULL', function() {
+        it("has property 'type' of type 'string'", function() {
+          expect(userSchema.properties.STRING_ALLOWNULL.type).toEqual('string');
         });
 
-        describe('STRING_1234', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(userSchema.properties.STRING_1234.type).toEqual('string');
-          });
-
-          it("has property 'maxLength' with value '1234'", function() {
-            expect(userSchema.properties.STRING_1234.maxLength).toEqual(1234);
-          });
+        it("has property 'nullable' of type 'boolean'", function() {
+          expect(typeof userSchema.properties.STRING_ALLOWNULL.nullable).toEqual('boolean');
         });
-
-        describe('STRING_DOT_BINARY', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(userSchema.properties.STRING_DOT_BINARY.type).toEqual('string');
-          });
-
-          it("has property 'format' of type 'binary'", function() {
-            expect(userSchema.properties.STRING_DOT_BINARY.format).toEqual('binary');
-          });
-        });
-
-        describe('STRING_ALLOWNULL', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(userSchema.properties.STRING_ALLOWNULL.type).toEqual('string');
-          });
-
-          it("has property 'nullable' of type 'boolean'", function() {
-            expect(typeof userSchema.properties.STRING_ALLOWNULL.nullable).toEqual('boolean');
-          });
-        });
-      }
-
-      if (supportedDataType('TEXT')) {
-        describe('TEXT', function() {
-          it("has property 'type' of type 'string'", function() {
-            expect(userSchema.properties.TEXT.type).toEqual('string');
-          });
-        });
-      }
-    });
-
-    // ------------------------------------------------------------------------
-    // make sure sequelize attribute options render as expected
-    // ------------------------------------------------------------------------
-    describe('Ensure user-enriched Sequelized attributes are properly converted and:', function() {
-      if (supportedDataType('INTEGER')) {
-        describe('INTEGER with defaultValue', function() {
-          it("has property 'default' with integer value 0", function() {
-            expect(userSchema.properties.INTEGER.default).toEqual(0);
-          });
-        });
-      }
-
-      if (supportedDataType('STRING')) {
-        describe('STRING with defaultValue', function() {
-          it("has property 'default' with string value 'Default value for STRING'", function() {
-            expect(userSchema.properties.STRING.default).toEqual('Default value for STRING');
-          });
-        });
-      }
+      });
     });
 
     // ------------------------------------------------------------------------
     // make sure user-definable attribute properties render as expected
     // ------------------------------------------------------------------------
     describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
-      describe('USER_ENRICHED_PROPERTIES', function() {
-        it("has property 'description' of type 'string'", function() {
-          expect(typeof userSchema.properties.USER_ENRICHED_PROPERTIES.description).toBe('string');
+      describe('USER_ENRICHED_ATTRIBUTE', function() {
+        it("has property 'example' of type 'array'", function() {
+          expect(Array.isArray(userSchema.properties.USER_ENRICHED_ATTRIBUTE.example)).toBe(true);
+        });
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // make sure associations render as expected
+    // ------------------------------------------------------------------------
+    describe('Ensure associations are properly generated and thus:', function() {
+      describe("user.HasOne(profile) generates singular property 'profile' with:", function() {
+        it("property '$ref' pointing to plural '#/components/schemas/profiles'", function() {
+          expect(userSchema.properties.profile.$ref).toEqual('#/components/schemas/profiles');
+        });
+      });
+
+      describe("user.HasMany(document) generates plural property 'documents' with:", function() {
+        it("property 'type' with value 'array'", function() {
+          expect(userSchema.properties.documents.type).toEqual('array');
         });
 
-        it("has property 'example' of type 'array'", function() {
-          expect(Array.isArray(userSchema.properties.USER_ENRICHED_PROPERTIES.example)).toBe(true);
+        it("property 'items.oneOf' of type 'array'", function() {
+          expect(Array.isArray(userSchema.properties.documents.items.oneOf)).toBe(true);
+        });
+
+        it("array 'items.oneOf' holding an object with '$ref' pointing to plural '#/components/schemas/documents'", function() {
+          expect(userSchema.properties.documents.items.oneOf[0]).toEqual({
+            $ref: '#/components/schemas/documents', // eslint-disable-line unicorn/prevent-abbreviations
+          });
         });
       });
     });

@@ -91,7 +91,7 @@ module.exports = sequelize => {
   // --------------------------------------------------------------------------
   // Tests for user-definable attribute properties starting below.
   // --------------------------------------------------------------------------
-  Model.rawAttributes.USER_ENRICHED_PROPERTIES = {
+  Model.rawAttributes.USER_ENRICHED_ATTRIBUTE = {
     type: DataTypes.STRING,
     jsonSchema: {
       description: 'User defined attribute description',
