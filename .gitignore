@@ -1,7 +1,10 @@
 /coverage/
-/docs/
 /node_modules/
 /npm-debug.log
+
+# docs
+/docs/*
+!/docs/README.md
 
 # Editors
 .vscode/*

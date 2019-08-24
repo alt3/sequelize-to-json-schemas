@@ -1,0 +1,1 @@
+## sequelize-to-json-schemas
