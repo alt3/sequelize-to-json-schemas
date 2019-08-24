@@ -31,7 +31,8 @@
     "release": "release-it"
   },
   "files": [
-    "lib"
+    "lib",
+    "test/models"
   ],
   "main": "lib/index.js",
   "keywords": [
