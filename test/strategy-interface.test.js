@@ -12,7 +12,7 @@ describe('StrategyInterface', function() {
     const methodCount = Object.getOwnPropertyNames(StrategyInterface.prototype).length - 1; // excluding the constructor
 
     it(`8 interface methods`, function() {
-      expect(methodCount).toEqual(9);
+      expect(methodCount).toEqual(8);
     });
   });
 
