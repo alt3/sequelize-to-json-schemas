@@ -17,7 +17,7 @@ describe('OpenApi3Strategy', function() {
     const userSchema = schemaManager.generate(models.user, strategy);
 
     // ------------------------------------------------------------------------
-    // confirm sequelize model properties render as expected
+    // make sure sequelize model properties render as expected
     // ------------------------------------------------------------------------
     describe('Ensure User schema.model:', function() {
       it("has property 'title' with value 'users'", function() {
@@ -32,7 +32,7 @@ describe('OpenApi3Strategy', function() {
     });
 
     // ------------------------------------------------------------------------
-    // confirm sequelize attributes render as expected
+    // make sure sequelize DataTypes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
       if (supportedDataType('CITEXT')) {
@@ -43,22 +43,10 @@ describe('OpenApi3Strategy', function() {
         });
       }
 
-      if (supportedDataType('INTEGER')) {
-        describe('INTEGER', function() {
-          it("has property 'default' with integer value 0", function() {
-            expect(userSchema.properties.INTEGER.default).toEqual(0);
-          });
-        });
-      }
-
       if (supportedDataType('STRING')) {
         describe('STRING', function() {
           it("has property 'type' of type 'string'", function() {
             expect(userSchema.properties.STRING.type).toEqual('string');
-          });
-
-          it("has property 'default' with string value 'Default value for STRING'", function() {
-            expect(userSchema.properties.STRING.default).toEqual('Default value for STRING');
           });
         });
 
@@ -103,7 +91,28 @@ describe('OpenApi3Strategy', function() {
     });
 
     // ------------------------------------------------------------------------
-    // confirm user-definable attribute properties render as expected
+    // make sure sequelize attribute options render as expected
+    // ------------------------------------------------------------------------
+    describe('Ensure user-enriched Sequelized attributes are properly converted and:', function() {
+      if (supportedDataType('INTEGER')) {
+        describe('INTEGER with defaultValue', function() {
+          it("has property 'default' with integer value 0", function() {
+            expect(userSchema.properties.INTEGER.default).toEqual(0);
+          });
+        });
+      }
+
+      if (supportedDataType('STRING')) {
+        describe('STRING with defaultValue', function() {
+          it("has property 'default' with string value 'Default value for STRING'", function() {
+            expect(userSchema.properties.STRING.default).toEqual('Default value for STRING');
+          });
+        });
+      }
+    });
+
+    // ------------------------------------------------------------------------
+    // make sure user-definable attribute properties render as expected
     // ------------------------------------------------------------------------
     describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
       describe('USER_ENRICHED_PROPERTIES', function() {
@@ -118,7 +127,7 @@ describe('OpenApi3Strategy', function() {
     });
 
     // ------------------------------------------------------------------------
-    // confirm the document is valid OpenAPI 3.0
+    // make sure the resultant document is valid OpenAPI 3.0
     //
     // Please note that we MUST include the profiles and documents schemas or
     // the $refs will not resolve causing the validation to fail.

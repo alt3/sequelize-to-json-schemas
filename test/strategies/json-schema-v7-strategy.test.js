@@ -16,7 +16,7 @@ describe('JsonSchema7Strategy', function() {
     const schema = schemaManager.generate(models.user, strategy);
 
     // ------------------------------------------------------------------------
-    // confirm sequelize model properties render as expected
+    // make sure sequelize model properties render as expected
     // ------------------------------------------------------------------------
     describe('Ensure schema.model:', function() {
       const schemaUri = 'https://json-schema.org/draft-07/schema#';
@@ -38,7 +38,7 @@ describe('JsonSchema7Strategy', function() {
     });
 
     // ------------------------------------------------------------------------
-    // confirm sequelize attributes render as expected
+    // make sure sequelize DataTypes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
       if (supportedDataType('CITEXT')) {
@@ -106,6 +106,27 @@ describe('JsonSchema7Strategy', function() {
         describe('TEXT', function() {
           it("has property 'type' of type 'string'", function() {
             expect(schema.properties.TEXT.type).toEqual('string');
+          });
+        });
+      }
+    });
+
+    // ------------------------------------------------------------------------
+    // make sure sequelize attribute options render as expected
+    // ------------------------------------------------------------------------
+    describe('Ensure Sequelize attributes options render as expected and thus:', function() {
+      if (supportedDataType('INTEGER')) {
+        describe('INTEGER with defaultValue', function() {
+          it("has property 'default' with integer value 0", function() {
+            expect(schema.properties.INTEGER.default).toEqual(0);
+          });
+        });
+      }
+
+      if (supportedDataType('STRING')) {
+        describe('STRING with defaultValue', function() {
+          it("has property 'default' with string value 'Default value for STRING'", function() {
+            expect(schema.properties.STRING.default).toEqual('Default value for STRING');
           });
         });
       }
