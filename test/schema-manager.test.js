@@ -6,7 +6,7 @@ const { SchemaManager, JsonSchema7Strategy } = require('../lib');
 describe('SchemaManager', function() {
   describe('Test configuration options for the class constructor', function() {
     // ------------------------------------------------------------------------
-    // test default options
+    // test default class options
     // ------------------------------------------------------------------------
     describe('Ensure default values:', function() {
       const schemaManager = new SchemaManager();
@@ -23,7 +23,7 @@ describe('SchemaManager', function() {
     });
 
     // ------------------------------------------------------------------------
-    // test custom baseUri
+    // make sure 'baseUri' works as expected
     // ------------------------------------------------------------------------
     describe('Ensure custom baseUri:', function() {
       const schemaManager = new SchemaManager({
@@ -42,7 +42,7 @@ describe('SchemaManager', function() {
     });
 
     // ------------------------------------------------------------------------
-    // test disabled absolutePaths
+    // make sure disabling 'absolutePaths' renders relative paths
     // ------------------------------------------------------------------------
     describe('Ensure disabled absolutePaths:', function() {
       const schemaManager = new SchemaManager({
@@ -64,7 +64,7 @@ describe('SchemaManager', function() {
 
   describe('Test configuration options for the generate() method', function() {
     // ------------------------------------------------------------------------
-    // test default options
+    // make sure default options render the expected model properties
     // ------------------------------------------------------------------------
     describe('Ensure default model options:', function() {
       const schemaManager = new SchemaManager();
@@ -81,7 +81,7 @@ describe('SchemaManager', function() {
     });
 
     // ------------------------------------------------------------------------
-    // test custom model properties
+    // make sure non-default options render the expected model properties
     // ------------------------------------------------------------------------
     describe('Ensure custom model option:', function() {
       const schemaManager = new SchemaManager();
@@ -102,7 +102,7 @@ describe('SchemaManager', function() {
     });
 
     // ------------------------------------------------------------------------
-    // test attribute exclusion
+    // make sure excluded attributes do not appear in the resultant schema
     // ------------------------------------------------------------------------
     describe('Ensure attribute exclusions:', function() {
       const schemaManager = new SchemaManager();
@@ -125,7 +125,7 @@ describe('SchemaManager', function() {
     });
 
     // ------------------------------------------------------------------------
-    // test attribute inclusion
+    // make sure excluded attributes do appear in the resultant schema
     // ------------------------------------------------------------------------
     describe('Ensure attribute inclusions:', function() {
       const schemaManager = new SchemaManager();
@@ -144,6 +144,39 @@ describe('SchemaManager', function() {
 
       it(`do not include other attributes`, function() {
         expect(Object.keys(schema.properties).length).toBe(4); // 2 left + 1 HasOne + 1 HasMany
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // make sure the associations options functions as expected
+    // ------------------------------------------------------------------------
+    describe(`Ensure option 'associations' with default value 'true':`, function() {
+      const schemaManager = new SchemaManager();
+      const strategy = new JsonSchema7Strategy();
+      const schema = schemaManager.generate(models.user, strategy);
+
+      it(`generates HasOne association property 'profile`, function() {
+        expect(schema.properties).toHaveProperty('profile');
+      });
+
+      it(`generates HasMany association property 'documents`, function() {
+        expect(schema.properties).toHaveProperty('documents');
+      });
+    });
+
+    describe(`Ensure option 'associations' with user-specificed value 'false':`, function() {
+      const schemaManager = new SchemaManager();
+      const strategy = new JsonSchema7Strategy();
+      const schema = schemaManager.generate(models.user, strategy, {
+        associations: false,
+      });
+
+      it(`does not generate HasOne association property 'profile`, function() {
+        expect(schema.properties.profile).toBeUndefined();
+      });
+
+      it(`does not generate HasMany association property 'documents`, function() {
+        expect(schema.properties.documents).toBeUndefined();
       });
     });
   });
