@@ -119,7 +119,7 @@ describe('SchemaManager', function() {
         expect(schema.properties.STRING_1234).toBeUndefined();
       });
 
-      it(`do not exclude other attribues`, function() {
+      it(`do not exclude other attributes`, function() {
         expect(schema.properties).toHaveProperty('id');
       });
     });
@@ -148,18 +148,18 @@ describe('SchemaManager', function() {
     });
 
     // ------------------------------------------------------------------------
-    // make sure the associations options functions as expected
+    // make sure option 'associations' functions as expected
     // ------------------------------------------------------------------------
     describe(`Ensure option 'associations' with default value 'true':`, function() {
       const schemaManager = new SchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
-      it(`generates HasOne association property 'profile`, function() {
+      it(`generates HasOne association property 'profile'`, function() {
         expect(schema.properties).toHaveProperty('profile');
       });
 
-      it(`generates HasMany association property 'documents`, function() {
+      it(`generates HasMany association property 'documents'`, function() {
         expect(schema.properties).toHaveProperty('documents');
       });
     });
@@ -171,13 +171,51 @@ describe('SchemaManager', function() {
         associations: false,
       });
 
-      it(`does not generate HasOne association property 'profile`, function() {
+      it(`does not generate HasOne association property 'profile'`, function() {
         expect(schema.properties.profile).toBeUndefined();
       });
 
-      it(`does not generate HasMany association property 'documents`, function() {
+      it(`does not generate HasMany association property 'documents'`, function() {
         expect(schema.properties.documents).toBeUndefined();
       });
+    });
+  });
+
+  // ------------------------------------------------------------------------
+  // make sure option 'includeAssociations'functions as expected
+  // ------------------------------------------------------------------------
+  describe('Ensure association inclusions:', function() {
+    const schemaManager = new SchemaManager();
+    const strategy = new JsonSchema7Strategy();
+    const schema = schemaManager.generate(models.user, strategy, {
+      includeAssociations: ['profile'],
+    });
+
+    it(`include association 'profile'`, function() {
+      expect(schema.properties).toHaveProperty('profile');
+    });
+
+    it(`do not include association 'documents'`, function() {
+      expect(schema.properties.documents).toBeUndefined();
+    });
+  });
+
+  // ------------------------------------------------------------------------
+  // make sure option 'excludeAssociations'functions as expected
+  // ------------------------------------------------------------------------
+  describe('Ensure association exclusions:', function() {
+    const schemaManager = new SchemaManager();
+    const strategy = new JsonSchema7Strategy();
+    const schema = schemaManager.generate(models.user, strategy, {
+      excludeAssociations: ['profile'],
+    });
+
+    it(`do not include association 'profile'`, function() {
+      expect(schema.properties.profile).toBeUndefined();
+    });
+
+    it(`include association 'documents'`, function() {
+      expect(schema.properties).toHaveProperty('documents');
     });
   });
 });
