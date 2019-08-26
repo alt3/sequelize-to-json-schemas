@@ -63,6 +63,10 @@ const userSchema = schemaManager.generate(userModel, strategy, {
   title: 'MyUser',
   description: 'My Description',
   exclude: ['someAttribute'],
+  include: ['someAttribute'],
+  associations: true,
+  excludeAssociations: ['someAssociation'],
+  includeAssociations: ['someAssociation'],
 });
 ```
 
