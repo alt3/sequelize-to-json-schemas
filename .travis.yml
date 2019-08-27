@@ -42,7 +42,7 @@ matrix:
         - npm run release
       on:
         branch: master
-      if: "commit_message !~ /(no-release|Chore: release)/"
+      if: "branch = master AND type = push AND commit_message !~ /(no-release|chore: release)/"
 
 before_script:
  - sh -c "if [ '$TEST' = '1' ]; then npm install sequelize@^$SEQUELIZE_VERSION.0.0; fi"

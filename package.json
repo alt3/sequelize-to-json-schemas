@@ -163,6 +163,7 @@
   },
   "release-it": {
     "git": {
+      "commit": true,
       "commitMessage": "Chore: release ${version}",
       "requireUpstream": false
     },
