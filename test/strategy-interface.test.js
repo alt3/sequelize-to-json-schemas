@@ -4,7 +4,7 @@
  * - all non-strategy-specific model properties are rendered as expected
  * - all non-strategy-specific attribute properties are rendered as expected
  */
-const { SchemaManager, JsonSchema7Strategy } = require('../lib');
+const { JsonSchemaManager, JsonSchema7Strategy } = require('../lib');
 const models = require('./models');
 const StrategyInterface = require('../lib/strategy-interface');
 const supportedDataType = require('./utils/supported-datatype');
@@ -78,7 +78,7 @@ describe('StrategyInterface', function() {
   // ------------------------------------------------------------------------
   // generate a JSON Draft-07 schema to test against
   // ------------------------------------------------------------------------
-  const schemaManager = new SchemaManager();
+  const schemaManager = new JsonSchemaManager();
   const schema = schemaManager.generate(models.user, new JsonSchema7Strategy());
 
   // ------------------------------------------------------------------------

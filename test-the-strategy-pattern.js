@@ -8,10 +8,10 @@
 const _ = require('lodash'); // limit later to `merge`, `capitalize`, etc.
 const SwaggerParser = require('swagger-parser');
 const models = require('./test/models');
-const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('./lib');
+const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('./lib');
 
 // Initialize the SchemaManager with global configuration options
-const schemaManager = new SchemaManager({
+const schemaManager = new JsonSchemaManager({
   baseUri: 'https://api.example.com',
   absolutePaths: true,
 });

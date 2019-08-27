@@ -6,14 +6,14 @@
  */
 const Ajv = require('ajv');
 const models = require('../models');
-const { SchemaManager, JsonSchema7Strategy } = require('../../lib');
+const { JsonSchemaManager, JsonSchema7Strategy } = require('../../lib');
 
 describe('JsonSchema7Strategy', function() {
   describe('Test output using default options', function() {
     // ------------------------------------------------------------------------
     // generate schema
     // ------------------------------------------------------------------------
-    const schemaManager = new SchemaManager();
+    const schemaManager = new JsonSchemaManager();
     const strategy = new JsonSchema7Strategy();
     const schema = schemaManager.generate(models.user, strategy);
 

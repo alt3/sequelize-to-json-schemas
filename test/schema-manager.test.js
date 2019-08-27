@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 const models = require('./models');
-const { SchemaManager, JsonSchema7Strategy } = require('../lib');
+const { JsonSchemaManager, JsonSchema7Strategy } = require('../lib');
 
 describe('SchemaManager', function() {
   describe('Test configuration options for the class constructor', function() {
@@ -9,7 +9,7 @@ describe('SchemaManager', function() {
     // test default class options
     // ------------------------------------------------------------------------
     describe('Ensure default values:', function() {
-      const schemaManager = new SchemaManager();
+      const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
@@ -26,7 +26,7 @@ describe('SchemaManager', function() {
     // make sure 'baseUri' works as expected
     // ------------------------------------------------------------------------
     describe('Ensure custom baseUri:', function() {
-      const schemaManager = new SchemaManager({
+      const schemaManager = new JsonSchemaManager({
         baseUri: 'https://alt3.io',
       });
       const strategy = new JsonSchema7Strategy();
@@ -45,7 +45,7 @@ describe('SchemaManager', function() {
     // make sure disabling 'absolutePaths' renders relative paths
     // ------------------------------------------------------------------------
     describe('Ensure disabled absolutePaths:', function() {
-      const schemaManager = new SchemaManager({
+      const schemaManager = new JsonSchemaManager({
         baseUri: 'https://alt3.io',
         absolutePaths: false,
       });
@@ -67,7 +67,7 @@ describe('SchemaManager', function() {
     // make sure default options render the expected model properties
     // ------------------------------------------------------------------------
     describe('Ensure default model options:', function() {
-      const schemaManager = new SchemaManager();
+      const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
@@ -84,7 +84,7 @@ describe('SchemaManager', function() {
     // make sure non-default options render the expected model properties
     // ------------------------------------------------------------------------
     describe('Ensure custom model option:', function() {
-      const schemaManager = new SchemaManager();
+      const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
         title: 'Custom Model Title',
@@ -105,7 +105,7 @@ describe('SchemaManager', function() {
     // make sure excluded attributes do not appear in the resultant schema
     // ------------------------------------------------------------------------
     describe('Ensure attribute exclusions:', function() {
-      const schemaManager = new SchemaManager();
+      const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
         exclude: ['STRING', 'STRING_1234'],
@@ -128,7 +128,7 @@ describe('SchemaManager', function() {
     // make sure excluded attributes do appear in the resultant schema
     // ------------------------------------------------------------------------
     describe('Ensure attribute inclusions:', function() {
-      const schemaManager = new SchemaManager();
+      const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
         include: ['STRING', 'STRING_1234'],
@@ -151,7 +151,7 @@ describe('SchemaManager', function() {
     // make sure option 'associations' functions as expected
     // ------------------------------------------------------------------------
     describe(`Ensure option 'associations' with default value 'true':`, function() {
-      const schemaManager = new SchemaManager();
+      const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
@@ -165,7 +165,7 @@ describe('SchemaManager', function() {
     });
 
     describe(`Ensure option 'associations' with user-specificed value 'false':`, function() {
-      const schemaManager = new SchemaManager();
+      const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
         associations: false,
@@ -185,7 +185,7 @@ describe('SchemaManager', function() {
   // make sure option 'includeAssociations'functions as expected
   // ------------------------------------------------------------------------
   describe('Ensure association inclusions:', function() {
-    const schemaManager = new SchemaManager();
+    const schemaManager = new JsonSchemaManager();
     const strategy = new JsonSchema7Strategy();
     const schema = schemaManager.generate(models.user, strategy, {
       includeAssociations: ['profile'],
@@ -204,7 +204,7 @@ describe('SchemaManager', function() {
   // make sure option 'excludeAssociations'functions as expected
   // ------------------------------------------------------------------------
   describe('Ensure association exclusions:', function() {
-    const schemaManager = new SchemaManager();
+    const schemaManager = new JsonSchemaManager();
     const strategy = new JsonSchema7Strategy();
     const schema = schemaManager.generate(models.user, strategy, {
       excludeAssociations: ['profile'],

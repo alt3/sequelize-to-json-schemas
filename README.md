@@ -26,8 +26,8 @@ npm install @alt3/sequelize-to-json-schemas --save
 
 <!-- prettier-ignore-start -->
 ```javascript
-const { SchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('@alt3/sequelize-to-json-schemas');
-const schemaManager = new SchemaManager();
+const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('@alt3/sequelize-to-json-schemas');
+const schemaManager = new JsonSchemaManager();
 
 // now generate a JSON Schema Draft-07 model schema
 let schema = schemaManager.generate(userModel, new JsonSchema7Strategy());
@@ -42,15 +42,15 @@ schema = schemaManager.generate(userModel, new OpenApi3Strategy());
 - understandable code, highly maintainable
 - support for Sequelize versions 4, 5 and beyond
 - valid schemas (enforced by the [ajv](https://github.com/epoberezkin/ajv) and [Swagger Parser](https://github.com/APIDevTools/swagger-parser) validators)
-- SchemaManager for single (rock solid) core functionality shared between all strategies
+- JsonSchemaManager for single (rock solid) core functionality shared between all strategies
 - StrategyInterface for simplified implementation of new schema variants
 
 ## Configuration Options
 
-To configure global options use the SchemaManager initialization:
+To configure global options use the JsonSchemaManager initialization:
 
 ```javascript
-const schemaManager = new SchemaManager({
+const schemaManager = new JsonSchemaManager({
   baseUri: '/',
   absolutePaths: true,
 });

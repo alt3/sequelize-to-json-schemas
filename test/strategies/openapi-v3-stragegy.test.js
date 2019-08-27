@@ -8,7 +8,7 @@
 const _ = require('lodash'); // limit later to `merge`, `capitalize`, etc.
 const SwaggerParser = require('swagger-parser');
 const models = require('../models');
-const { SchemaManager, OpenApi3Strategy } = require('../../lib');
+const { JsonSchemaManager, OpenApi3Strategy } = require('../../lib');
 const schemaWrapper = require('./openapi-v3-validation-wrapper');
 
 describe('OpenApi3Strategy', function() {
@@ -16,7 +16,7 @@ describe('OpenApi3Strategy', function() {
     // ------------------------------------------------------------------------
     // generate schema
     // ------------------------------------------------------------------------
-    const schemaManager = new SchemaManager();
+    const schemaManager = new JsonSchemaManager();
     const strategy = new OpenApi3Strategy();
     const userSchema = schemaManager.generate(models.user, strategy);
 
