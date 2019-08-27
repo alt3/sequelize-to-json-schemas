@@ -1,6 +1,6 @@
 {
   "name": "@alt3/sequelize-to-json-schemas",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Convert Sequelize models into various JSON Schema variants (using the Strategy Pattern)",
   "license": "MIT",
   "repository": {
@@ -163,10 +163,10 @@
   "release-it": {
     "github": {
       "release": true,
-      "changelog": "npx auto-changelog --stdout --commit-limit false"
+      "changelog": "npx auto-changelog --stdout --commit-limit false --unreleased"
     },
     "hooks": {
-      "before:release": "npx auto-changelog -p --commit-limit false"
+      "before:release": "npx auto-changelog -p"
     }
   }
 }
