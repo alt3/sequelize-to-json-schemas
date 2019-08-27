@@ -162,11 +162,7 @@
   },
   "release-it": {
     "github": {
-      "release": true,
-      "changelog": "npx auto-changelog --stdout --commit-limit false --unreleased"
-    },
-    "hooks": {
-      "before:release": "npx auto-changelog -p"
+      "release": true
     }
   }
 }
