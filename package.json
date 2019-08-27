@@ -73,32 +73,14 @@
     "sequelize": "^5.0.0",
     "swagger-parser": "^8.0.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*": "prettier --list-different",
-    "*.js": [
-      "eslint",
-      "jest --bail --findRelatedTests"
+  "esdoc": {
+    "source": "./src",
+    "destination": "./esdoc",
+    "plugins": [
+      {
+        "name": "esdoc-standard-plugin"
+      }
     ]
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "coverageReporters": [
-      "lcov",
-      "text",
-      "html"
-    ],
-    "collectCoverageFrom": [
-      "./lib/**/*"
-    ]
-  },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "all"
   },
   "eslintConfig": {
     "extends": [
@@ -151,14 +133,32 @@
       "no-underscore-dangle": "off"
     }
   },
-  "esdoc": {
-    "source": "./src",
-    "destination": "./esdoc",
-    "plugins": [
-      {
-        "name": "esdoc-standard-plugin"
-      }
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "./lib/**/*"
     ]
+  },
+  "lint-staged": {
+    "*": "prettier --list-different",
+    "*.js": [
+      "eslint",
+      "jest --bail --findRelatedTests"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
   },
   "release-it": {
     "github": {
