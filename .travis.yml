@@ -1,4 +1,5 @@
 language: node_js
+cache: npm
 
 node_js:
   - 8
@@ -30,6 +31,18 @@ matrix:
     - node_js: 10
       env: TEST=0 COVERAGE=1
 
+    - stage: deploy
+      node_js: 10
+      env: TEST=0 COVERAGE=0 LINT=0
+      script:
+        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+        - git remote rm origin
+        - git remote add origin https://alt3:${GITHUB_TOKEN}@github.com/alt3/sequelize-to-json-schemas.git
+        - git symbolic-ref HEAD refs/heads/master
+        - npm run release
+      on:
+        branch: master
+
 before_script:
  - sh -c "if [ '$TEST' = '1' ]; then npm install sequelize@^$SEQUELIZE_VERSION.0.0; fi"
 
@@ -42,4 +55,6 @@ after_success:
   - if [[ $COVERAGE == 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
 
 notifications:
-  email: false
+  email:
+    on_success: never
+    on_failure: always
