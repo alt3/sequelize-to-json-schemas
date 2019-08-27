@@ -1,4 +1,5 @@
 language: node_js
+cache: npm
 
 node_js:
   - 8
@@ -41,5 +42,12 @@ script:
 after_success:
   - if [[ $COVERAGE == 1 ]]; then bash <(curl -s https://codecov.io/bash); fi
 
+deploy:
+  script:
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+    - npm run release
+
 notifications:
-  email: false
+  email:
+    on_success: never
+    on_failure: always
