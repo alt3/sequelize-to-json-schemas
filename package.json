@@ -164,7 +164,7 @@
   "release-it": {
     "git": {
       "commit": true,
-      "commitMessage": "Chore: release ${version}",
+      "commitMessage": "Chore: Release ${version}",
       "requireUpstream": false
     },
     "github": {
