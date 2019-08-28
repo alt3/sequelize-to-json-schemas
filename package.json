@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:alt3/sequelize-to-json-schemas.git"
+    "url": "https://github.com/alt3/sequelize-to-json-schemas.git"
   },
   "author": {
     "name": "ALT3 B.V.",
