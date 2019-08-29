@@ -80,6 +80,7 @@ module.exports = sequelize => {
       type: DataTypes.STRING,
       jsonSchema: {
         description: 'My attribute description',
+        comment: 'My attribute comment',
         examples: ['My example 1', 'My example 2'],
       },
     },
