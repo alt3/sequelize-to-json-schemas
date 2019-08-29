@@ -180,4 +180,26 @@ describe('StrategyInterface', function() {
       });
     });
   });
+
+  // ------------------------------------------------------------------------
+  // make sure custom property 'readOnly' renders as expected
+  // ------------------------------------------------------------------------
+  describe(`Ensure custom property 'readOnly' renders as expected and thus:`, function() {
+    describe('CUSTOM_READONLY', function() {
+      it(`has property 'readOnly' with value 'true'`, function() {
+        expect(schema.properties.CUSTOM_READONLY.readOnly).toEqual(true);
+      });
+    });
+  });
+
+  // ------------------------------------------------------------------------
+  // make sure custom property 'writeOnly' renders as expected
+  // ------------------------------------------------------------------------
+  describe(`Ensure custom property 'writeOnly' renders as expected and thus:`, function() {
+    describe('CUSTOM_WRITEONLY', function() {
+      it(`has property 'writeOnly' with value 'true'`, function() {
+        expect(schema.properties.CUSTOM_WRITEONLY.writeOnly).toEqual(true);
+      });
+    });
+  });
 });

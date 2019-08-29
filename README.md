@@ -82,6 +82,7 @@ module.exports = sequelize => {
         description: 'My attribute description',
         comment: 'My attribute comment',
         examples: ['My example 1', 'My example 2'],
+        readOnly: true, // OR writeOnly: true
       },
     },
   });

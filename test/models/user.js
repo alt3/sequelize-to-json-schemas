@@ -89,7 +89,7 @@ module.exports = sequelize => {
   }
 
   // --------------------------------------------------------------------------
-  // Tests for user-definable attribute properties starting below.
+  // Tests for custom attribute properties starting below.
   // --------------------------------------------------------------------------
   Model.rawAttributes.USER_ENRICHED_ATTRIBUTE = {
     type: DataTypes.STRING,
@@ -97,6 +97,22 @@ module.exports = sequelize => {
       description: 'User defined attribute description',
       examples: ['User defined example 1', 'User defined example 1'],
       comment: 'User defined attribute comment',
+    },
+  };
+
+  Model.rawAttributes.CUSTOM_READONLY = {
+    type: DataTypes.STRING,
+    allowNull: false,
+    jsonSchema: {
+      readOnly: true,
+    },
+  };
+
+  Model.rawAttributes.CUSTOM_WRITEONLY = {
+    allowNull: false,
+    type: DataTypes.STRING,
+    jsonSchema: {
+      writeOnly: true,
     },
   };
 
