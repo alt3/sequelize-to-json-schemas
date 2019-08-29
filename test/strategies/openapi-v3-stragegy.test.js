@@ -38,12 +38,39 @@ describe('OpenApi3Strategy', function() {
     });
 
     // ------------------------------------------------------------------------
-    // make sure user-definable attribute properties render as expected
+    // make sure custom Sequelize attribute options render as expected
     // ------------------------------------------------------------------------
-    describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
-      describe('USER_ENRICHED_ATTRIBUTE', function() {
+    describe('Ensure custom Sequelize attribute options render as expected and thus:', function() {
+      describe('CUSTOM_DESCRIPTION', function() {
+        it(`has property 'description' with the expected string value`, function() {
+          expect(userSchema.properties.CUSTOM_DESCRIPTION.description).toEqual(
+            'Custom attribute description',
+          );
+        });
+      });
+
+      describe('CUSTOM_EXAMPLES', function() {
         it("has property 'example' of type 'array'", function() {
-          expect(Array.isArray(userSchema.properties.USER_ENRICHED_ATTRIBUTE.example)).toBe(true);
+          expect(Array.isArray(userSchema.properties.CUSTOM_EXAMPLES.example)).toBe(true);
+        });
+
+        it('with the two expected string values', function() {
+          expect(userSchema.properties.CUSTOM_EXAMPLES.example).toEqual([
+            'Custom example 1',
+            'Custom example 2',
+          ]);
+        });
+      });
+
+      describe('CUSTOM_READONLY', function() {
+        it(`has property 'readOnly' with value 'true'`, function() {
+          expect(userSchema.properties.CUSTOM_READONLY.readOnly).toEqual(true);
+        });
+      });
+
+      describe('CUSTOM_WRITEONLY', function() {
+        it(`has property 'writeOnly' with value 'true'`, function() {
+          expect(userSchema.properties.CUSTOM_WRITEONLY.writeOnly).toEqual(true);
         });
       });
     });

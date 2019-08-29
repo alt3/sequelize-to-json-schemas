@@ -22,7 +22,7 @@ describe('SchemaManager', function() {
       });
 
       it(`does not include attribute property '$comment'`, function() {
-        expect(schema.properties.USER_ENRICHED_ATTRIBUTE.$comment).toBeUndefined();
+        expect(schema.properties.CUSTOM_COMMENT.$comment).toBeUndefined();
       });
     });
 
@@ -56,9 +56,7 @@ describe('SchemaManager', function() {
       const schema = schemaManager.generate(models.user, strategy);
 
       it(`includes attribute property '$comment'`, function() {
-        expect(schema.properties.USER_ENRICHED_ATTRIBUTE.$comment).toEqual(
-          'User defined attribute comment',
-        );
+        expect(schema.properties.CUSTOM_COMMENT.$comment).toEqual('Custom comment');
       });
     });
 

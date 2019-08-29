@@ -1,8 +1,11 @@
 /* eslint-disable no-unused-vars */
 
 /**
- * Please note that we are ONLY testing strategy-specific behavior here. All
- * non-strategy-specific tests are handled by the StrategyInterface test case.
+ * Please note that we are NOT testing:
+ * - non strategy-specific behavior
+ * - custom Sequelize attribute options like 'description' and '$comment'
+ *   because these are already tested in the StrategyInterface test case
+ *   which uses JSON Schema Draft-07 as the basis for testing.
  */
 const Ajv = require('ajv');
 const models = require('../models');
@@ -47,23 +50,6 @@ describe('JsonSchema7Strategy', function() {
             'string',
             'null',
           ]);
-        });
-      });
-    });
-
-    // ------------------------------------------------------------------------
-    // make sure user-definable attribute properties render as expected
-    // ------------------------------------------------------------------------
-    describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
-      describe('USER_ENRICHED_ATTRIBUTE', function() {
-        it("has property 'examples' of type 'array'", function() {
-          expect(Array.isArray(schema.properties.USER_ENRICHED_ATTRIBUTE.examples)).toBe(true);
-        });
-
-        it("has property '$comment' of type 'string'", function() {
-          expect(schema.properties.USER_ENRICHED_ATTRIBUTE.$comment).toEqual(
-            'User defined attribute comment',
-          );
         });
       });
     });

@@ -84,7 +84,9 @@ describe('StrategyInterface', function() {
   // ------------------------------------------------------------------------
   // generate a JSON Draft-07 schema to test against
   // ------------------------------------------------------------------------
-  const schemaManager = new JsonSchemaManager();
+  const schemaManager = new JsonSchemaManager({
+    disableComments: false,
+  });
   const schema = schemaManager.generate(models.user, new JsonSchema7Strategy());
 
   // ------------------------------------------------------------------------
@@ -152,7 +154,7 @@ describe('StrategyInterface', function() {
   // ------------------------------------------------------------------------
   // make sure sequelize attribute options render as expected
   // ------------------------------------------------------------------------
-  describe('Ensure Sequelize attributes options render as expected and thus:', function() {
+  describe('Ensure Sequelize attribute options render as expected and thus:', function() {
     if (supportedDataType('INTEGER')) {
       describe('INTEGER with defaultValue', function() {
         it("has property 'default' with integer value 0", function() {
@@ -171,31 +173,42 @@ describe('StrategyInterface', function() {
   });
 
   // ------------------------------------------------------------------------
-  // confirm user-definable attribute properties render as expected
+  // make sure custom Sequelize attribute options render as expected
   // ------------------------------------------------------------------------
-  describe('Ensure user-enriched Sequelized attributes are properly converted and thus:', function() {
-    describe('USER_ENRICHED_ATTRIBUTE', function() {
-      it("has property 'description' of type 'string'", function() {
-        expect(typeof schema.properties.USER_ENRICHED_ATTRIBUTE.description).toBe('string');
+  describe('Ensure custom Sequelize attribute options render as expected and thus:', function() {
+    describe('CUSTOM_DESCRIPTION', function() {
+      it(`has property 'description' with the expected string value`, function() {
+        expect(schema.properties.CUSTOM_DESCRIPTION.description).toEqual(
+          'Custom attribute description',
+        );
       });
     });
-  });
 
-  // ------------------------------------------------------------------------
-  // make sure custom property 'readOnly' renders as expected
-  // ------------------------------------------------------------------------
-  describe(`Ensure custom property 'readOnly' renders as expected and thus:`, function() {
+    describe('CUSTOM_COMMENT', function() {
+      it(`has property '$comment' with the expected string value`, function() {
+        expect(schema.properties.CUSTOM_COMMENT.$comment).toEqual('Custom comment');
+      });
+    });
+
+    describe('CUSTOM_EXAMPLES', function() {
+      it("has property 'examples' of type 'array'", function() {
+        expect(Array.isArray(schema.properties.CUSTOM_EXAMPLES.examples)).toBe(true);
+      });
+
+      it('with the two expected string values', function() {
+        expect(schema.properties.CUSTOM_EXAMPLES.examples).toEqual([
+          'Custom example 1',
+          'Custom example 2',
+        ]);
+      });
+    });
+
     describe('CUSTOM_READONLY', function() {
       it(`has property 'readOnly' with value 'true'`, function() {
         expect(schema.properties.CUSTOM_READONLY.readOnly).toEqual(true);
       });
     });
-  });
 
-  // ------------------------------------------------------------------------
-  // make sure custom property 'writeOnly' renders as expected
-  // ------------------------------------------------------------------------
-  describe(`Ensure custom property 'writeOnly' renders as expected and thus:`, function() {
     describe('CUSTOM_WRITEONLY', function() {
       it(`has property 'writeOnly' with value 'true'`, function() {
         expect(schema.properties.CUSTOM_WRITEONLY.writeOnly).toEqual(true);

@@ -89,14 +89,26 @@ module.exports = sequelize => {
   }
 
   // --------------------------------------------------------------------------
-  // Tests for custom attribute properties starting below.
+  // Custom options (as specified through `jsonSchema`) starting below.
   // --------------------------------------------------------------------------
-  Model.rawAttributes.USER_ENRICHED_ATTRIBUTE = {
+  Model.rawAttributes.CUSTOM_DESCRIPTION = {
     type: DataTypes.STRING,
     jsonSchema: {
-      description: 'User defined attribute description',
-      examples: ['User defined example 1', 'User defined example 1'],
-      comment: 'User defined attribute comment',
+      description: 'Custom attribute description',
+    },
+  };
+
+  Model.rawAttributes.CUSTOM_COMMENT = {
+    type: DataTypes.STRING,
+    jsonSchema: {
+      comment: 'Custom comment',
+    },
+  };
+
+  Model.rawAttributes.CUSTOM_EXAMPLES = {
+    type: DataTypes.STRING,
+    jsonSchema: {
+      examples: ['Custom example 1', 'Custom example 2'],
     },
   };
 

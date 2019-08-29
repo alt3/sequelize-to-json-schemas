@@ -71,7 +71,26 @@ const userSchema = schemaManager.generate(userModel, strategy, {
 });
 ```
 
-To enrich your attributes add one or more `jsonSchema` options to your Sequelize attribute definitions:
+The following Sequelize attribute options are automatically converted into
+schema properties:
+
+```javascript
+module.exports = sequelize => {
+  const Model = sequelize.define('user', {
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: 'Default Value',
+      associate: {},
+    },
+  });
+
+  return Model;
+};
+```
+
+To configure additional schema properties add a `jsonSchema` property with
+one or more of the following options to your Sequelize attribute:
 
 ```javascript
 module.exports = sequelize => {
