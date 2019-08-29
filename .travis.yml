@@ -42,7 +42,6 @@ matrix:
         - npm run release
       on:
         branch: master
-
       if: "branch = master AND type = push AND commit_message !~ /^(?i:chore: release)|(?i:\[no-release\])/"
 
 before_script:
