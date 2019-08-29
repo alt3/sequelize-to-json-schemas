@@ -19,7 +19,8 @@
   },
   "scripts": {
     "coverage": "jest --collect-coverage",
-    "docs": "npx del-cli 'docs/*' '!docs/README.md' && npx jsdoc -c .jsdoc docs/README.md",
+    "docs": "del-cli \"docs/*\" \"!docs/README.md\" && npx jsdoc -c .jsdoc docs/README.md",
+    "examples": "del-cli \"examples/*\" \"!examples/generate.js\" && node ./examples/generate.js",
     "lint:eslint": "eslint --ignore-path .gitignore .",
     "lint:prettier": "prettier --list-different '**/*.{js,json,md,yml}'",
     "lint": "run-p lint:*",
@@ -63,6 +64,7 @@
     "eslint-plugin-jsdoc": "^15.8.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-unicorn": "^10.0.0",
+    "fs": "0.0.1-security",
     "husky": "^3.0.4",
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
@@ -136,7 +138,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && npm run examples"
     }
   },
   "jest": {
