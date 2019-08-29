@@ -13,7 +13,9 @@ describe('JsonSchema7Strategy', function() {
     // ------------------------------------------------------------------------
     // generate schema
     // ------------------------------------------------------------------------
-    const schemaManager = new JsonSchemaManager();
+    const schemaManager = new JsonSchemaManager({
+      hideComments: false,
+    });
     const strategy = new JsonSchema7Strategy();
     const schema = schemaManager.generate(models.user, strategy);
 
@@ -56,6 +58,12 @@ describe('JsonSchema7Strategy', function() {
       describe('USER_ENRICHED_ATTRIBUTE', function() {
         it("has property 'examples' of type 'array'", function() {
           expect(Array.isArray(schema.properties.USER_ENRICHED_ATTRIBUTE.examples)).toBe(true);
+        });
+
+        it("has property '$comment' of type 'string'", function() {
+          expect(schema.properties.USER_ENRICHED_ATTRIBUTE.$comment).toEqual(
+            'User defined attribute comment',
+          );
         });
       });
     });

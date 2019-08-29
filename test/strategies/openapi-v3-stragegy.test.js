@@ -16,7 +16,9 @@ describe('OpenApi3Strategy', function() {
     // ------------------------------------------------------------------------
     // generate schema
     // ------------------------------------------------------------------------
-    const schemaManager = new JsonSchemaManager();
+    const schemaManager = new JsonSchemaManager({
+      hideComments: false,
+    });
     const strategy = new OpenApi3Strategy();
     const userSchema = schemaManager.generate(models.user, strategy);
 

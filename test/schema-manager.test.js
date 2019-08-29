@@ -6,9 +6,9 @@ const { JsonSchemaManager, JsonSchema7Strategy } = require('../lib');
 describe('SchemaManager', function() {
   describe('Test configuration options for the class constructor', function() {
     // ------------------------------------------------------------------------
-    // test default class options
+    // make sure default option values work as expected
     // ------------------------------------------------------------------------
-    describe('Ensure default values:', function() {
+    describe('Ensure default options:', function() {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
@@ -20,12 +20,16 @@ describe('SchemaManager', function() {
       it(`produce relative paths for attribute properties`, function() {
         expect(schema.properties.id.$id).toEqual('/properties/id');
       });
+
+      it(`does not include attribute property '$comment'`, function() {
+        expect(schema.properties.USER_ENRICHED_ATTRIBUTE.$comment).toBeUndefined();
+      });
     });
 
     // ------------------------------------------------------------------------
-    // make sure 'baseUri' works as expected
+    // make sure option 'baseUri' works as expected
     // ------------------------------------------------------------------------
-    describe('Ensure custom baseUri:', function() {
+    describe(`Ensure non-default option 'baseUri':`, function() {
       const schemaManager = new JsonSchemaManager({
         baseUri: 'https://alt3.io',
       });
@@ -42,9 +46,26 @@ describe('SchemaManager', function() {
     });
 
     // ------------------------------------------------------------------------
+    // make sure option 'hideComments' works as expected
+    // ------------------------------------------------------------------------
+    describe(`Ensure false option 'hideComments':`, function() {
+      const schemaManager = new JsonSchemaManager({
+        hideComments: false,
+      });
+      const strategy = new JsonSchema7Strategy();
+      const schema = schemaManager.generate(models.user, strategy);
+
+      it(`includes attribute property '$comment'`, function() {
+        expect(schema.properties.USER_ENRICHED_ATTRIBUTE.$comment).toEqual(
+          'User defined attribute comment',
+        );
+      });
+    });
+
+    // ------------------------------------------------------------------------
     // make sure disabling 'absolutePaths' renders relative paths
     // ------------------------------------------------------------------------
-    describe('Ensure disabled absolutePaths:', function() {
+    describe(`Ensure false option 'absolutePaths':`, function() {
       const schemaManager = new JsonSchemaManager({
         baseUri: 'https://alt3.io',
         absolutePaths: false,

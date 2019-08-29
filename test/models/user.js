@@ -96,6 +96,7 @@ module.exports = sequelize => {
     jsonSchema: {
       description: 'User defined attribute description',
       examples: ['User defined example 1', 'User defined example 1'],
+      comment: 'User defined attribute comment',
     },
   };
 
