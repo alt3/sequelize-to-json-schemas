@@ -46,11 +46,11 @@ describe('SchemaManager', function() {
     });
 
     // ------------------------------------------------------------------------
-    // make sure option 'hideComments' works as expected
+    // make sure option 'disableComments' works as expected
     // ------------------------------------------------------------------------
-    describe(`Ensure false option 'hideComments':`, function() {
+    describe(`Ensure false option 'disableComments':`, function() {
       const schemaManager = new JsonSchemaManager({
-        hideComments: false,
+        disableComments: false,
       });
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);

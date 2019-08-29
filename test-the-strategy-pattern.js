@@ -14,7 +14,7 @@ const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('./
 const schemaManager = new JsonSchemaManager({
   baseUri: 'https://api.example.com',
   absolutePaths: true,
-  hideComments: false,
+  disableComments: false,
 });
 
 // Generate a JSON Schema Draft-07 schema for the user model

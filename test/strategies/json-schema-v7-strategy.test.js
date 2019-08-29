@@ -14,7 +14,7 @@ describe('JsonSchema7Strategy', function() {
     // generate schema
     // ------------------------------------------------------------------------
     const schemaManager = new JsonSchemaManager({
-      hideComments: false,
+      disableComments: false,
     });
     const strategy = new JsonSchema7Strategy();
     const schema = schemaManager.generate(models.user, strategy);

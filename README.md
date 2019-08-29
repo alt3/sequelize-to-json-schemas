@@ -53,7 +53,7 @@ To configure global options use the JsonSchemaManager initialization:
 const schemaManager = new JsonSchemaManager({
   baseUri: '/',
   absolutePaths: true,
-  hideComments: true,
+  disableComments: true,
 });
 ```
 
