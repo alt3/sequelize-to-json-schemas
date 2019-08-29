@@ -94,7 +94,7 @@
  - [OpenAPI 3.0]('/openapi-v3.md')
  `
 
- fileSystem.writeFile(`${targetFolder}index.md`, markdown, function check(error) {
+ fileSystem.writeFile(`${targetFolder}README.md`, markdown, function check(error) {
    if (error) {
      throw error;
    }
