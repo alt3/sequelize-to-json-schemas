@@ -63,8 +63,8 @@ To configure (per) model options use the `generate()` method:
 
 ```javascript
 const userSchema = schemaManager.generate(userModel, strategy, {
-  title: 'MyUser',
-  description: 'My Description',
+  title: 'Custom model title',
+  description: 'Custom model description',
   exclude: ['someAttribute'],
   include: ['someAttribute'],
   associations: true,
@@ -92,7 +92,7 @@ module.exports = sequelize => {
 ```
 
 To configure additional schema properties add a `jsonSchema` property with
-one or more of the following options to your Sequelize attribute:
+one or more of the following custom options to your Sequelize attribute:
 
 ```javascript
 module.exports = sequelize => {
@@ -100,9 +100,9 @@ module.exports = sequelize => {
     userName: {
       type: DataTypes.STRING,
       jsonSchema: {
-        description: 'My attribute description',
-        comment: 'My attribute comment',
-        examples: ['My example 1', 'My example 2'],
+        description: 'Custom attribute description',
+        comment: 'Custom attribute comment',
+        examples: ['Custom example 1', 'Custom example 2'],
         readOnly: true, // OR writeOnly: true
       },
     },
