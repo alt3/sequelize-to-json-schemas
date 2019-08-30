@@ -1,9 +1,179 @@
-### OpenAPI 3.0
+# OpenAPI 3.0
 
- Please note that sequelize-to-json-schemas only generated the content of `components.schemas`.
+These schemas were automatically generated on 2019-08-30
+using [these Sequelize models](../test/models/) and the most recent version of
+sequelize-to-json-schemas. To verify that these are all valid schemas use:
 
- ```json
- {
+- [Swagger Editor](https://editor.swagger.io/)
+- [Online Swagger & OpenAPI Validator](https://apidevtools.org/swagger-parser/online)
+- [Swagger Parser](https://github.com/swagger-api/swagger-parser)
+
+## User Model
+
+<!-- prettier-ignore-start -->
+```json
+{
+  "title": "Custom Title",
+  "description": "Custom Description",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "CITEXT": {
+      "type": "string"
+    },
+    "INTEGER": {
+      "type": "integer",
+      "format": "int32",
+      "default": 0
+    },
+    "STRING": {
+      "type": "string",
+      "default": "Default value for STRING"
+    },
+    "STRING_ALLOWNULL": {
+      "type": "string",
+      "nullable": true
+    },
+    "STRING_1234": {
+      "type": "string",
+      "maxLength": 1234
+    },
+    "STRING_DOT_BINARY": {
+      "type": "string",
+      "format": "binary"
+    },
+    "TEXT": {
+      "type": "string"
+    },
+    "UUIDV4": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "CUSTOM_DESCRIPTION": {
+      "type": "string",
+      "description": "Custom attribute description"
+    },
+    "CUSTOM_COMMENT": {
+      "type": "string"
+    },
+    "CUSTOM_EXAMPLES": {
+      "type": "string",
+      "example": [
+        "Custom example 1",
+        "Custom example 2"
+      ]
+    },
+    "CUSTOM_READONLY": {
+      "type": "string",
+      "readOnly": true
+    },
+    "CUSTOM_WRITEONLY": {
+      "type": "string",
+      "writeOnly": true
+    },
+    "profile": {
+      "$ref": "#/components/schemas/profiles"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/documents"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "id",
+    "createdAt",
+    "updatedAt",
+    "INTEGER",
+    "STRING",
+    "CUSTOM_READONLY",
+    "CUSTOM_WRITEONLY"
+  ]
+}
+```
+<!-- prettier-ignore-end -->
+
+## Profile Model
+
+<!-- prettier-ignore-start -->
+```json
+{
+  "title": "Profile",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "name": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "integer",
+      "format": "int32",
+      "nullable": true
+    }
+  },
+  "required": [
+    "id"
+  ]
+}
+```
+<!-- prettier-ignore-end -->
+
+## Document Model
+
+<!-- prettier-ignore-start -->
+```json
+{
+  "title": "Document",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "name": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "integer",
+      "format": "int32",
+      "nullable": true
+    }
+  },
+  "required": [
+    "id"
+  ]
+}
+```
+<!-- prettier-ignore-end -->
+
+## Full Schema
+
+Please note that sequelize-to-json-schemas does NOT generate full schemas. This is just an
+example of how to integrate the generated model schemas into a full OpenAPI 3.0 document
+(by adding model schemas to `components.schemas`).
+
+<!-- prettier-ignore-start -->
+```json
+{
   "openapi": "3.0.2",
   "info": {
     "title": "Fake API",
@@ -42,8 +212,8 @@
   "components": {
     "schemas": {
       "users": {
-        "title": "MyUser",
-        "description": "My Description",
+        "title": "Custom Title",
+        "description": "Custom Description",
         "type": "object",
         "properties": {
           "id": {
@@ -180,5 +350,5 @@
     }
   }
 }
- ```
- 
+```
+<!-- prettier-ignore-end -->

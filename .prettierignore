@@ -2,6 +2,7 @@
 /*
 
 # Except these directories:
+!/examples
 !/lib
 !/test
 

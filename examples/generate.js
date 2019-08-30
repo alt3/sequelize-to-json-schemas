@@ -3,101 +3,166 @@
  * generated schemas for each strategy (so they can be included in the README).
  */
 
- /* eslint-disable no-console */
+/* eslint-disable no-console */
+/* eslint-disable import/no-extraneous-dependencies */
 
- const fileSystem = require('fs');
- const models = require('../test/models');
- const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('../lib');
+const fileSystem = require('fs');
+const moment = require('moment');
+const models = require('../test/models');
+const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('../lib');
 
- const targetFolder = './examples/';
+const targetFolder = './examples/';
 
- const schemaManager = new JsonSchemaManager({
-   baseUri: 'https://api.example.com',
-   absolutePaths: true,
-   disableComments: false,
- });
+const schemaManager = new JsonSchemaManager({
+  baseUri: 'https://api.example.com',
+  absolutePaths: true,
+  disableComments: false,
+});
 
- // ----------------------------------------------------------------------------
- // JSON Schema Draft-07
- // ----------------------------------------------------------------------------
- const json7schema = {
-   $schema: "https://json-schema.org/draft-07/schema#",
-   definitions: {}
- }
+// ----------------------------------------------------------------------------
+// JSON Schema Draft-07
+// ----------------------------------------------------------------------------
+let userSchema = schemaManager.generate(models.user, new JsonSchema7Strategy(), {
+  title: 'Custom Title',
+  description: 'Custom Description',
+});
 
- json7schema.definitions.users = schemaManager.generate(models.user, new JsonSchema7Strategy({
-   title: 'MyUser',
-   description: 'My Description',
- }));
+let profileSchema = schemaManager.generate(models.profile, new JsonSchema7Strategy());
+let documentSchema = schemaManager.generate(models.document, new JsonSchema7Strategy());
+let fullSchema = {
+  $schema: 'https://json-schema.org/draft-07/schema#',
+  definitions: {
+    users: userSchema,
+    profiles: profileSchema,
+    documents: documentSchema,
+  },
+};
 
- json7schema.definitions.profiles = schemaManager.generate(models.profile, new JsonSchema7Strategy());
- json7schema.definitions.documents = schemaManager.generate(models.document, new JsonSchema7Strategy());
+let markdown = `# JSON Schema Draft-07
 
- let markdown = `### JSON Schema Draft-07
+These schemas were automatically generated on ${moment().format('YYYY-MM-DD')}
+using [these Sequelize models](../test/models) and the most recent version of
+sequelize-to-json-schemas. To verify that these are all valid schemas use:
 
- Please note that sequelize-to-json-schemas only generated the content of \`definitions\`.
+- [JSON Schema Validator](https://www.jsonschemavalidator.net/)
+- [ajv](https://github.com/epoberezkin/ajv)
 
- \`\`\`json
- ${JSON.stringify(json7schema, null, 2)}
- \`\`\`
- `;
+## User Model
 
- fileSystem.writeFile(`${targetFolder}json-schema-v7.md`, markdown, function check(error) {
-   if (error) {
-     throw error;
-   }
- });
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(userSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
 
- console.log('Succesfully generated markdown sample output for JSON Schema Draft-07');
+## Profile Model
 
- // ----------------------------------------------------------------------------
- // OpenAPI 3.0
- // ----------------------------------------------------------------------------
- const openApi3wrapper = require('../test/strategies/openapi-v3-validation-wrapper');
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(profileSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
 
- const openapi3strategy = new OpenApi3Strategy();
- const userSchema = schemaManager.generate(models.user, openapi3strategy, {
-   title: 'MyUser',
-   description: 'My Description',
- });
+## Document Model
 
- openApi3wrapper.components.schemas.users = userSchema;
- openApi3wrapper.components.schemas.profiles = schemaManager.generate(models.profile, openapi3strategy);
- openApi3wrapper.components.schemas.documents = schemaManager.generate(models.document, openapi3strategy);
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(documentSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
 
- markdown = `### OpenAPI 3.0
+## Full Schema
 
- Please note that sequelize-to-json-schemas only generated the content of \`components.schemas\`.
+Please note that sequelize-to-json-schemas does NOT generate full schemas. This is just an
+example of how to integrate the generated model schemas into a full JSON Schema Draft-07
+document (by adding model schemas to \`definitions\`).
 
- \`\`\`json
- ${JSON.stringify(openApi3wrapper, null, 2)}
- \`\`\`
- `;
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(fullSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+`;
 
- fileSystem.writeFile(`${targetFolder}openapi-v3.md`, markdown, function check(error) {
-   if (error) {
-     throw error;
-   }
- });
+fileSystem.writeFile(`${targetFolder}json-schema-v7.md`, markdown, function check(error) {
+  if (error) {
+    throw error;
+  }
+});
 
- console.log('Succesfully generated markdown sample output for OpenAPI 3.0');
+console.log('Succesfully generated markdown sample output for JSON Schema Draft-07');
 
- // ----------------------------------------------------------------------------
- // index.md
- // ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// OpenAPI 3.0
+// ----------------------------------------------------------------------------
+const openapi3strategy = new OpenApi3Strategy();
+userSchema = schemaManager.generate(models.user, openapi3strategy, {
+  title: 'Custom Title',
+  description: 'Custom Description',
+});
 
- markdown = `# Examples
+profileSchema = schemaManager.generate(models.profile, openapi3strategy);
+documentSchema = schemaManager.generate(models.document, openapi3strategy);
 
- Sample output as generated with the latest version of sequelize-to-json-schemas:
+fullSchema = require('../test/strategies/openapi-v3-validation-wrapper');
 
- - [JSON Schema Draft-07](json-schema-v7.md)
- - [OpenAPI 3.0](openapi-v3.md)
- `
+fullSchema.components.schemas = {
+  users: userSchema,
+  profiles: profileSchema,
+  documents: documentSchema,
+};
 
- fileSystem.writeFile(`${targetFolder}README.md`, markdown, function check(error) {
-   if (error) {
-     throw error;
-   }
- });
+markdown = `# OpenAPI 3.0
 
- console.log('Succesfully generated markdown index for sample outputs');
+These schemas were automatically generated on ${moment().format('YYYY-MM-DD')}
+using [these Sequelize models](../test/models/) and the most recent version of
+sequelize-to-json-schemas. To verify that these are all valid schemas use:
+
+- [Swagger Editor](https://editor.swagger.io/)
+- [Online Swagger & OpenAPI Validator](https://apidevtools.org/swagger-parser/online)
+- [Swagger Parser](https://github.com/swagger-api/swagger-parser)
+
+## User Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(userSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Profile Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(profileSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Document Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(documentSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Full Schema
+
+Please note that sequelize-to-json-schemas does NOT generate full schemas. This is just an
+example of how to integrate the generated model schemas into a full OpenAPI 3.0 document
+(by adding model schemas to \`components.schemas\`).
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(fullSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+`;
+
+fileSystem.writeFile(`${targetFolder}openapi-v3.md`, markdown, function check(error) {
+  if (error) {
+    throw error;
+  }
+});
+
+console.log('Succesfully generated markdown sample output for OpenAPI 3.0');
