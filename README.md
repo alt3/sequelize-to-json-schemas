@@ -78,7 +78,7 @@ schema properties:
 
 ```javascript
 module.exports = sequelize => {
-  const Model = sequelize.define('user', {
+  const model = sequelize.define('user', {
     userName: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -87,7 +87,7 @@ module.exports = sequelize => {
     },
   });
 
-  return Model;
+  return model;
 };
 ```
 
@@ -96,7 +96,7 @@ one or more of the following custom options to your Sequelize attribute:
 
 ```javascript
 module.exports = sequelize => {
-  const Model = sequelize.define('user', {
+  const model = sequelize.define('user', {
     userName: {
       type: DataTypes.STRING,
       jsonSchema: {
@@ -108,7 +108,7 @@ module.exports = sequelize => {
     },
   });
 
-  return Model;
+  return model;
 };
 ```
 
