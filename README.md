@@ -112,6 +112,10 @@ module.exports = sequelize => {
 };
 ```
 
+## Known Integrations
+
+- [Feathers](https://github.com/alt3/sequelize-to-json-schemas/issues/17)
+
 ## License
 
 This project is released under [MIT LICENSE](LICENSE.txt).
