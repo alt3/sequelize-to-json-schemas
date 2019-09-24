@@ -1,6 +1,6 @@
 # JSON Schema Draft-07
 
-These schemas were automatically generated on 2019-08-30
+These schemas were automatically generated on 2019-09-24
 using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
