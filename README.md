@@ -116,6 +116,25 @@ module.exports = sequelize => {
 };
 ```
 
+In order to create a valid output for `JSON` columns, or to otherwise override
+the schema output for a particular sequelize attribute, add a `schema` attribute:
+
+```javascript
+module.exports = sequelize => {
+  const model = sequelize.define('user', {
+    // ...
+    settings: {
+      type: DataTypes.JSON,
+      jsonSchema: {
+        schema: { type: 'object' },
+      },
+    },
+  });
+
+  return model;
+};
+```
+
 ## License
 
 This project is released under [MIT LICENSE](LICENSE.txt).
