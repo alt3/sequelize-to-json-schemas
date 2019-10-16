@@ -88,6 +88,15 @@ module.exports = sequelize => {
     };
   }
 
+  if (supportedDataType('JSON')) {
+    Model.rawAttributes.JSON = {
+      type: DataTypes.JSON,
+      jsonSchema: {
+        schema: { type: 'object' }, // required for OpenAPI
+      },
+    };
+  }
+
   // --------------------------------------------------------------------------
   // Custom options (as specified through `jsonSchema`) starting below.
   // --------------------------------------------------------------------------
