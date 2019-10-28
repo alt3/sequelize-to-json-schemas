@@ -43,6 +43,16 @@ module.exports = sequelize => {
   // Define ALL Sequelize DataTypes below, including their variations. Only
   // added to the model if supported by this sequelize version.
   // --------------------------------------------------------------------------
+  if (supportedDataType('ARRAY')) {
+    Model.rawAttributes.ARRAY_INTEGERS = {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+    };
+
+    Model.rawAttributes.ARRAY_TEXTS = {
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+    };
+  }
+
   if (supportedDataType('CITEXT')) {
     Model.rawAttributes.CITEXT = {
       type: DataTypes.CITEXT,
@@ -94,12 +104,6 @@ module.exports = sequelize => {
       jsonSchema: {
         schema: { type: 'object' }, // required for OpenAPI
       },
-    };
-  }
-
-  if (supportedDataType('ARRAY')) {
-    Model.rawAttributes.ARRAY = {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
     };
   }
 

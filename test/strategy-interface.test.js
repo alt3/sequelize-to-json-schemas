@@ -106,6 +106,29 @@ describe('StrategyInterface', function() {
   // make sure non-strategy-specific attributes properties render as expected
   // ------------------------------------------------------------------------
   describe('Ensure non-strategy-specific Sequelize DataTypes are properly converted and thus:', function() {
+    if (supportedDataType('ARRAY')) {
+      describe('ARRAY_INTEGERS', function() {
+        it("has property 'type' with value 'array'", function() {
+          expect(schema.properties.ARRAY_INTEGERS.type).toEqual('array');
+        });
+        it("has property 'items.type' with value 'integer'", function() {
+          expect(schema.properties.ARRAY_INTEGERS.items.type).toEqual('integer');
+        });
+        it("has property 'items.format' with value 'int32'", function() {
+          expect(schema.properties.ARRAY_INTEGERS.items.format).toEqual('int32');
+        });
+      });
+
+      describe('ARRAY_TEXTS', function() {
+        it("has property 'type' of type 'array'", function() {
+          expect(schema.properties.ARRAY_TEXTS.type).toEqual('array');
+        });
+        it("has property 'items.type' with value 'string'", function() {
+          expect(schema.properties.ARRAY_TEXTS.items.type).toEqual('string');
+        });
+      });
+    }
+
     if (supportedDataType('CITEXT')) {
       describe('CITEXT', function() {
         it("has property 'type' of type 'string'", function() {

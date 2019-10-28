@@ -1,6 +1,6 @@
 # JSON Schema Draft-07
 
-These schemas were automatically generated on 2019-10-16
+These schemas were automatically generated on 2019-10-28
 using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
@@ -32,6 +32,21 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "$id": "https://api.example.com/properties/updatedAt",
       "type": "string",
       "format": "date-time"
+    },
+    "ARRAY_INTEGERS": {
+      "$id": "https://api.example.com/properties/ARRAY_INTEGERS",
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "ARRAY_TEXTS": {
+      "$id": "https://api.example.com/properties/ARRAY_TEXTS",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "CITEXT": {
       "$id": "https://api.example.com/properties/CITEXT",
@@ -77,6 +92,15 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     "JSON": {
       "$id": "https://api.example.com/properties/JSON",
       "type": "object"
+    },
+    "VIRTUAL": {
+      "$id": "https://api.example.com/properties/VIRTUAL",
+      "type": "boolean"
+    },
+    "VIRTUAL_DEPENDENCY": {
+      "$id": "https://api.example.com/properties/VIRTUAL_DEPENDENCY",
+      "type": "integer",
+      "format": "int32"
     },
     "CUSTOM_DESCRIPTION": {
       "$id": "https://api.example.com/properties/CUSTOM_DESCRIPTION",
@@ -236,6 +260,21 @@ document (by adding model schemas to `definitions`).
           "type": "string",
           "format": "date-time"
         },
+        "ARRAY_INTEGERS": {
+          "$id": "https://api.example.com/properties/ARRAY_INTEGERS",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "ARRAY_TEXTS": {
+          "$id": "https://api.example.com/properties/ARRAY_TEXTS",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "CITEXT": {
           "$id": "https://api.example.com/properties/CITEXT",
           "type": "string"
@@ -280,6 +319,15 @@ document (by adding model schemas to `definitions`).
         "JSON": {
           "$id": "https://api.example.com/properties/JSON",
           "type": "object"
+        },
+        "VIRTUAL": {
+          "$id": "https://api.example.com/properties/VIRTUAL",
+          "type": "boolean"
+        },
+        "VIRTUAL_DEPENDENCY": {
+          "$id": "https://api.example.com/properties/VIRTUAL_DEPENDENCY",
+          "type": "integer",
+          "format": "int32"
         },
         "CUSTOM_DESCRIPTION": {
           "$id": "https://api.example.com/properties/CUSTOM_DESCRIPTION",

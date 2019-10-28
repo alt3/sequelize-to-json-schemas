@@ -1,6 +1,6 @@
 # OpenAPI 3.0
 
-These schemas were automatically generated on 2019-10-16
+These schemas were automatically generated on 2019-10-28
 using [these Sequelize models](../test/models/) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
@@ -28,6 +28,19 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     "updatedAt": {
       "type": "string",
       "format": "date-time"
+    },
+    "ARRAY_INTEGERS": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    "ARRAY_TEXTS": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "CITEXT": {
       "type": "string"
@@ -62,6 +75,13 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     },
     "JSON": {
       "type": "object"
+    },
+    "VIRTUAL": {
+      "type": "boolean"
+    },
+    "VIRTUAL_DEPENDENCY": {
+      "type": "integer",
+      "format": "int32"
     },
     "CUSTOM_DESCRIPTION": {
       "type": "string",
@@ -231,6 +251,19 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
             "type": "string",
             "format": "date-time"
           },
+          "ARRAY_INTEGERS": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "ARRAY_TEXTS": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "CITEXT": {
             "type": "string"
           },
@@ -264,6 +297,13 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
           },
           "JSON": {
             "type": "object"
+          },
+          "VIRTUAL": {
+            "type": "boolean"
+          },
+          "VIRTUAL_DEPENDENCY": {
+            "type": "integer",
+            "format": "int32"
           },
           "CUSTOM_DESCRIPTION": {
             "type": "string",
