@@ -97,6 +97,26 @@ module.exports = sequelize => {
     };
   }
 
+  if (supportedDataType('ARRAY')) {
+    Model.rawAttributes.ARRAY = {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+    };
+  }
+
+  if (supportedDataType('VIRTUAL')) {
+    Model.rawAttributes.VIRTUAL = {
+      type: DataTypes.VIRTUAL(DataTypes.BOOLEAN),
+      get: () => true,
+    };
+
+    Model.rawAttributes.VIRTUAL_DEPENDENCY = {
+      type: new DataTypes.VIRTUAL(DataTypes.INTEGER, ['id']),
+      get() {
+        return this.get('id');
+      },
+    };
+  }
+
   // --------------------------------------------------------------------------
   // Custom options (as specified through `jsonSchema`) starting below.
   // --------------------------------------------------------------------------
