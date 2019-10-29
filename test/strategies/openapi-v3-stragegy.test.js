@@ -5,7 +5,7 @@
  * non-strategy-specific tests are handled by the StrategyInterface test case.
  */
 
-const _ = require('lodash'); // limit later to `merge`, `capitalize`, etc.
+const _cloneDeep = require('lodash.clonedeep');
 const SwaggerParser = require('swagger-parser');
 const models = require('../models');
 const { JsonSchemaManager, OpenApi3Strategy } = require('../../lib');
@@ -130,7 +130,7 @@ describe('OpenApi3Strategy', function() {
 
         // https://github.com/APIDevTools/swagger-parser/issues/77
         // @todo: enable once fixed, now blocks husky pre-commit hooks
-        const result = await SwaggerParser.validate(_.cloneDeep(schemaWrapper));
+        const result = await SwaggerParser.validate(_cloneDeep(schemaWrapper));
         expect(result).toHaveProperty('info');
       });
     });
