@@ -5,7 +5,7 @@
 /**
  * Test runner used for Rapid Development.
  */
-const _ = require('lodash'); // limit later to `merge`, `capitalize`, etc.
+const _cloneDeep = require('lodash.clonedeep');
 const SwaggerParser = require('swagger-parser');
 const models = require('./test/models');
 const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('./lib');
@@ -71,7 +71,7 @@ console.log('Validating generated full schema against swagger-parser:');
 
 async function validateSchema () {
   try {
-    const api = await SwaggerParser.validate(_.cloneDeep(wrapper));
+    const api = await SwaggerParser.validate(_cloneDeep(wrapper));
     console.log("Wrapper passed OpenAPI validation: API name: %s, Version: %s", api.info.title, api.info.version);
   }
   catch(error) {
