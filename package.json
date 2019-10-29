@@ -48,7 +48,6 @@
   "dependencies": {
     "lodash.assign": "^4.2.0",
     "lodash.capitalize": "^4.2.1",
-    "lodash.clonedeep": "^4.5.0",
     "lodash.merge": "^4.6.2",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
@@ -74,6 +73,7 @@
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
     "lint-staged": "^9.4.2",
+    "lodash.clonedeep": "^4.5.0",
     "moment": "^2.24.0",
     "mysql2": "^2.0.0",
     "npm-run-all": "^4.1.3",
