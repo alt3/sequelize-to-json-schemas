@@ -9,18 +9,20 @@
 
 # sequelize-to-json-schemas
 
-Convert Sequelize models into various JSON Schema variants (using the Strategy Pattern).
-
-## Supported Schemas
+Convert Sequelize models into these JSON Schema variants (using the Strategy Pattern):
 
 - JSON Schema Draft-07 - [sample output](examples/json-schema-v7.md)
 - OpenAPI 3.0 - [sample output](examples/openapi-v3.md)
 
-> More welcome, [very simple, inspiration found here](https://github.com/alt3/sequelize-to-json-schemas/tree/master/lib/strategies)
+## Main Goals
 
-## Framework Integrations
+- understandable code, highly maintainable
+- support for Sequelize versions 4, 5, 6 and future
+- valid schemas (enforced by the [ajv](https://github.com/epoberezkin/ajv) and [Swagger Parser](https://github.com/APIDevTools/swagger-parser) validators)
+- JsonSchemaManager for single (rock solid) core functionality shared between all strategies
+- StrategyInterface for simplified implementation of new schema variants
 
-- [Feathers](https://github.com/alt3/sequelize-to-json-schemas/issues/17)
+> Feel free to PR strategies for missing schemas
 
 ## Installation
 
@@ -42,14 +44,6 @@ let schema = schemaManager.generate(userModel, new JsonSchema7Strategy());
 schema = schemaManager.generate(userModel, new OpenApi3Strategy());
 ```
 <!-- prettier-ignore-end -->
-
-## Main Goals
-
-- understandable code, highly maintainable
-- support for Sequelize versions 4, 5 and beyond
-- valid schemas (enforced by the [ajv](https://github.com/epoberezkin/ajv) and [Swagger Parser](https://github.com/APIDevTools/swagger-parser) validators)
-- JsonSchemaManager for single (rock solid) core functionality shared between all strategies
-- StrategyInterface for simplified implementation of new schema variants
 
 ## Configuration Options
 
@@ -134,6 +128,10 @@ module.exports = sequelize => {
   return model;
 };
 ```
+
+## Framework Integrations
+
+- [Feathers](https://github.com/alt3/sequelize-to-json-schemas/issues/17)
 
 ## License
 
