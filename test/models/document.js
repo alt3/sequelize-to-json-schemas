@@ -1,18 +1,11 @@
 /**
  * Sequelize model definition for testing User hasMany, Document belongsTo.
- */
-
-const Sequelize = require('sequelize');
-
-const { DataTypes } = Sequelize;
-
-/**
- * Initialize Profile definition
  *
  * @param sequelize Sequelize Instance
- * @returns {ProfileClass} Returns the Profile model
+ * @param Sequelize Sequelize Class
+ * @returns {DocumentClass} Returns the Document model
  */
-module.exports = sequelize => {
+module.exports = (sequelize, { DataTypes }) => {
   const Model = sequelize.define(
     'document',
     {

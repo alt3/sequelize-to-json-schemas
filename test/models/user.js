@@ -1,3 +1,5 @@
+const supportedDataType = require('../utils/supported-datatype');
+
 /**
  * Sequelize attribute definitions for the `user` model.
  *
@@ -8,21 +10,12 @@
  * be present in the model when testing Sequelize v4.
  *
  * @see https://sequelize.org/master/manual/data-types.html
- */
-
-const Sequelize = require('sequelize');
-
-const { DataTypes } = Sequelize;
-
-const supportedDataType = require('../utils/supported-datatype');
-
-/**
- * Initialize User definition
  *
  * @param sequelize Sequelize Instance
+ * @param Sequelize Sequelize Class
  * @returns {UserClass} Returns the User model
  */
-module.exports = sequelize => {
+module.exports = (sequelize, { DataTypes }) => {
   const Model = sequelize.define(
     'user',
     {

@@ -1,18 +1,11 @@
 /**
  * Sequelize model definition for testing User hasOne, Profile belongsTo.
- */
-
-const Sequelize = require('sequelize');
-
-const { DataTypes } = Sequelize;
-
-/**
- * Initialize Profile definition
  *
  * @param sequelize Sequelize Instance
+ * @param Sequelize Sequelize Class
  * @returns {ProfileClass} Returns the Profile model
  */
-module.exports = sequelize => {
+module.exports = (sequelize, { DataTypes }) => {
   const Model = sequelize.define(
     'profile',
     {
