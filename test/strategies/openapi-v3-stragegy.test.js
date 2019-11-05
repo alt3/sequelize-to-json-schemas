@@ -112,6 +112,22 @@ describe('OpenApi3Strategy', function() {
           });
         });
       });
+
+      describe("user.BelongsToMany(user) generates plural property 'friends' with:", function() {
+        it("property 'type' with value 'array'", function() {
+          expect(schema.properties.friends.type).toEqual('array');
+        });
+
+        it("property 'items.oneOf' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.friends.items.oneOf)).toBe(true);
+        });
+
+        it("array 'items.oneOf' holding an object with '$ref' pointing to '#/components/schemas/user'", function() {
+          expect(schema.properties.friends.items.oneOf[0]).toEqual({
+            $ref: '#/components/schemas/user', // eslint-disable-line unicorn/prevent-abbreviations
+          });
+        });
+      });
     });
 
     // ------------------------------------------------------------------------
