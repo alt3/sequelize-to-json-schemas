@@ -90,7 +90,8 @@
     "extends": [
       "airbnb-base",
       "plugin:prettier/recommended",
-      "plugin:unicorn/recommended"
+      "plugin:unicorn/recommended",
+      "plugin:jest/recommended"
     ],
     "env": {
       "browser": false,
