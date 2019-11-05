@@ -80,8 +80,14 @@ describe('OpenApi3Strategy', function() {
     // ------------------------------------------------------------------------
     describe('Ensure associations are properly generated and thus:', function() {
       describe("user.HasOne(profile) generates singular property 'profile' with:", function() {
-        it("property '$ref' pointing to plural '#/components/schemas/profiles'", function() {
-          expect(schema.properties.profile.$ref).toEqual('#/components/schemas/profiles');
+        it("property '$ref' pointing to '#/components/schemas/profile'", function() {
+          expect(schema.properties.profile.$ref).toEqual('#/components/schemas/profile');
+        });
+      });
+
+      describe("user.HasOne(user, as:boss) generates singular property 'boss' with:", function() {
+        it("property '$ref' pointing to '#/components/schemas/user'", function() {
+          expect(schema.properties.boss.$ref).toEqual('#/components/schemas/user');
         });
       });
 
@@ -94,9 +100,9 @@ describe('OpenApi3Strategy', function() {
           expect(Array.isArray(schema.properties.documents.items.oneOf)).toBe(true);
         });
 
-        it("array 'items.oneOf' holding an object with '$ref' pointing to plural '#/components/schemas/documents'", function() {
+        it("array 'items.oneOf' holding an object with '$ref' pointing to '#/components/schemas/document'", function() {
           expect(schema.properties.documents.items.oneOf[0]).toEqual({
-            $ref: '#/components/schemas/documents', // eslint-disable-line unicorn/prevent-abbreviations
+            $ref: '#/components/schemas/document', // eslint-disable-line unicorn/prevent-abbreviations
           });
         });
       });
@@ -109,19 +115,16 @@ describe('OpenApi3Strategy', function() {
     // the $refs will not resolve causing the validation to fail.
     // ------------------------------------------------------------------------
     describe('Ensure that the resultant document:', function() {
-      schemaWrapper.components.schemas.users = schema;
-      schemaWrapper.components.schemas.profiles = schemaManager.generate(models.profile, strategy);
-      schemaWrapper.components.schemas.documents = schemaManager.generate(
-        models.document,
-        strategy,
-      );
+      schemaWrapper.components.schemas.user = schema;
+      schemaWrapper.components.schemas.profile = schemaManager.generate(models.profile, strategy);
+      schemaWrapper.components.schemas.document = schemaManager.generate(models.document, strategy);
 
       it("has leaf /openapi with string containing version '3.n.n'", function() {
         expect(schemaWrapper.openapi).toMatch(/^3\.\d\.\d/); // 3.n.n
       });
 
-      it('has non-empty container /components/schemas/users', function() {
-        expect(Object.keys(schemaWrapper.components.schemas.users).length).toBeGreaterThan(0);
+      it('has non-empty container /components/schemas/user', function() {
+        expect(Object.keys(schemaWrapper.components.schemas.user).length).toBeGreaterThan(0);
       });
 
       // validate document using Swagger Parser

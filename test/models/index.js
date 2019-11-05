@@ -26,4 +26,6 @@ database.profile.belongsTo(database.user);
 database.user.hasMany(database.document);
 database.document.belongsTo(database.user);
 
+database.user.hasOne(database.user, { as: 'boss' });
+
 module.exports = database;

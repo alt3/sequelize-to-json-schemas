@@ -59,8 +59,14 @@ describe('JsonSchema7Strategy', function() {
     // ------------------------------------------------------------------------
     describe('Ensure associations are properly generated and thus:', function() {
       describe("user.HasOne(profile) generates singular property 'profile' with:", function() {
-        it("property '$ref' pointing to plural '#/definitions/profiles'", function() {
-          expect(schema.properties.profile.$ref).toEqual('#/definitions/profiles');
+        it("property '$ref' pointing to '#/definitions/profile'", function() {
+          expect(schema.properties.profile.$ref).toEqual('#/definitions/profile');
+        });
+      });
+
+      describe("user.HasOne(user, as:boss) generates singular property 'boss' with:", function() {
+        it("property '$ref' pointing to '#/definitions/user'", function() {
+          expect(schema.properties.boss.$ref).toEqual('#/definitions/user');
         });
       });
 
@@ -73,9 +79,9 @@ describe('JsonSchema7Strategy', function() {
           expect(Array.isArray(schema.properties.documents.items.oneOf)).toBe(true);
         });
 
-        it("array 'items.oneOf' holding an object with '$ref' pointing at plural '#/definitions/documents'", function() {
+        it("array 'items.oneOf' holding an object with '$ref' pointing at '#/definitions/document'", function() {
           expect(schema.properties.documents.items.oneOf[0]).toEqual({
-            $ref: '#/definitions/documents', // eslint-disable-line unicorn/prevent-abbreviations
+            $ref: '#/definitions/document', // eslint-disable-line unicorn/prevent-abbreviations
           });
         });
       });
