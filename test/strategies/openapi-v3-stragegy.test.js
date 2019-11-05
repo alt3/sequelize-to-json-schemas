@@ -91,6 +91,12 @@ describe('OpenApi3Strategy', function() {
         });
       });
 
+      describe("user.BelongsTo(company) generates singular property 'company' with:", function() {
+        it("property '$ref' pointing to '#/components/schemas/company'", function() {
+          expect(schema.properties.company.$ref).toEqual('#/components/schemas/company');
+        });
+      });
+
       describe("user.HasMany(document) generates plural property 'documents' with:", function() {
         it("property 'type' with value 'array'", function() {
           expect(schema.properties.documents.type).toEqual('array');
@@ -118,6 +124,7 @@ describe('OpenApi3Strategy', function() {
       schemaWrapper.components.schemas.user = schema;
       schemaWrapper.components.schemas.profile = schemaManager.generate(models.profile, strategy);
       schemaWrapper.components.schemas.document = schemaManager.generate(models.document, strategy);
+      schemaWrapper.components.schemas.company = schemaManager.generate(models.company, strategy);
 
       it("has leaf /openapi with string containing version '3.n.n'", function() {
         expect(schemaWrapper.openapi).toMatch(/^3\.\d\.\d/); // 3.n.n

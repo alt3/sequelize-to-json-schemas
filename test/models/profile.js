@@ -1,5 +1,5 @@
 /**
- * Sequelize model definition for testing User hasOne, Profile belongsTo.
+ * Sequelize model definition for testing User hasOne.
  *
  * @param sequelize Sequelize Instance
  * @param Sequelize Sequelize Class

@@ -17,14 +17,13 @@ database.sequelize = sequelize;
 // models
 database.user = require('./user')(sequelize, Sequelize);
 database.profile = require('./profile')(sequelize, Sequelize);
+database.company = require('./company')(sequelize, Sequelize);
 database.document = require('./document')(sequelize, Sequelize);
 
 // associations
 database.user.hasOne(database.profile);
-database.profile.belongsTo(database.user);
-
+database.user.belongsTo(database.company);
 database.user.hasMany(database.document);
-database.document.belongsTo(database.user);
 
 database.user.hasOne(database.user, { as: 'boss' });
 

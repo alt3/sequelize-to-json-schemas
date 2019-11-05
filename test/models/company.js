@@ -1,13 +1,13 @@
 /**
- * Sequelize model definition for testing User hasMany.
+ * Sequelize model definition for testing User belongsTo.
  *
  * @param sequelize Sequelize Instance
  * @param Sequelize Sequelize Class
- * @returns {DocumentClass} Returns the Document model
+ * @returns {CompanyClass} Returns the Company model
  */
 module.exports = (sequelize, { DataTypes }) => {
   const Model = sequelize.define(
-    'document',
+    'company',
     {
       id: {
         type: DataTypes.INTEGER,

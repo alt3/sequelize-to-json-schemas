@@ -70,6 +70,12 @@ describe('JsonSchema7Strategy', function() {
         });
       });
 
+      describe("user.BelongsTo(company) generates singular property 'company' with:", function() {
+        it("property '$ref' pointing to '#/definitions/company'", function() {
+          expect(schema.properties.company.$ref).toEqual('#/definitions/company');
+        });
+      });
+
       describe("user.HasMany(document) generates plural property 'documents' with:", function() {
         it("property 'type' with value 'array'", function() {
           expect(schema.properties.documents.type).toEqual('array');
