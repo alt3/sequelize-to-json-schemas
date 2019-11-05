@@ -20,7 +20,7 @@ describe('OpenApi3Strategy', function() {
       disableComments: false,
     });
     const strategy = new OpenApi3Strategy();
-    const userSchema = schemaManager.generate(models.user, strategy);
+    const schema = schemaManager.generate(models.user, strategy);
 
     // ------------------------------------------------------------------------
     // make sure sequelize DataTypes render as expected
@@ -28,11 +28,11 @@ describe('OpenApi3Strategy', function() {
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
       describe('STRING_ALLOWNULL', function() {
         it("has property 'type' of type 'string'", function() {
-          expect(userSchema.properties.STRING_ALLOWNULL.type).toEqual('string');
+          expect(schema.properties.STRING_ALLOWNULL.type).toEqual('string');
         });
 
         it("has property 'nullable' of type 'boolean'", function() {
-          expect(typeof userSchema.properties.STRING_ALLOWNULL.nullable).toEqual('boolean');
+          expect(typeof schema.properties.STRING_ALLOWNULL.nullable).toEqual('boolean');
         });
       });
     });
@@ -43,7 +43,7 @@ describe('OpenApi3Strategy', function() {
     describe('Ensure custom Sequelize attribute options render as expected and thus:', function() {
       describe('CUSTOM_DESCRIPTION', function() {
         it(`has property 'description' with the expected string value`, function() {
-          expect(userSchema.properties.CUSTOM_DESCRIPTION.description).toEqual(
+          expect(schema.properties.CUSTOM_DESCRIPTION.description).toEqual(
             'Custom attribute description',
           );
         });
@@ -51,11 +51,11 @@ describe('OpenApi3Strategy', function() {
 
       describe('CUSTOM_EXAMPLES', function() {
         it("has property 'example' of type 'array'", function() {
-          expect(Array.isArray(userSchema.properties.CUSTOM_EXAMPLES.example)).toBe(true);
+          expect(Array.isArray(schema.properties.CUSTOM_EXAMPLES.example)).toBe(true);
         });
 
         it('with the two expected string values', function() {
-          expect(userSchema.properties.CUSTOM_EXAMPLES.example).toEqual([
+          expect(schema.properties.CUSTOM_EXAMPLES.example).toEqual([
             'Custom example 1',
             'Custom example 2',
           ]);
@@ -64,13 +64,13 @@ describe('OpenApi3Strategy', function() {
 
       describe('CUSTOM_READONLY', function() {
         it(`has property 'readOnly' with value 'true'`, function() {
-          expect(userSchema.properties.CUSTOM_READONLY.readOnly).toEqual(true);
+          expect(schema.properties.CUSTOM_READONLY.readOnly).toEqual(true);
         });
       });
 
       describe('CUSTOM_WRITEONLY', function() {
         it(`has property 'writeOnly' with value 'true'`, function() {
-          expect(userSchema.properties.CUSTOM_WRITEONLY.writeOnly).toEqual(true);
+          expect(schema.properties.CUSTOM_WRITEONLY.writeOnly).toEqual(true);
         });
       });
     });
@@ -81,21 +81,21 @@ describe('OpenApi3Strategy', function() {
     describe('Ensure associations are properly generated and thus:', function() {
       describe("user.HasOne(profile) generates singular property 'profile' with:", function() {
         it("property '$ref' pointing to plural '#/components/schemas/profiles'", function() {
-          expect(userSchema.properties.profile.$ref).toEqual('#/components/schemas/profiles');
+          expect(schema.properties.profile.$ref).toEqual('#/components/schemas/profiles');
         });
       });
 
       describe("user.HasMany(document) generates plural property 'documents' with:", function() {
         it("property 'type' with value 'array'", function() {
-          expect(userSchema.properties.documents.type).toEqual('array');
+          expect(schema.properties.documents.type).toEqual('array');
         });
 
         it("property 'items.oneOf' of type 'array'", function() {
-          expect(Array.isArray(userSchema.properties.documents.items.oneOf)).toBe(true);
+          expect(Array.isArray(schema.properties.documents.items.oneOf)).toBe(true);
         });
 
         it("array 'items.oneOf' holding an object with '$ref' pointing to plural '#/components/schemas/documents'", function() {
-          expect(userSchema.properties.documents.items.oneOf[0]).toEqual({
+          expect(schema.properties.documents.items.oneOf[0]).toEqual({
             $ref: '#/components/schemas/documents', // eslint-disable-line unicorn/prevent-abbreviations
           });
         });
@@ -109,7 +109,7 @@ describe('OpenApi3Strategy', function() {
     // the $refs will not resolve causing the validation to fail.
     // ------------------------------------------------------------------------
     describe('Ensure that the resultant document:', function() {
-      schemaWrapper.components.schemas.users = userSchema;
+      schemaWrapper.components.schemas.users = schema;
       schemaWrapper.components.schemas.profiles = schemaManager.generate(models.profile, strategy);
       schemaWrapper.components.schemas.documents = schemaManager.generate(
         models.document,
