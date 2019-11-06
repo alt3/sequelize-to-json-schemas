@@ -102,12 +102,8 @@ describe('OpenApi3Strategy', function() {
           expect(schema.properties.documents.type).toEqual('array');
         });
 
-        it("property 'items.oneOf' of type 'array'", function() {
-          expect(Array.isArray(schema.properties.documents.items.oneOf)).toBe(true);
-        });
-
-        it("array 'items.oneOf' holding an object with '$ref' pointing to '#/components/schemas/document'", function() {
-          expect(schema.properties.documents.items.oneOf[0]).toEqual({
+        it("array 'items' holding an object with '$ref' pointing to '#/components/schemas/document'", function() {
+          expect(schema.properties.documents.items).toEqual({
             $ref: '#/components/schemas/document', // eslint-disable-line unicorn/prevent-abbreviations
           });
         });
@@ -118,12 +114,8 @@ describe('OpenApi3Strategy', function() {
           expect(schema.properties.friends.type).toEqual('array');
         });
 
-        it("property 'items.oneOf' of type 'array'", function() {
-          expect(Array.isArray(schema.properties.friends.items.oneOf)).toBe(true);
-        });
-
-        it("array 'items.oneOf' holding an object with '$ref' pointing to '#/components/schemas/user'", function() {
-          expect(schema.properties.friends.items.oneOf[0]).toEqual({
+        it("array 'items' holding an object with '$ref' pointing to '#/components/schemas/user'", function() {
+          expect(schema.properties.friends.items).toEqual({
             $ref: '#/components/schemas/user', // eslint-disable-line unicorn/prevent-abbreviations
           });
         });
