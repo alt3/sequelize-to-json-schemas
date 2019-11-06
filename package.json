@@ -11,7 +11,9 @@
     "name": "ALT3 B.V.",
     "url": "https://github.com/alt3/sequelize-to-json-schemas"
   },
-  "contributors": [],
+  "contributors": [
+    "Wolfgang Walther"
+  ],
   "bugs": "https://github.com/alt3/sequelize-to-json-schemas/issues",
   "engines": {
     "node": ">=8",
