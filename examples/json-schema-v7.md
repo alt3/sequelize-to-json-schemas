@@ -1,6 +1,6 @@
 # JSON Schema Draft-07
 
-These schemas were automatically generated on 2019-11-01
+These schemas were automatically generated on 2019-11-06
 using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
@@ -130,15 +130,51 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "type": "string",
       "writeOnly": true
     },
+    "companyId": {
+      "$id": "https://api.example.com/properties/companyId",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
+    "bossId": {
+      "$id": "https://api.example.com/properties/bossId",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int32"
+    },
     "profile": {
-      "$ref": "#/definitions/profiles"
+      "$ref": "#/definitions/profile"
+    },
+    "company": {
+      "$ref": "#/definitions/company"
     },
     "documents": {
       "type": "array",
       "items": {
-        "oneOf": [
+        "$ref": "#/definitions/document"
+      }
+    },
+    "boss": {
+      "$ref": "#/definitions/user"
+    },
+    "friends": {
+      "type": "array",
+      "items": {
+        "allOf": [
           {
-            "$ref": "#/definitions/documents"
+            "$ref": "#/definitions/user"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "friendships": {
+                "$ref": "#/definitions/friendship"
+              }
+            }
           }
         ]
       }
@@ -227,6 +263,66 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
 ```
 <!-- prettier-ignore-end -->
 
+## Company Model
+
+<!-- prettier-ignore-start -->
+```json
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "https://api.example.com/company.json",
+  "title": "Company",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$id": "https://api.example.com/properties/id",
+      "type": "integer",
+      "format": "int32"
+    },
+    "name": {
+      "$id": "https://api.example.com/properties/name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id"
+  ]
+}
+```
+<!-- prettier-ignore-end -->
+
+## Friendship Model
+
+<!-- prettier-ignore-start -->
+```json
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "https://api.example.com/friendship.json",
+  "title": "Friendship",
+  "type": "object",
+  "properties": {
+    "isBestFriend": {
+      "$id": "https://api.example.com/properties/isBestFriend",
+      "type": "boolean",
+      "default": false
+    },
+    "userId": {
+      "$id": "https://api.example.com/properties/userId",
+      "type": "integer",
+      "format": "int32"
+    },
+    "friendId": {
+      "$id": "https://api.example.com/properties/friendId",
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "isBestFriend"
+  ]
+}
+```
+<!-- prettier-ignore-end -->
+
 ## Full Schema
 
 Please note that sequelize-to-json-schemas does NOT generate full schemas. This is just an
@@ -238,7 +334,7 @@ document (by adding model schemas to `definitions`).
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
   "definitions": {
-    "users": {
+    "user": {
       "$schema": "https://json-schema.org/draft-07/schema#",
       "$id": "https://api.example.com/user.json",
       "title": "Custom Title",
@@ -357,15 +453,51 @@ document (by adding model schemas to `definitions`).
           "type": "string",
           "writeOnly": true
         },
+        "companyId": {
+          "$id": "https://api.example.com/properties/companyId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "bossId": {
+          "$id": "https://api.example.com/properties/bossId",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
         "profile": {
-          "$ref": "#/definitions/profiles"
+          "$ref": "#/definitions/profile"
+        },
+        "company": {
+          "$ref": "#/definitions/company"
         },
         "documents": {
           "type": "array",
           "items": {
-            "oneOf": [
+            "$ref": "#/definitions/document"
+          }
+        },
+        "boss": {
+          "$ref": "#/definitions/user"
+        },
+        "friends": {
+          "type": "array",
+          "items": {
+            "allOf": [
               {
-                "$ref": "#/definitions/documents"
+                "$ref": "#/definitions/user"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "friendships": {
+                    "$ref": "#/definitions/friendship"
+                  }
+                }
               }
             ]
           }
@@ -381,7 +513,7 @@ document (by adding model schemas to `definitions`).
         "CUSTOM_WRITEONLY"
       ]
     },
-    "profiles": {
+    "profile": {
       "$schema": "https://json-schema.org/draft-07/schema#",
       "$id": "https://api.example.com/profile.json",
       "title": "Profile",
@@ -409,7 +541,7 @@ document (by adding model schemas to `definitions`).
         "id"
       ]
     },
-    "documents": {
+    "document": {
       "$schema": "https://json-schema.org/draft-07/schema#",
       "$id": "https://api.example.com/document.json",
       "title": "Document",
@@ -435,6 +567,52 @@ document (by adding model schemas to `definitions`).
       },
       "required": [
         "id"
+      ]
+    },
+    "company": {
+      "$schema": "https://json-schema.org/draft-07/schema#",
+      "$id": "https://api.example.com/company.json",
+      "title": "Company",
+      "type": "object",
+      "properties": {
+        "id": {
+          "$id": "https://api.example.com/properties/id",
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "$id": "https://api.example.com/properties/name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "friendship": {
+      "$schema": "https://json-schema.org/draft-07/schema#",
+      "$id": "https://api.example.com/friendship.json",
+      "title": "Friendship",
+      "type": "object",
+      "properties": {
+        "isBestFriend": {
+          "$id": "https://api.example.com/properties/isBestFriend",
+          "type": "boolean",
+          "default": false
+        },
+        "userId": {
+          "$id": "https://api.example.com/properties/userId",
+          "type": "integer",
+          "format": "int32"
+        },
+        "friendId": {
+          "$id": "https://api.example.com/properties/friendId",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "isBestFriend"
       ]
     }
   }
