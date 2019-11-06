@@ -1,6 +1,6 @@
 # OpenAPI 3.0
 
-These schemas were automatically generated on 2019-11-01
+These schemas were automatically generated on 2019-11-06
 using [these Sequelize models](../test/models/) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
@@ -13,8 +13,8 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
 <!-- prettier-ignore-start -->
 ```json
 {
-  "title": "Custom Title",
-  "description": "Custom Description",
+  "title": "Custom User Title",
+  "description": "Custom User Description",
   "type": "object",
   "properties": {
     "id": {
@@ -105,15 +105,45 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "type": "string",
       "writeOnly": true
     },
+    "companyId": {
+      "type": "integer",
+      "format": "int32",
+      "nullable": true
+    },
+    "bossId": {
+      "type": "integer",
+      "format": "int32",
+      "nullable": true
+    },
     "profile": {
-      "$ref": "#/components/schemas/profiles"
+      "$ref": "#/components/schemas/profile"
+    },
+    "company": {
+      "$ref": "#/components/schemas/company"
     },
     "documents": {
       "type": "array",
       "items": {
-        "oneOf": [
+        "$ref": "#/components/schemas/document"
+      }
+    },
+    "boss": {
+      "$ref": "#/components/schemas/user"
+    },
+    "friends": {
+      "type": "array",
+      "items": {
+        "allOf": [
           {
-            "$ref": "#/components/schemas/documents"
+            "$ref": "#/components/schemas/user"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "friendships": {
+                "$ref": "#/components/schemas/friendship"
+              }
+            }
           }
         ]
       }
@@ -188,6 +218,57 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
 ```
 <!-- prettier-ignore-end -->
 
+## Company Model
+
+<!-- prettier-ignore-start -->
+```json
+{
+  "title": "Company",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id"
+  ]
+}
+```
+<!-- prettier-ignore-end -->
+
+## Friendship Model
+
+<!-- prettier-ignore-start -->
+```json
+{
+  "title": "Friendship",
+  "type": "object",
+  "properties": {
+    "isBestFriend": {
+      "type": "boolean",
+      "default": false
+    },
+    "userId": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "friendId": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "required": [
+    "isBestFriend"
+  ]
+}
+```
+<!-- prettier-ignore-end -->
+
 ## Full Schema
 
 Please note that sequelize-to-json-schemas does NOT generate full schemas. This is just an
@@ -212,31 +293,13 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
           }
         }
       }
-    },
-    "/profiles": {
-      "get": {
-        "responses": {
-          "404": {
-            "description": "not found"
-          }
-        }
-      }
-    },
-    "/documents": {
-      "get": {
-        "responses": {
-          "404": {
-            "description": "not found"
-          }
-        }
-      }
     }
   },
   "components": {
     "schemas": {
-      "users": {
-        "title": "Custom Title",
-        "description": "Custom Description",
+      "user": {
+        "title": "Custom User Title",
+        "description": "Custom User Description",
         "type": "object",
         "properties": {
           "id": {
@@ -327,15 +390,45 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
             "type": "string",
             "writeOnly": true
           },
+          "companyId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bossId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "profile": {
-            "$ref": "#/components/schemas/profiles"
+            "$ref": "#/components/schemas/profile"
+          },
+          "company": {
+            "$ref": "#/components/schemas/company"
           },
           "documents": {
             "type": "array",
             "items": {
-              "oneOf": [
+              "$ref": "#/components/schemas/document"
+            }
+          },
+          "boss": {
+            "$ref": "#/components/schemas/user"
+          },
+          "friends": {
+            "type": "array",
+            "items": {
+              "allOf": [
                 {
-                  "$ref": "#/components/schemas/documents"
+                  "$ref": "#/components/schemas/user"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "friendships": {
+                      "$ref": "#/components/schemas/friendship"
+                    }
+                  }
                 }
               ]
             }
@@ -351,7 +444,7 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
           "CUSTOM_WRITEONLY"
         ]
       },
-      "profiles": {
+      "profile": {
         "title": "Profile",
         "type": "object",
         "properties": {
@@ -372,7 +465,7 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
           "id"
         ]
       },
-      "documents": {
+      "document": {
         "title": "Document",
         "type": "object",
         "properties": {
@@ -391,6 +484,43 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
         },
         "required": [
           "id"
+        ]
+      },
+      "company": {
+        "title": "Company",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "friendship": {
+        "title": "Friendship",
+        "type": "object",
+        "properties": {
+          "isBestFriend": {
+            "type": "boolean",
+            "default": false
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "friendId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "isBestFriend"
         ]
       }
     }

@@ -22,19 +22,26 @@ const schemaManager = new JsonSchemaManager({
 // ----------------------------------------------------------------------------
 // JSON Schema Draft-07
 // ----------------------------------------------------------------------------
-let userSchema = schemaManager.generate(models.user, new JsonSchema7Strategy(), {
+let strategy = new JsonSchema7Strategy();
+
+let userSchema = schemaManager.generate(models.user, strategy, {
   title: 'Custom Title',
   description: 'Custom Description',
 });
 
-let profileSchema = schemaManager.generate(models.profile, new JsonSchema7Strategy());
-let documentSchema = schemaManager.generate(models.document, new JsonSchema7Strategy());
+let profileSchema = schemaManager.generate(models.profile, strategy);
+let documentSchema = schemaManager.generate(models.document, strategy);
+let companySchema = schemaManager.generate(models.company, strategy);
+let friendshipSchema = schemaManager.generate(models.friendship, strategy);
+
 let fullSchema = {
   $schema: 'https://json-schema.org/draft-07/schema#',
   definitions: {
-    users: userSchema,
-    profiles: profileSchema,
-    documents: documentSchema,
+    user: userSchema,
+    profile: profileSchema,
+    document: documentSchema,
+    company: companySchema,
+    friendship: friendshipSchema,
   },
 };
 
@@ -71,6 +78,22 @@ ${JSON.stringify(documentSchema, null, 2)}
 \`\`\`
 <!-- prettier-ignore-end -->
 
+## Company Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(companySchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Friendship Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(friendshipSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
 ## Full Schema
 
 Please note that sequelize-to-json-schemas does NOT generate full schemas. This is just an
@@ -95,21 +118,26 @@ console.log('Succesfully generated markdown sample output for JSON Schema Draft-
 // ----------------------------------------------------------------------------
 // OpenAPI 3.0
 // ----------------------------------------------------------------------------
-const openapi3strategy = new OpenApi3Strategy();
-userSchema = schemaManager.generate(models.user, openapi3strategy, {
-  title: 'Custom Title',
-  description: 'Custom Description',
+strategy = new OpenApi3Strategy();
+
+userSchema = schemaManager.generate(models.user, strategy, {
+  title: 'Custom User Title',
+  description: 'Custom User Description',
 });
 
-profileSchema = schemaManager.generate(models.profile, openapi3strategy);
-documentSchema = schemaManager.generate(models.document, openapi3strategy);
+profileSchema = schemaManager.generate(models.profile, strategy);
+documentSchema = schemaManager.generate(models.document, strategy);
+companySchema = schemaManager.generate(models.company, strategy);
+friendshipSchema = schemaManager.generate(models.friendship, strategy);
 
 fullSchema = require('../test/strategies/openapi-v3-validation-wrapper');
 
 fullSchema.components.schemas = {
-  users: userSchema,
-  profiles: profileSchema,
-  documents: documentSchema,
+  user: userSchema,
+  profile: profileSchema,
+  document: documentSchema,
+  company: companySchema,
+  friendship: friendshipSchema,
 };
 
 markdown = `# OpenAPI 3.0
@@ -143,6 +171,22 @@ ${JSON.stringify(profileSchema, null, 2)}
 <!-- prettier-ignore-start -->
 \`\`\`json
 ${JSON.stringify(documentSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Company Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(companySchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Friendship Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(friendshipSchema, null, 2)}
 \`\`\`
 <!-- prettier-ignore-end -->
 

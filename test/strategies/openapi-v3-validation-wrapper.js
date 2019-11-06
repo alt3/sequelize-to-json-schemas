@@ -23,24 +23,6 @@ module.exports = Object.freeze({
         },
       },
     },
-    '/profiles': {
-      get: {
-        responses: {
-          '404': {
-            description: 'not found',
-          },
-        },
-      },
-    },
-    '/documents': {
-      get: {
-        responses: {
-          '404': {
-            description: 'not found',
-          },
-        },
-      },
-    },
   },
   components: {
     schemas: {
