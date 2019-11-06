@@ -93,9 +93,24 @@ describe('JsonSchema7Strategy', function() {
           expect(schema.properties.friends.type).toEqual('array');
         });
 
-        it("array 'items' holding an object with '$ref' pointing at '#/definitions/user'", function() {
-          expect(schema.properties.friends.items).toEqual({
+        it("property 'items.allOf' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.friends.items.allOf)).toBe(true);
+        });
+
+        it("array 'items.allOf' holding an object with '$ref' pointing at '#/definitions/user'", function() {
+          expect(schema.properties.friends.items.allOf[0]).toEqual({
             $ref: '#/definitions/user', // eslint-disable-line unicorn/prevent-abbreviations
+          });
+        });
+
+        it("array 'items.allOf' holding an object with type object and properties.friendships an object with '$ref' pointing at '#/definitions/friendship'", function() {
+          expect(schema.properties.friends.items.allOf[1]).toEqual({
+            type: 'object',
+            properties: {
+              friendships: {
+                $ref: '#/definitions/friendship', // eslint-disable-line unicorn/prevent-abbreviations
+              },
+            },
           });
         });
       });
