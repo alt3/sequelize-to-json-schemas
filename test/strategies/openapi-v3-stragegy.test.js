@@ -148,6 +148,10 @@ describe('OpenApi3Strategy', function() {
       schemaWrapper.components.schemas.profile = schemaManager.generate(models.profile, strategy);
       schemaWrapper.components.schemas.document = schemaManager.generate(models.document, strategy);
       schemaWrapper.components.schemas.company = schemaManager.generate(models.company, strategy);
+      schemaWrapper.components.schemas.friendship = schemaManager.generate(
+        models.friendship,
+        strategy,
+      );
 
       it("has leaf /openapi with string containing version '3.n.n'", function() {
         expect(schemaWrapper.openapi).toMatch(/^3\.\d\.\d/); // 3.n.n
