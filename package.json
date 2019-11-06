@@ -11,7 +11,9 @@
     "name": "ALT3 B.V.",
     "url": "https://github.com/alt3/sequelize-to-json-schemas"
   },
-  "contributors": [],
+  "contributors": [
+    "Wolfgang Walther"
+  ],
   "bugs": "https://github.com/alt3/sequelize-to-json-schemas/issues",
   "engines": {
     "node": ">=8",
@@ -45,9 +47,7 @@
     "oas",
     "oasv3"
   ],
-  "dependencies": {
-    "pluralize": "^8.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@release-it/conventional-changelog": "^1.1.0",
     "acorn": "^7.1.0",

@@ -1,21 +1,17 @@
 /**
- * Sequelize model definition for testing User hasMany.
+ * Sequelize model definition for testing User belongsToMany.
  *
  * @param sequelize Sequelize Instance
  * @param Sequelize Sequelize Class
- * @returns {DocumentClass} Returns the Document model
+ * @returns {FriendshipClass} Returns the Friendship model
  */
 module.exports = (sequelize, { DataTypes }) => {
   const Model = sequelize.define(
-    'document',
+    'friendship',
     {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-      },
-      name: {
-        type: DataTypes.STRING,
+      isBestFriend: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
     {

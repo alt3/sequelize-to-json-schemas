@@ -59,8 +59,20 @@ describe('JsonSchema7Strategy', function() {
     // ------------------------------------------------------------------------
     describe('Ensure associations are properly generated and thus:', function() {
       describe("user.HasOne(profile) generates singular property 'profile' with:", function() {
-        it("property '$ref' pointing to plural '#/definitions/profiles'", function() {
-          expect(schema.properties.profile.$ref).toEqual('#/definitions/profiles');
+        it("property '$ref' pointing to '#/definitions/profile'", function() {
+          expect(schema.properties.profile.$ref).toEqual('#/definitions/profile');
+        });
+      });
+
+      describe("user.HasOne(user, as:boss) generates singular property 'boss' with:", function() {
+        it("property '$ref' pointing to '#/definitions/user'", function() {
+          expect(schema.properties.boss.$ref).toEqual('#/definitions/user');
+        });
+      });
+
+      describe("user.BelongsTo(company) generates singular property 'company' with:", function() {
+        it("property '$ref' pointing to '#/definitions/company'", function() {
+          expect(schema.properties.company.$ref).toEqual('#/definitions/company');
         });
       });
 
@@ -69,13 +81,36 @@ describe('JsonSchema7Strategy', function() {
           expect(schema.properties.documents.type).toEqual('array');
         });
 
-        it("property 'items.oneOf' of type 'array'", function() {
-          expect(Array.isArray(schema.properties.documents.items.oneOf)).toBe(true);
+        it("property 'items' holding an object with '$ref' pointing at '#/definitions/document'", function() {
+          expect(schema.properties.documents.items).toEqual({
+            $ref: '#/definitions/document', // eslint-disable-line unicorn/prevent-abbreviations
+          });
+        });
+      });
+
+      describe("user.BelongsToMany(user) generates plural property 'friends' with:", function() {
+        it("property 'type' with value 'array'", function() {
+          expect(schema.properties.friends.type).toEqual('array');
         });
 
-        it("array 'items.oneOf' holding an object with '$ref' pointing at plural '#/definitions/documents'", function() {
-          expect(schema.properties.documents.items.oneOf[0]).toEqual({
-            $ref: '#/definitions/documents', // eslint-disable-line unicorn/prevent-abbreviations
+        it("property 'items.allOf' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.friends.items.allOf)).toBe(true);
+        });
+
+        it("array 'items.allOf' holding an object with '$ref' pointing at '#/definitions/user'", function() {
+          expect(schema.properties.friends.items.allOf[0]).toEqual({
+            $ref: '#/definitions/user', // eslint-disable-line unicorn/prevent-abbreviations
+          });
+        });
+
+        it("array 'items.allOf' holding an object with type object and properties.friendships an object with '$ref' pointing at '#/definitions/friendship'", function() {
+          expect(schema.properties.friends.items.allOf[1]).toEqual({
+            type: 'object',
+            properties: {
+              friendships: {
+                $ref: '#/definitions/friendship', // eslint-disable-line unicorn/prevent-abbreviations
+              },
+            },
           });
         });
       });
