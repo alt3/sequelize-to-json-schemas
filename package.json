@@ -24,7 +24,7 @@
     "docs": "del-cli \"docs/*\" \"!docs/README.md\" && npx jsdoc -c .jsdoc docs/README.md",
     "examples": "del-cli \"examples/*\" \"!examples/generate.js\" \"!examples/README.md\" && node ./examples/generate.js",
     "lint:eslint": "eslint --ignore-path .gitignore .",
-    "lint:prettier": "prettier --list-different '**/*.{js,json,md,yml}'",
+    "lint:prettier": "prettier --list-different \"**/*.{js,json,md,yml}\"",
     "lint": "run-p lint:*",
     "start": "npx nodemon index.js",
     "test": "jest --verbose",
