@@ -60,9 +60,14 @@ console.log('OpenAPI v3:');
 // OpenApi requires more than just the model schema for validation so we insert it into the wrapper
 const wrapper = require('./test/strategies/openapi-v3-validation-wrapper');
 
-wrapper.components.schemas.users = userSchema;
-wrapper.components.schemas.profiles = schemaManager.generate(models.profile, openapi3strategy);
-wrapper.components.schemas.documents = schemaManager.generate(models.document, openapi3strategy);
+wrapper.components.schemas.user = userSchema;
+wrapper.components.schemas.profile = schemaManager.generate(models.profile, openapi3strategy);
+wrapper.components.schemas.document = schemaManager.generate(models.document, openapi3strategy);
+wrapper.components.schemas.company = schemaManager.generate(models.company, openapi3strategy);
+wrapper.components.schemas.friendship = schemaManager.generate(
+  models.friendship,
+  openapi3strategy,
+);
 
 console.log('Validation schema as JSON string:');
 console.log(JSON.stringify(wrapper, null, 2));
