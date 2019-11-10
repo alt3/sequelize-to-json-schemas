@@ -19,6 +19,12 @@ const schemaManager = new JsonSchemaManager({
   disableComments: false,
 });
 
+const pageIntro = `
+These schemas were automatically generated on ${moment().format('YYYY-MM-DD')}
+using [these Sequelize models](../test/models) and the most recent version of
+sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
+`;
+
 // ----------------------------------------------------------------------------
 // JSON Schema Draft-07
 // ----------------------------------------------------------------------------
@@ -46,10 +52,7 @@ let fullSchema = {
 };
 
 let markdown = `# JSON Schema Draft-07
-
-These schemas were automatically generated on ${moment().format('YYYY-MM-DD')}
-using [these Sequelize models](../test/models) and the most recent version of
-sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
+${pageIntro}
 
 - [JSON Schema Validator](https://www.jsonschemavalidator.net/)
 - [ajv](https://github.com/epoberezkin/ajv)
@@ -141,10 +144,7 @@ fullSchema.components.schemas = {
 };
 
 markdown = `# OpenAPI 3.0
-
-These schemas were automatically generated on ${moment().format('YYYY-MM-DD')}
-using [these Sequelize models](../test/models/) and the most recent version of
-sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
+${pageIntro}
 
 - [Swagger Editor](https://editor.swagger.io/)
 - [Online Swagger & OpenAPI Validator](https://apidevtools.org/swagger-parser/online)
