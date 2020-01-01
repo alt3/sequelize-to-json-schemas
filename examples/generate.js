@@ -22,8 +22,7 @@ const schemaManager = new JsonSchemaManager({
 const pageIntro = `
 These schemas were automatically generated on ${moment().format('YYYY-MM-DD')}
 using [these Sequelize models](../test/models) and the most recent version of
-sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
-`;
+sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:`;
 
 // ----------------------------------------------------------------------------
 // JSON Schema Draft-07

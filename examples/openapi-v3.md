@@ -1,6 +1,6 @@
 # OpenAPI 3.0
 
-These schemas were automatically generated on 2019-12-31
+These schemas were automatically generated on 2020-01-01
 using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
