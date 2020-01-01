@@ -145,4 +145,4 @@ This project is released under [MIT LICENSE](LICENSE.txt).
 
 ## Contributing
 
-Please refer to the [guidelines for contributing](./CONTRIBUTING.md).
+Please refer to the [guidelines for contributing](./contributing.md).
