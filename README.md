@@ -131,7 +131,13 @@ module.exports = sequelize => {
 
 ## Framework Integrations
 
-- [Feathers](https://github.com/alt3/sequelize-to-json-schemas/issues/17)
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/alt3/sequelize-to-json-schemas/issues/17"><img src="https://raw.githubusercontent.com/feathersjs/docs/master/.vuepress/public/img/logo-title.jpg" width="100px;" alt=""/><br /><h3>Feathers</h3></td>
+  </tr>
+</table>
 
 ## License
 
