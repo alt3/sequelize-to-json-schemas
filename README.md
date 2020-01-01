@@ -14,10 +14,11 @@ Convert Sequelize models into these JSON Schema variants (using the Strategy Pat
 - JSON Schema Draft-07 - [sample output](examples/json-schema-v7.md)
 - OpenAPI 3.0 - [sample output](examples/openapi-v3.md)
 
+Compatible with Sequelize versions 4, 5 and 6.
+
 ## Main Goals
 
 - understandable code, highly maintainable
-- support for Sequelize versions 4, 5, 6 and future
 - valid schemas (enforced by the [ajv](https://github.com/epoberezkin/ajv) and [Swagger Parser](https://github.com/APIDevTools/swagger-parser) validators)
 - JsonSchemaManager for single (rock solid) core functionality shared between all strategies
 - StrategyInterface for simplified implementation of new schema variants
