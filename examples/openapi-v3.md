@@ -1,7 +1,7 @@
 # OpenAPI 3.0
 
-These schemas were automatically generated on 2019-11-06
-using [these Sequelize models](../test/models/) and the most recent version of
+These schemas were automatically generated on 2019-12-31
+using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
 - [Swagger Editor](https://editor.swagger.io/)
