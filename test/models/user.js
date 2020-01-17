@@ -38,11 +38,14 @@ module.exports = (sequelize, { DataTypes }) => {
   // --------------------------------------------------------------------------
   if (supportedDataType('ARRAY')) {
     Model.rawAttributes.ARRAY_INTEGERS = {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
-      allowNull: true,
+      type: DataTypes.ARRAY(DataTypes.INTEGER)
     };
 
     Model.rawAttributes.ARRAY_TEXTS = {
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+    };
+
+    Model.rawAttributes.ARRAY_ALLOWNULL = {
       type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: true,
     };
