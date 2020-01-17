@@ -59,10 +59,7 @@ describe('JsonSchema7Strategy', function() {
         });
 
         it("has property 'type' with two values named 'array' and 'null'", function() {
-          expect(Object.values(schema.properties.ARRAY_ALLOWNULL.type)).toEqual([
-            'array',
-            'null',
-          ]);
+          expect(Object.values(schema.properties.ARRAY_ALLOWNULL.type)).toEqual(['array', 'null']);
         });
       });
     });
