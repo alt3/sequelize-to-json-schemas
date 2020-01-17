@@ -44,6 +44,11 @@ module.exports = (sequelize, { DataTypes }) => {
     Model.rawAttributes.ARRAY_TEXTS = {
       type: DataTypes.ARRAY(DataTypes.TEXT),
     };
+
+    Model.rawAttributes.ARRAY_ALLOWNULL = {
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+      allowNull: true,
+    };
   }
 
   if (supportedDataType('CITEXT')) {

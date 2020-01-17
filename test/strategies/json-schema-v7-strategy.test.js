@@ -52,6 +52,7 @@ describe('JsonSchema7Strategy', function() {
           ]);
         });
       });
+      
       describe('JSONB_ALLOWNULL', function(){
         it("has property 'type' of type 'array'", function() {
           expect(Array.isArray(schema.properties.JSONB_ALLOWNULL.anyOf)).toBe(true);
@@ -66,6 +67,16 @@ describe('JsonSchema7Strategy', function() {
             { type: 'string' },
             { type: 'null' }
           ]);
+        });
+      });
+
+      describe('ARRAY_ALLOWNULL', function() {
+        it("has property 'type' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.ARRAY_ALLOWNULL.type)).toBe(true);
+        });
+
+        it("has property 'type' with two values named 'array' and 'null'", function() {
+          expect(Object.values(schema.properties.ARRAY_ALLOWNULL.type)).toEqual(['array', 'null']);
         });
       });
     });

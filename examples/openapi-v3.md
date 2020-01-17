@@ -1,6 +1,6 @@
 # OpenAPI 3.0
 
-These schemas were automatically generated on 2020-01-01
+These schemas were automatically generated on 2020-01-17
 using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
@@ -41,6 +41,13 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "items": {
         "type": "string"
       }
+    },
+    "ARRAY_ALLOWNULL": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "nullable": true
     },
     "CITEXT": {
       "type": "string"
@@ -337,6 +344,13 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
             "items": {
               "type": "string"
             }
+          },
+          "ARRAY_ALLOWNULL": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           },
           "CITEXT": {
             "type": "string"
