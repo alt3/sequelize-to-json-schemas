@@ -37,7 +37,7 @@ describe('OpenApi3Strategy', function() {
       });
 
       describe('JSONB_ALLOWNULL', function() {
-        it("has property 'type' of type 'object'", function() {
+        it("has property 'anyOf' with values of type 'object', 'array', 'boolean', 'integer', 'number' and 'string'", function() {
           expect(schema.properties.JSONB_ALLOWNULL.anyOf).toEqual([
             { type: 'object' },
             { type: 'array' },

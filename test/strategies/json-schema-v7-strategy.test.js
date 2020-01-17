@@ -54,10 +54,10 @@ describe('JsonSchema7Strategy', function() {
       });
       
       describe('JSONB_ALLOWNULL', function(){
-        it("has property 'type' of type 'array'", function() {
+        it("has property 'anyOf' that is an array of types", function() {
           expect(Array.isArray(schema.properties.JSONB_ALLOWNULL.anyOf)).toBe(true);
         });
-        it("has property 'type' with values named 'object', 'array', 'boolean', 'number', 'string' and 'null'", function() {
+        it("has property 'anyOf' with values of type 'object', 'array', 'boolean', 'integer', 'number', 'string' and 'null'", function() {
           expect(Object.values(schema.properties.JSONB_ALLOWNULL.anyOf)).toEqual([
             { type: 'object' },
             { type: 'array' },
