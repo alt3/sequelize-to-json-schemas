@@ -1,6 +1,6 @@
 # JSON Schema Draft-07
 
-These schemas were automatically generated on 2020-01-01
+These schemas were automatically generated on 2020-01-17
 using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
@@ -44,6 +44,16 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     "ARRAY_TEXTS": {
       "$id": "https://api.example.com/properties/ARRAY_TEXTS",
       "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ARRAY_ALLOWNULL": {
+      "$id": "https://api.example.com/properties/ARRAY_ALLOWNULL",
+      "type": [
+        "array",
+        "null"
+      ],
       "items": {
         "type": "string"
       }
@@ -379,6 +389,16 @@ document (by adding model schemas to `definitions`).
         "ARRAY_TEXTS": {
           "$id": "https://api.example.com/properties/ARRAY_TEXTS",
           "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ARRAY_ALLOWNULL": {
+          "$id": "https://api.example.com/properties/ARRAY_ALLOWNULL",
+          "type": [
+            "array",
+            "null"
+          ],
           "items": {
             "type": "string"
           }
