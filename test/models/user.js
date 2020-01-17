@@ -100,6 +100,13 @@ module.exports = (sequelize, { DataTypes }) => {
     };
   }
 
+  if (supportedDataType('JSONB')) {
+    Model.rawAttributes.JSONB_ALLOWNULL = {
+      type: DataTypes.JSONB,
+      allowNull: true,
+    };
+  }
+
   if (supportedDataType('VIRTUAL')) {
     Model.rawAttributes.VIRTUAL = {
       type: DataTypes.VIRTUAL(DataTypes.BOOLEAN),

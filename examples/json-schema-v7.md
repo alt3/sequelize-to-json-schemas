@@ -93,6 +93,18 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "$id": "https://api.example.com/properties/JSON",
       "type": "object"
     },
+    "JSONB_ALLOWNULL": {
+      "$id": "https://api.example.com/properties/JSONB_ALLOWNULL",
+        "anyOf": [
+          { "type": "object" },
+          { "type": "array" },
+          { "type": "boolean" },
+          { "type": "integer" },
+          { "type": "number" },
+          { "type": "string" },
+          { "type": "null" }
+        ]
+    },
     "VIRTUAL": {
       "$id": "https://api.example.com/properties/VIRTUAL",
       "type": "boolean"
@@ -415,6 +427,18 @@ document (by adding model schemas to `definitions`).
         "JSON": {
           "$id": "https://api.example.com/properties/JSON",
           "type": "object"
+        },
+        "JSONB_ALLOWNULL": {
+          "$id": "https://api.example.com/properties/JSONB_ALLOWNULL",
+          "anyOf": [
+            { "type": "object" },
+            { "type": "array" },
+            { "type": "boolean" },
+            { "type": "integer" },
+            { "type": "number" },
+            { "type": "string" },
+            { "type": "null" }
+          ]
         },
         "VIRTUAL": {
           "$id": "https://api.example.com/properties/VIRTUAL",

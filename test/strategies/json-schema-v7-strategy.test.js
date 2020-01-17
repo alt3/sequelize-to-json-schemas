@@ -52,6 +52,22 @@ describe('JsonSchema7Strategy', function() {
           ]);
         });
       });
+      describe('JSONB_ALLOWNULL', function(){
+        it("has property 'type' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.JSONB_ALLOWNULL.anyOf)).toBe(true);
+        });
+        it("has property 'type' with values named 'object', 'array', 'boolean', 'number', 'string' and 'null'", function() {
+          expect(Object.values(schema.properties.JSONB_ALLOWNULL.anyOf)).toEqual([
+            { type: 'object' },
+            { type: 'array' },
+            { type: 'boolean' },
+            { type: 'integer' },
+            { type: 'number' },
+            { type: 'string' },
+            { type: 'null' }
+          ]);
+        });
+      });
     });
 
     // ------------------------------------------------------------------------

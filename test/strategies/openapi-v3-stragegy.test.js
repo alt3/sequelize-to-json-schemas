@@ -35,6 +35,22 @@ describe('OpenApi3Strategy', function() {
           expect(typeof schema.properties.STRING_ALLOWNULL.nullable).toEqual('boolean');
         });
       });
+      describe('JSONB_ALLOWNULL', function() {
+        it("has property 'type' of type 'object'", function() {
+          expect(schema.properties.JSONB_ALLOWNULL.anyOf).toEqual([
+            { type: 'object' },
+            { type: 'array' },
+            { type: 'boolean' },
+            { type: 'integer' },
+            { type: 'number' },
+            { type: 'string' }
+          ]);
+        });
+
+        it("has property 'nullable' of type 'boolean'", function() {
+          expect(typeof schema.properties.JSONB_ALLOWNULL.nullable).toEqual('boolean');
+        });
+      });
     });
 
     // ------------------------------------------------------------------------
