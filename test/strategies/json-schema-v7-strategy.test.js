@@ -52,8 +52,8 @@ describe('JsonSchema7Strategy', function() {
           ]);
         });
       });
-      
-      describe('JSONB_ALLOWNULL', function(){
+
+      describe('JSONB_ALLOWNULL', function() {
         it("has property 'anyOf' that is an array of types", function() {
           expect(Array.isArray(schema.properties.JSONB_ALLOWNULL.anyOf)).toBe(true);
         });
@@ -65,7 +65,7 @@ describe('JsonSchema7Strategy', function() {
             { type: 'integer' },
             { type: 'number' },
             { type: 'string' },
-            { type: 'null' }
+            { type: 'null' },
           ]);
         });
       });

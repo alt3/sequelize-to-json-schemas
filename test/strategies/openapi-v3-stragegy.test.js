@@ -44,7 +44,7 @@ describe('OpenApi3Strategy', function() {
             { type: 'boolean' },
             { type: 'integer' },
             { type: 'number' },
-            { type: 'string' }
+            { type: 'string' },
           ]);
         });
 
