@@ -83,6 +83,17 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     "JSON": {
       "type": "object"
     },
+    "JSONB_ALLOWNULL": {
+      "anyOf": [
+        { "type": "object" },
+        { "type": "array" },
+        { "type": "boolean" },
+        { "type": "integer" },
+        { "type": "number" },
+        { "type": "string" }
+      ],
+      "nullable": true
+    },
     "VIRTUAL": {
       "type": "boolean"
     },
@@ -374,6 +385,17 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
           },
           "JSON": {
             "type": "object"
+          },
+          "JSONB_ALLOWNULL": {
+            "anyOf": [
+              { "type": "object" },
+              { "type": "array" },
+              { "type": "boolean" },
+              { "type": "integer" },
+              { "type": "number" },
+              { "type": "string" }
+            ],
+            "nullable": true
           },
           "VIRTUAL": {
             "type": "boolean"
