@@ -47,9 +47,13 @@ module.exports = (sequelize, { DataTypes }) => {
       allowNull: false,
     };
 
-    Model.rawAttributes.ARRAY_ALLOWNULL = {
+    Model.rawAttributes.ARRAY_ALLOWNULL_EXPLICIT = {
       type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: true,
+    };
+
+    Model.rawAttributes.ARRAY_ALLOWNULL_IMPLICIT = {
+      type: DataTypes.ARRAY(DataTypes.TEXT),
     };
   }
 
@@ -75,9 +79,13 @@ module.exports = (sequelize, { DataTypes }) => {
       defaultValue: 'Default value for STRING',
     };
 
-    Model.rawAttributes.STRING_ALLOWNULL = {
+    Model.rawAttributes.STRING_ALLOWNULL_EXPLICIT = {
       type: DataTypes.STRING,
       allowNull: true,
+    };
+
+    Model.rawAttributes.STRING_ALLOWNULL_IMPLICIT = {
+      type: DataTypes.STRING,
     };
 
     Model.rawAttributes.STRING_1234 = {

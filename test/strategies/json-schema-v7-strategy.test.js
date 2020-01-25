@@ -40,13 +40,28 @@ describe('JsonSchema7Strategy', function() {
     // make sure sequelize DataTypes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
-      describe('STRING_ALLOWNULL', function() {
+      describe('STRING_ALLOWNULL_EXPLICIT', function() {
         it("has property 'type' of type 'array'", function() {
-          expect(Array.isArray(schema.properties.STRING_ALLOWNULL.type)).toBe(true);
+          expect(Array.isArray(schema.properties.STRING_ALLOWNULL_EXPLICIT.type)).toBe(true);
         });
 
         it("has property 'type' with two values named 'string' and 'null'", function() {
-          expect(Object.values(schema.properties.STRING_ALLOWNULL.type)).toEqual([
+          expect(Object.values(schema.properties.STRING_ALLOWNULL_EXPLICIT.type)).toEqual([
+            'string',
+            'null',
+          ]);
+        });
+      });
+
+      // Sequelize allows null values by default so we need to make sure rendered schema
+      // keys allow null by default (even when not explicitely setting `allowNull: true`)
+      describe('STRING_ALLOWNULL_IMPLICIT', function() {
+        it("has property 'type' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.STRING_ALLOWNULL_IMPLICIT.type)).toBe(true);
+        });
+
+        it("has property 'type' with two values named 'string' and 'null'", function() {
+          expect(Object.values(schema.properties.STRING_ALLOWNULL_IMPLICIT.type)).toEqual([
             'string',
             'null',
           ]);
@@ -70,13 +85,23 @@ describe('JsonSchema7Strategy', function() {
         });
       });
 
-      describe('ARRAY_ALLOWNULL', function() {
+      describe('ARRAY_ALLOWNULL_EXPLICIT', function() {
         it("has property 'type' of type 'array'", function() {
-          expect(Array.isArray(schema.properties.ARRAY_ALLOWNULL.type)).toBe(true);
+          expect(Array.isArray(schema.properties.ARRAY_ALLOWNULL_EXPLICIT.type)).toBe(true);
         });
 
         it("has property 'type' with two values named 'array' and 'null'", function() {
-          expect(Object.values(schema.properties.ARRAY_ALLOWNULL.type)).toEqual(['array', 'null']);
+          expect(Object.values(schema.properties.ARRAY_ALLOWNULL_EXPLICIT.type)).toEqual(['array', 'null']);
+        });
+      });
+
+      describe('ARRAY_ALLOWNULL_IMPLICIT', function() {
+        it("has property 'type' of type 'array'", function() {
+          expect(Array.isArray(schema.properties.ARRAY_ALLOWNULL_IMPLICIT.type)).toBe(true);
+        });
+
+        it("has property 'type' with two values named 'array' and 'null'", function() {
+          expect(Object.values(schema.properties.ARRAY_ALLOWNULL_IMPLICIT.type)).toEqual(['array', 'null']);
         });
       });
     });

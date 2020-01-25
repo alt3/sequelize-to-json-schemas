@@ -102,7 +102,7 @@ describe('SchemaManager', function() {
 
   describe('Test configuration options for the generate() method', function() {
     // ------------------------------------------------------------------------
-    // make sure default options render the expected model properties
+    // make sure default MODEL options render the expected MODEL properties
     // ------------------------------------------------------------------------
     describe('Ensure default model options:', function() {
       const schemaManager = new JsonSchemaManager();
