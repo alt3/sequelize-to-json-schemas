@@ -39,10 +39,12 @@ module.exports = (sequelize, { DataTypes }) => {
   if (supportedDataType('ARRAY')) {
     Model.rawAttributes.ARRAY_INTEGERS = {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
+      allowNull: false,
     };
 
     Model.rawAttributes.ARRAY_TEXTS = {
       type: DataTypes.ARRAY(DataTypes.TEXT),
+      allowNull: false,
     };
 
     Model.rawAttributes.ARRAY_ALLOWNULL = {
@@ -54,12 +56,14 @@ module.exports = (sequelize, { DataTypes }) => {
   if (supportedDataType('CITEXT')) {
     Model.rawAttributes.CITEXT = {
       type: DataTypes.CITEXT,
+      allowNull: false,
     };
   }
 
   if (supportedDataType('INTEGER')) {
     Model.rawAttributes.INTEGER = {
       type: DataTypes.INTEGER,
+      allowNull: false,
       defaultValue: 0,
     };
   }
@@ -67,6 +71,7 @@ module.exports = (sequelize, { DataTypes }) => {
   if (supportedDataType('STRING')) {
     Model.rawAttributes.STRING = {
       type: DataTypes.STRING,
+      allowNull: false,
       defaultValue: 'Default value for STRING',
     };
 
@@ -77,28 +82,33 @@ module.exports = (sequelize, { DataTypes }) => {
 
     Model.rawAttributes.STRING_1234 = {
       type: DataTypes.STRING(1234),
+      allowNull: false,
     };
 
     Model.rawAttributes.STRING_DOT_BINARY = {
       type: DataTypes.STRING.BINARY,
+      allowNull: false,
     };
   }
 
   if (supportedDataType('TEXT')) {
     Model.rawAttributes.TEXT = {
       type: DataTypes.TEXT,
+      allowNull: false,
     };
   }
 
   if (supportedDataType('UUIDV4')) {
     Model.rawAttributes.UUIDV4 = {
       type: DataTypes.UUID,
+      allowNull: false,
     };
   }
 
   if (supportedDataType('JSON')) {
     Model.rawAttributes.JSON = {
       type: DataTypes.JSON,
+      allowNull: false,
       jsonSchema: {
         schema: { type: 'object' }, // required for OpenAPI
       },
@@ -115,11 +125,13 @@ module.exports = (sequelize, { DataTypes }) => {
   if (supportedDataType('VIRTUAL')) {
     Model.rawAttributes.VIRTUAL = {
       type: DataTypes.VIRTUAL(DataTypes.BOOLEAN),
+      allowNull: false,
       get: () => true,
     };
 
     Model.rawAttributes.VIRTUAL_DEPENDENCY = {
       type: new DataTypes.VIRTUAL(DataTypes.INTEGER, ['id']),
+      allowNull: false,
       get() {
         return this.get('id');
       },
@@ -131,6 +143,7 @@ module.exports = (sequelize, { DataTypes }) => {
   // --------------------------------------------------------------------------
   Model.rawAttributes.CUSTOM_DESCRIPTION = {
     type: DataTypes.STRING,
+    allowNull: false,
     jsonSchema: {
       description: 'Custom attribute description',
     },
@@ -138,6 +151,7 @@ module.exports = (sequelize, { DataTypes }) => {
 
   Model.rawAttributes.CUSTOM_COMMENT = {
     type: DataTypes.STRING,
+    allowNull: false,
     jsonSchema: {
       comment: 'Custom comment',
     },
@@ -145,6 +159,7 @@ module.exports = (sequelize, { DataTypes }) => {
 
   Model.rawAttributes.CUSTOM_EXAMPLES = {
     type: DataTypes.STRING,
+    allowNull: false,
     jsonSchema: {
       examples: ['Custom example 1', 'Custom example 2'],
     },
