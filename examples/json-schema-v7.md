@@ -1,6 +1,6 @@
 # JSON Schema Draft-07
 
-These schemas were automatically generated on 2020-01-17
+These schemas were automatically generated on 2020-01-25
 using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
@@ -101,19 +101,53 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     },
     "JSON": {
       "$id": "https://api.example.com/properties/JSON",
+      "anyOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "array"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        }
+      ],
       "type": "object"
     },
     "JSONB_ALLOWNULL": {
       "$id": "https://api.example.com/properties/JSONB_ALLOWNULL",
-        "anyOf": [
-          { "type": "object" },
-          { "type": "array" },
-          { "type": "boolean" },
-          { "type": "integer" },
-          { "type": "number" },
-          { "type": "string" },
-          { "type": "null" }
-        ]
+      "anyOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "array"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
     },
     "VIRTUAL": {
       "$id": "https://api.example.com/properties/VIRTUAL",
@@ -446,18 +480,52 @@ document (by adding model schemas to `definitions`).
         },
         "JSON": {
           "$id": "https://api.example.com/properties/JSON",
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "array"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
           "type": "object"
         },
         "JSONB_ALLOWNULL": {
           "$id": "https://api.example.com/properties/JSONB_ALLOWNULL",
           "anyOf": [
-            { "type": "object" },
-            { "type": "array" },
-            { "type": "boolean" },
-            { "type": "integer" },
-            { "type": "number" },
-            { "type": "string" },
-            { "type": "null" }
+            {
+              "type": "object"
+            },
+            {
+              "type": "array"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
           ]
         },
         "VIRTUAL": {

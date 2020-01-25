@@ -13,6 +13,10 @@ describe('SchemaManager', function() {
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
+      it(`produce a HTTPS schema URI`, function() {
+        expect(schema.$schema).toEqual('https://json-schema.org/draft-07/schema#');
+      });
+
       it(`produce relative paths for models`, function() {
         expect(schema.$id).toEqual('/user.json');
       });
@@ -23,6 +27,21 @@ describe('SchemaManager', function() {
 
       it(`does not include attribute property '$comment'`, function() {
         expect(schema.properties.CUSTOM_COMMENT.$comment).toBeUndefined();
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // make sure option 'secureSchemaUri: false` renders a HTTP schema URI
+    // ------------------------------------------------------------------------
+    describe(`Ensure false option 'secureSchemaUri':`, function() {
+      const schemaManager = new JsonSchemaManager({
+        secureSchemaUri: false,
+      });
+      const strategy = new JsonSchema7Strategy();
+      const schema = schemaManager.generate(models.user, strategy);
+
+      it(`includes attribute property '$schema' with HTTP link`, function() {
+        expect(schema.$schema).toEqual('http://json-schema.org/draft-07/schema#');
       });
     });
 
