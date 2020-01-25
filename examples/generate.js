@@ -16,6 +16,7 @@ const targetFolder = './examples/';
 const schemaManager = new JsonSchemaManager({
   baseUri: 'https://api.example.com',
   absolutePaths: true,
+  secureSchemaUri: true,
   disableComments: false,
 });
 
