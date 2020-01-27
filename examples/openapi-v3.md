@@ -42,7 +42,14 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
         "type": "string"
       }
     },
-    "ARRAY_ALLOWNULL": {
+    "ARRAY_ALLOWNULL_EXPLICIT": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "nullable": true
+    },
+    "ARRAY_ALLOWNULL_IMPLICIT": {
       "type": "array",
       "items": {
         "type": "string"
@@ -61,7 +68,11 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "type": "string",
       "default": "Default value for STRING"
     },
-    "STRING_ALLOWNULL": {
+    "STRING_ALLOWNULL_EXPLICIT": {
+      "type": "string",
+      "nullable": true
+    },
+    "STRING_ALLOWNULL_IMPLICIT": {
       "type": "string",
       "nullable": true
     },
@@ -203,8 +214,21 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     "id",
     "createdAt",
     "updatedAt",
+    "ARRAY_INTEGERS",
+    "ARRAY_TEXTS",
+    "CITEXT",
     "INTEGER",
     "STRING",
+    "STRING_1234",
+    "STRING_DOT_BINARY",
+    "TEXT",
+    "UUIDV4",
+    "JSON",
+    "VIRTUAL",
+    "VIRTUAL_DEPENDENCY",
+    "CUSTOM_DESCRIPTION",
+    "CUSTOM_COMMENT",
+    "CUSTOM_EXAMPLES",
     "CUSTOM_READONLY",
     "CUSTOM_WRITEONLY"
   ]
@@ -225,7 +249,8 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "format": "int32"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "nullable": true
     },
     "userId": {
       "type": "integer",
@@ -253,7 +278,8 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "format": "int32"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "nullable": true
     },
     "userId": {
       "type": "integer",
@@ -281,7 +307,8 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "format": "int32"
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "nullable": true
     }
   },
   "required": [
@@ -301,15 +328,18 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
   "properties": {
     "isBestFriend": {
       "type": "boolean",
+      "nullable": true,
       "default": false
     },
     "userId": {
       "type": "integer",
-      "format": "int32"
+      "format": "int32",
+      "nullable": true
     },
     "friendId": {
       "type": "integer",
-      "format": "int32"
+      "format": "int32",
+      "nullable": true
     }
   },
   "required": [
@@ -377,7 +407,14 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
               "type": "string"
             }
           },
-          "ARRAY_ALLOWNULL": {
+          "ARRAY_ALLOWNULL_EXPLICIT": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "ARRAY_ALLOWNULL_IMPLICIT": {
             "type": "array",
             "items": {
               "type": "string"
@@ -396,7 +433,11 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
             "type": "string",
             "default": "Default value for STRING"
           },
-          "STRING_ALLOWNULL": {
+          "STRING_ALLOWNULL_EXPLICIT": {
+            "type": "string",
+            "nullable": true
+          },
+          "STRING_ALLOWNULL_IMPLICIT": {
             "type": "string",
             "nullable": true
           },
@@ -538,8 +579,21 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
           "id",
           "createdAt",
           "updatedAt",
+          "ARRAY_INTEGERS",
+          "ARRAY_TEXTS",
+          "CITEXT",
           "INTEGER",
           "STRING",
+          "STRING_1234",
+          "STRING_DOT_BINARY",
+          "TEXT",
+          "UUIDV4",
+          "JSON",
+          "VIRTUAL",
+          "VIRTUAL_DEPENDENCY",
+          "CUSTOM_DESCRIPTION",
+          "CUSTOM_COMMENT",
+          "CUSTOM_EXAMPLES",
           "CUSTOM_READONLY",
           "CUSTOM_WRITEONLY"
         ]
@@ -553,7 +607,8 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
             "format": "int32"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "userId": {
             "type": "integer",
@@ -574,7 +629,8 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
             "format": "int32"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "userId": {
             "type": "integer",
@@ -595,7 +651,8 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
             "format": "int32"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
@@ -608,15 +665,18 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
         "properties": {
           "isBestFriend": {
             "type": "boolean",
+            "nullable": true,
             "default": false
           },
           "userId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "friendId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           }
         },
         "required": [

@@ -48,8 +48,18 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
         "type": "string"
       }
     },
-    "ARRAY_ALLOWNULL": {
-      "$id": "https://api.example.com/properties/ARRAY_ALLOWNULL",
+    "ARRAY_ALLOWNULL_EXPLICIT": {
+      "$id": "https://api.example.com/properties/ARRAY_ALLOWNULL_EXPLICIT",
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "ARRAY_ALLOWNULL_IMPLICIT": {
+      "$id": "https://api.example.com/properties/ARRAY_ALLOWNULL_IMPLICIT",
       "type": [
         "array",
         "null"
@@ -73,8 +83,15 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "type": "string",
       "default": "Default value for STRING"
     },
-    "STRING_ALLOWNULL": {
-      "$id": "https://api.example.com/properties/STRING_ALLOWNULL",
+    "STRING_ALLOWNULL_EXPLICIT": {
+      "$id": "https://api.example.com/properties/STRING_ALLOWNULL_EXPLICIT",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "STRING_ALLOWNULL_IMPLICIT": {
+      "$id": "https://api.example.com/properties/STRING_ALLOWNULL_IMPLICIT",
       "type": [
         "string",
         "null"
@@ -240,8 +257,21 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     "id",
     "createdAt",
     "updatedAt",
+    "ARRAY_INTEGERS",
+    "ARRAY_TEXTS",
+    "CITEXT",
     "INTEGER",
     "STRING",
+    "STRING_1234",
+    "STRING_DOT_BINARY",
+    "TEXT",
+    "UUIDV4",
+    "JSON",
+    "VIRTUAL",
+    "VIRTUAL_DEPENDENCY",
+    "CUSTOM_DESCRIPTION",
+    "CUSTOM_COMMENT",
+    "CUSTOM_EXAMPLES",
     "CUSTOM_READONLY",
     "CUSTOM_WRITEONLY"
   ]
@@ -266,7 +296,10 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     },
     "name": {
       "$id": "https://api.example.com/properties/name",
-      "type": "string"
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "userId": {
       "$id": "https://api.example.com/properties/userId",
@@ -301,7 +334,10 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     },
     "name": {
       "$id": "https://api.example.com/properties/name",
-      "type": "string"
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "userId": {
       "$id": "https://api.example.com/properties/userId",
@@ -336,7 +372,10 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     },
     "name": {
       "$id": "https://api.example.com/properties/name",
-      "type": "string"
+      "type": [
+        "string",
+        "null"
+      ]
     }
   },
   "required": [
@@ -358,17 +397,26 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
   "properties": {
     "isBestFriend": {
       "$id": "https://api.example.com/properties/isBestFriend",
-      "type": "boolean",
+      "type": [
+        "boolean",
+        "null"
+      ],
       "default": false
     },
     "userId": {
       "$id": "https://api.example.com/properties/userId",
-      "type": "integer",
+      "type": [
+        "integer",
+        "null"
+      ],
       "format": "int32"
     },
     "friendId": {
       "$id": "https://api.example.com/properties/friendId",
-      "type": "integer",
+      "type": [
+        "integer",
+        "null"
+      ],
       "format": "int32"
     }
   },
@@ -427,8 +475,18 @@ document (by adding model schemas to `definitions`).
             "type": "string"
           }
         },
-        "ARRAY_ALLOWNULL": {
-          "$id": "https://api.example.com/properties/ARRAY_ALLOWNULL",
+        "ARRAY_ALLOWNULL_EXPLICIT": {
+          "$id": "https://api.example.com/properties/ARRAY_ALLOWNULL_EXPLICIT",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "ARRAY_ALLOWNULL_IMPLICIT": {
+          "$id": "https://api.example.com/properties/ARRAY_ALLOWNULL_IMPLICIT",
           "type": [
             "array",
             "null"
@@ -452,8 +510,15 @@ document (by adding model schemas to `definitions`).
           "type": "string",
           "default": "Default value for STRING"
         },
-        "STRING_ALLOWNULL": {
-          "$id": "https://api.example.com/properties/STRING_ALLOWNULL",
+        "STRING_ALLOWNULL_EXPLICIT": {
+          "$id": "https://api.example.com/properties/STRING_ALLOWNULL_EXPLICIT",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "STRING_ALLOWNULL_IMPLICIT": {
+          "$id": "https://api.example.com/properties/STRING_ALLOWNULL_IMPLICIT",
           "type": [
             "string",
             "null"
@@ -619,8 +684,21 @@ document (by adding model schemas to `definitions`).
         "id",
         "createdAt",
         "updatedAt",
+        "ARRAY_INTEGERS",
+        "ARRAY_TEXTS",
+        "CITEXT",
         "INTEGER",
         "STRING",
+        "STRING_1234",
+        "STRING_DOT_BINARY",
+        "TEXT",
+        "UUIDV4",
+        "JSON",
+        "VIRTUAL",
+        "VIRTUAL_DEPENDENCY",
+        "CUSTOM_DESCRIPTION",
+        "CUSTOM_COMMENT",
+        "CUSTOM_EXAMPLES",
         "CUSTOM_READONLY",
         "CUSTOM_WRITEONLY"
       ]
@@ -638,7 +716,10 @@ document (by adding model schemas to `definitions`).
         },
         "name": {
           "$id": "https://api.example.com/properties/name",
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "userId": {
           "$id": "https://api.example.com/properties/userId",
@@ -666,7 +747,10 @@ document (by adding model schemas to `definitions`).
         },
         "name": {
           "$id": "https://api.example.com/properties/name",
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "userId": {
           "$id": "https://api.example.com/properties/userId",
@@ -694,7 +778,10 @@ document (by adding model schemas to `definitions`).
         },
         "name": {
           "$id": "https://api.example.com/properties/name",
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         }
       },
       "required": [
@@ -709,17 +796,26 @@ document (by adding model schemas to `definitions`).
       "properties": {
         "isBestFriend": {
           "$id": "https://api.example.com/properties/isBestFriend",
-          "type": "boolean",
+          "type": [
+            "boolean",
+            "null"
+          ],
           "default": false
         },
         "userId": {
           "$id": "https://api.example.com/properties/userId",
-          "type": "integer",
+          "type": [
+            "integer",
+            "null"
+          ],
           "format": "int32"
         },
         "friendId": {
           "$id": "https://api.example.com/properties/friendId",
-          "type": "integer",
+          "type": [
+            "integer",
+            "null"
+          ],
           "format": "int32"
         }
       },

@@ -26,13 +26,25 @@ describe('OpenApi3Strategy', function() {
     // make sure sequelize DataTypes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function() {
-      describe('STRING_ALLOWNULL', function() {
+      describe('STRING_ALLOWNULL_EXPLICIT', function() {
         it("has property 'type' of type 'string'", function() {
-          expect(schema.properties.STRING_ALLOWNULL.type).toEqual('string');
+          expect(schema.properties.STRING_ALLOWNULL_EXPLICIT.type).toEqual('string');
         });
 
         it("has property 'nullable' of type 'boolean'", function() {
-          expect(typeof schema.properties.STRING_ALLOWNULL.nullable).toEqual('boolean');
+          expect(typeof schema.properties.STRING_ALLOWNULL_EXPLICIT.nullable).toEqual('boolean');
+        });
+      });
+
+      // Sequelize allows null values by default so we need to make sure rendered schema
+      // keys allow null by default (even when not explicitely setting `allowNull: true`)
+      describe('STRING_ALLOWNULL_IMPLICIT', function() {
+        it("has property 'type' of type 'string'", function() {
+          expect(schema.properties.STRING_ALLOWNULL_IMPLICIT.type).toEqual('string');
+        });
+
+        it("has property 'nullable' of type 'boolean'", function() {
+          expect(typeof schema.properties.STRING_ALLOWNULL_IMPLICIT.nullable).toEqual('boolean');
         });
       });
 
@@ -53,13 +65,23 @@ describe('OpenApi3Strategy', function() {
         });
       });
 
-      describe('ARRAY_ALLOWNULL', function() {
+      describe('ARRAY_ALLOWNULL_EXPLICIT', function() {
         it("has property 'type' of type 'string'", function() {
-          expect(schema.properties.ARRAY_ALLOWNULL.type).toEqual('array');
+          expect(schema.properties.ARRAY_ALLOWNULL_EXPLICIT.type).toEqual('array');
         });
 
         it("has property 'nullable' of type 'boolean'", function() {
-          expect(typeof schema.properties.ARRAY_ALLOWNULL.nullable).toEqual('boolean');
+          expect(typeof schema.properties.ARRAY_ALLOWNULL_EXPLICIT.nullable).toEqual('boolean');
+        });
+      });
+
+      describe('ARRAY_ALLOWNULL_IMPLICIT', function() {
+        it("has property 'type' of type 'string'", function() {
+          expect(schema.properties.ARRAY_ALLOWNULL_IMPLICIT.type).toEqual('array');
+        });
+
+        it("has property 'nullable' of type 'boolean'", function() {
+          expect(typeof schema.properties.ARRAY_ALLOWNULL_IMPLICIT.nullable).toEqual('boolean');
         });
       });
     });
