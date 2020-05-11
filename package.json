@@ -134,7 +134,8 @@
       "jest"
     ],
     "rules": {
-      "no-underscore-dangle": "off"
+      "no-underscore-dangle": "off",
+      "unicorn/no-null": "off"
     }
   },
   "husky": {
