@@ -77,7 +77,7 @@ The following Sequelize attribute options are automatically converted into
 schema properties:
 
 ```javascript
-module.exports = sequelize => {
+module.exports = (sequelize) => {
   const model = sequelize.define('user', {
     userName: {
       type: DataTypes.STRING,
@@ -95,7 +95,7 @@ To configure additional schema properties add a `jsonSchema` property with
 one or more of the following custom options to your Sequelize attribute:
 
 ```javascript
-module.exports = sequelize => {
+module.exports = (sequelize) => {
   const model = sequelize.define('user', {
     userName: {
       type: DataTypes.STRING,
@@ -116,7 +116,7 @@ In order to create a valid output for `JSON` columns, or to otherwise override
 the schema output for a particular sequelize attribute, add a `schema` attribute:
 
 ```javascript
-module.exports = sequelize => {
+module.exports = (sequelize) => {
   const model = sequelize.define('user', {
     // ...
     settings: {
