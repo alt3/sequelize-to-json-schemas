@@ -3,29 +3,29 @@
 const models = require('./models');
 const { JsonSchemaManager, JsonSchema7Strategy } = require('../lib');
 
-describe('SchemaManager', function() {
-  describe('Test configuration options for the class constructor', function() {
+describe('SchemaManager', function () {
+  describe('Test configuration options for the class constructor', function () {
     // ------------------------------------------------------------------------
     // make sure default option values work as expected
     // ------------------------------------------------------------------------
-    describe('Ensure default options:', function() {
+    describe('Ensure default options:', function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
-      it(`produce a HTTPS schema URI`, function() {
+      it(`produce a HTTPS schema URI`, function () {
         expect(schema.$schema).toEqual('https://json-schema.org/draft-07/schema#');
       });
 
-      it(`produce relative paths for models`, function() {
+      it(`produce relative paths for models`, function () {
         expect(schema.$id).toEqual('/user.json');
       });
 
-      it(`produce relative paths for attribute properties`, function() {
+      it(`produce relative paths for attribute properties`, function () {
         expect(schema.properties.id.$id).toEqual('/properties/id');
       });
 
-      it(`does not include attribute property '$comment'`, function() {
+      it(`does not include attribute property '$comment'`, function () {
         expect(schema.properties.CUSTOM_COMMENT.$comment).toBeUndefined();
       });
     });
@@ -33,14 +33,14 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // make sure option 'secureSchemaUri: false` renders a HTTP schema URI
     // ------------------------------------------------------------------------
-    describe(`Ensure false option 'secureSchemaUri':`, function() {
+    describe(`Ensure false option 'secureSchemaUri':`, function () {
       const schemaManager = new JsonSchemaManager({
         secureSchemaUri: false,
       });
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
-      it(`includes attribute property '$schema' with HTTP link`, function() {
+      it(`includes attribute property '$schema' with HTTP link`, function () {
         expect(schema.$schema).toEqual('http://json-schema.org/draft-07/schema#');
       });
     });
@@ -48,18 +48,18 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // make sure option 'baseUri' works as expected
     // ------------------------------------------------------------------------
-    describe(`Ensure non-default option 'baseUri':`, function() {
+    describe(`Ensure non-default option 'baseUri':`, function () {
       const schemaManager = new JsonSchemaManager({
         baseUri: 'https://alt3.io',
       });
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
-      it(`produces absolute paths for models`, function() {
+      it(`produces absolute paths for models`, function () {
         expect(schema.$id).toEqual('https://alt3.io/user.json');
       });
 
-      it(`produces absolute paths for attribute properties`, function() {
+      it(`produces absolute paths for attribute properties`, function () {
         expect(schema.properties.id.$id).toEqual('https://alt3.io/properties/id');
       });
     });
@@ -67,14 +67,14 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // make sure option 'disableComments' works as expected
     // ------------------------------------------------------------------------
-    describe(`Ensure false option 'disableComments':`, function() {
+    describe(`Ensure false option 'disableComments':`, function () {
       const schemaManager = new JsonSchemaManager({
         disableComments: false,
       });
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
-      it(`includes attribute property '$comment'`, function() {
+      it(`includes attribute property '$comment'`, function () {
         expect(schema.properties.CUSTOM_COMMENT.$comment).toEqual('Custom comment');
       });
     });
@@ -82,7 +82,7 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // make sure disabling 'absolutePaths' renders relative paths
     // ------------------------------------------------------------------------
-    describe(`Ensure false option 'absolutePaths':`, function() {
+    describe(`Ensure false option 'absolutePaths':`, function () {
       const schemaManager = new JsonSchemaManager({
         baseUri: 'https://alt3.io',
         absolutePaths: false,
@@ -90,30 +90,30 @@ describe('SchemaManager', function() {
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
-      it(`ignores baseUri and produces relative paths for models`, function() {
+      it(`ignores baseUri and produces relative paths for models`, function () {
         expect(schema.$id).toEqual('/user.json');
       });
 
-      it(`ignores baseUri and produces relative paths for attribute properties`, function() {
+      it(`ignores baseUri and produces relative paths for attribute properties`, function () {
         expect(schema.properties.id.$id).toEqual('/properties/id');
       });
     });
   });
 
-  describe('Test configuration options for the generate() method', function() {
+  describe('Test configuration options for the generate() method', function () {
     // ------------------------------------------------------------------------
     // make sure default MODEL options render the expected MODEL properties
     // ------------------------------------------------------------------------
-    describe('Ensure default model options:', function() {
+    describe('Ensure default model options:', function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
-      it(`produce auto-generated model.title`, function() {
+      it(`produce auto-generated model.title`, function () {
         expect(schema.title).toEqual('User');
       });
 
-      it(`do not produce model.description`, function() {
+      it(`do not produce model.description`, function () {
         expect(schema.description).toBeUndefined();
       });
     });
@@ -121,7 +121,7 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // make sure non-default options render the expected model properties
     // ------------------------------------------------------------------------
-    describe('Ensure custom model option:', function() {
+    describe('Ensure custom model option:', function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
@@ -130,11 +130,11 @@ describe('SchemaManager', function() {
         examples: ['Some Example'],
       });
 
-      it(`'title' overrides value in model.title`, function() {
+      it(`'title' overrides value in model.title`, function () {
         expect(schema.title).toEqual('Custom Model Title');
       });
 
-      it(`'description' produces custom property model.description`, function() {
+      it(`'description' produces custom property model.description`, function () {
         expect(schema.description).toEqual('Custom Model Description');
       });
     });
@@ -142,22 +142,22 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // make sure excluded attributes do not appear in the resultant schema
     // ------------------------------------------------------------------------
-    describe('Ensure attribute exclusions:', function() {
+    describe('Ensure attribute exclusions:', function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
         exclude: ['STRING', 'STRING_1234'],
       });
 
-      it(`exclude attribute STRING`, function() {
+      it(`exclude attribute STRING`, function () {
         expect(schema.properties.STRING).toBeUndefined();
       });
 
-      it(`exclude attribute STRING_1234`, function() {
+      it(`exclude attribute STRING_1234`, function () {
         expect(schema.properties.STRING_1234).toBeUndefined();
       });
 
-      it(`do not exclude other attributes`, function() {
+      it(`do not exclude other attributes`, function () {
         expect(schema.properties).toHaveProperty('id');
       });
     });
@@ -165,7 +165,7 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // make sure excluded attributes do appear in the resultant schema
     // ------------------------------------------------------------------------
-    describe('Ensure attribute inclusions:', function() {
+    describe('Ensure attribute inclusions:', function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
@@ -173,15 +173,15 @@ describe('SchemaManager', function() {
         associations: false,
       });
 
-      it(`include attribute STRING`, function() {
+      it(`include attribute STRING`, function () {
         expect(schema.properties).toHaveProperty('STRING');
       });
 
-      it(`include attribute STRING_1234`, function() {
+      it(`include attribute STRING_1234`, function () {
         expect(schema.properties).toHaveProperty('STRING_1234');
       });
 
-      it(`do not include other attributes`, function() {
+      it(`do not include other attributes`, function () {
         expect(Object.keys(schema.properties).length).toBe(2);
       });
     });
@@ -189,32 +189,32 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // make sure option 'associations' functions as expected
     // ------------------------------------------------------------------------
-    describe(`Ensure option 'associations' with default value 'true':`, function() {
+    describe(`Ensure option 'associations' with default value 'true':`, function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy);
 
-      it(`generates association property 'profile'`, function() {
+      it(`generates association property 'profile'`, function () {
         expect(schema.properties).toHaveProperty('profile');
       });
 
-      it(`generates association property 'documents'`, function() {
+      it(`generates association property 'documents'`, function () {
         expect(schema.properties).toHaveProperty('documents');
       });
     });
 
-    describe(`Ensure option 'associations' with user-specificed value 'false':`, function() {
+    describe(`Ensure option 'associations' with user-specificed value 'false':`, function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
         associations: false,
       });
 
-      it(`does not generate association property 'profile'`, function() {
+      it(`does not generate association property 'profile'`, function () {
         expect(schema.properties.profile).toBeUndefined();
       });
 
-      it(`does not generate association property 'documents'`, function() {
+      it(`does not generate association property 'documents'`, function () {
         expect(schema.properties.documents).toBeUndefined();
       });
     });
@@ -222,18 +222,18 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // make sure option 'includeAssociations'functions as expected
     // ------------------------------------------------------------------------
-    describe('Ensure association inclusions:', function() {
+    describe('Ensure association inclusions:', function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
         includeAssociations: ['profile'],
       });
 
-      it(`include association 'profile'`, function() {
+      it(`include association 'profile'`, function () {
         expect(schema.properties).toHaveProperty('profile');
       });
 
-      it(`do not include association 'documents'`, function() {
+      it(`do not include association 'documents'`, function () {
         expect(schema.properties.documents).toBeUndefined();
       });
     });
@@ -241,18 +241,18 @@ describe('SchemaManager', function() {
     // ------------------------------------------------------------------------
     // make sure option 'excludeAssociations'functions as expected
     // ------------------------------------------------------------------------
-    describe('Ensure association exclusions:', function() {
+    describe('Ensure association exclusions:', function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
       const schema = schemaManager.generate(models.user, strategy, {
         excludeAssociations: ['profile'],
       });
 
-      it(`do not include association 'profile'`, function() {
+      it(`do not include association 'profile'`, function () {
         expect(schema.properties.profile).toBeUndefined();
       });
 
-      it(`include association 'documents'`, function() {
+      it(`include association 'documents'`, function () {
         expect(schema.properties).toHaveProperty('documents');
       });
     });
