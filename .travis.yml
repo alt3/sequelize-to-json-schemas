@@ -17,7 +17,7 @@ env:
   matrix:
     - SEQUELIZE_VERSION=4.*
     - SEQUELIZE_VERSION=5.*
-    - SEQUELIZE_VERSION=6*
+    - SEQUELIZE_VERSION=6.*
 
   global:
     - TEST=1
