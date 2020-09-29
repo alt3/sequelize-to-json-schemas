@@ -64,7 +64,7 @@
     "eslint-plugin-unicorn": "^22.0.0",
     "fs": "0.0.1-security",
     "husky": "^4.3.0",
-    "jest": "^26.0.0",
+    "jest": "^25.0.0",
     "jsdoc": "^3.6.6",
     "lint-staged": "^10.4.0",
     "lodash.clonedeep": "^4.5.0",
