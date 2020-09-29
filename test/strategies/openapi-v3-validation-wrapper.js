@@ -17,7 +17,7 @@ module.exports = Object.freeze({
       get: {
         parameters: [],
         responses: {
-          '404': {
+          404: {
             description: 'not found',
           },
         },
