@@ -135,7 +135,8 @@
     ],
     "rules": {
       "no-underscore-dangle": "off",
-      "unicorn/no-null": "off"
+      "unicorn/no-null": "off",
+      "unicorn/prefer-ternary": "off"
     }
   },
   "husky": {
