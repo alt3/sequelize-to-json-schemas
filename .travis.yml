@@ -5,6 +5,8 @@ node_js:
   - 8
   - 10
   - 12
+  - 14
+  - 15
 
 sudo: false
 
@@ -26,14 +28,14 @@ matrix:
   fast_finish: true
 
   include:
-    - node_js: 10
+    - node_js: 14
       env: TEST=0 LINT=1
 
-    - node_js: 10
+    - node_js: 14
       env: TEST=0 COVERAGE=1
 
     - stage: deploy
-      node_js: 10
+      node_js: 14
       env: TEST=0 COVERAGE=0 LINT=0
       script:
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
