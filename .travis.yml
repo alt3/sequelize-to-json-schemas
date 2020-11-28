@@ -35,7 +35,7 @@ matrix:
       env: TEST=0 COVERAGE=1
 
     - stage: deploy
-      node_js: 14
+      node_js: 15
       env: TEST=0 COVERAGE=0 LINT=0
       script:
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
