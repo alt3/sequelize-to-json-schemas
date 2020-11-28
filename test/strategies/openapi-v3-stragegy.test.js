@@ -26,6 +26,12 @@ describe('OpenApi3Strategy', function () {
     // make sure sequelize DataTypes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function () {
+      describe('BLOB', function () {
+        it("has property 'format' of type 'byte'", function () {
+          expect(schema.properties.BLOB.format).toEqual('byte');
+        });
+      });
+
       describe('STRING_ALLOWNULL_EXPLICIT', function () {
         it("has property 'type' of type 'string'", function () {
           expect(schema.properties.STRING_ALLOWNULL_EXPLICIT.type).toEqual('string');
