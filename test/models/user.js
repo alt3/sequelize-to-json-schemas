@@ -57,6 +57,13 @@ module.exports = (sequelize, { DataTypes }) => {
     };
   }
 
+  if (supportedDataType('BLOB')) {
+    Model.rawAttributes.BLOB = {
+      type: DataTypes.BLOB,
+      allowNull: false,
+    };
+  }
+
   if (supportedDataType('CITEXT')) {
     Model.rawAttributes.CITEXT = {
       type: DataTypes.CITEXT,

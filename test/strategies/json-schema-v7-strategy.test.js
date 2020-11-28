@@ -40,6 +40,12 @@ describe('JsonSchema7Strategy', function () {
     // make sure sequelize DataTypes render as expected
     // ------------------------------------------------------------------------
     describe('Ensure Sequelize DataTypes are properly converted and thus:', function () {
+      describe('BLOB', function () {
+        it("has property 'contentEncoding' of type 'base64'", function () {
+          expect(schema.properties.BLOB.contentEncoding).toEqual('base64');
+        });
+      });
+
       describe('STRING_ALLOWNULL_EXPLICIT', function () {
         it("has property 'type' of type 'array'", function () {
           expect(Array.isArray(schema.properties.STRING_ALLOWNULL_EXPLICIT.type)).toBe(true);

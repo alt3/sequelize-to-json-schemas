@@ -1,6 +1,6 @@
 # JSON Schema Draft-07
 
-These schemas were automatically generated on 2020-01-25
+These schemas were automatically generated on 2020-11-28
 using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
@@ -67,6 +67,11 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       "items": {
         "type": "string"
       }
+    },
+    "BLOB": {
+      "$id": "https://api.example.com/properties/BLOB",
+      "type": "string",
+      "contentEncoding": "base64"
     },
     "CITEXT": {
       "$id": "https://api.example.com/properties/CITEXT",
@@ -259,6 +264,7 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     "updatedAt",
     "ARRAY_INTEGERS",
     "ARRAY_TEXTS",
+    "BLOB",
     "CITEXT",
     "INTEGER",
     "STRING",
@@ -495,6 +501,11 @@ document (by adding model schemas to `definitions`).
             "type": "string"
           }
         },
+        "BLOB": {
+          "$id": "https://api.example.com/properties/BLOB",
+          "type": "string",
+          "contentEncoding": "base64"
+        },
         "CITEXT": {
           "$id": "https://api.example.com/properties/CITEXT",
           "type": "string"
@@ -686,6 +697,7 @@ document (by adding model schemas to `definitions`).
         "updatedAt",
         "ARRAY_INTEGERS",
         "ARRAY_TEXTS",
+        "BLOB",
         "CITEXT",
         "INTEGER",
         "STRING",
