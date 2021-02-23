@@ -1,6 +1,6 @@
 # OpenAPI 3.0
 
-These schemas were automatically generated on 2020-11-28
+These schemas were automatically generated on 2021-02-23
 using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
@@ -55,6 +55,16 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
         "type": "string"
       },
       "nullable": true
+    },
+    "ARRAY_ENUM_STRINGS": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "hello",
+          "world"
+        ]
+      }
     },
     "BLOB": {
       "type": "string",
@@ -220,6 +230,7 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     "updatedAt",
     "ARRAY_INTEGERS",
     "ARRAY_TEXTS",
+    "ARRAY_ENUM_STRINGS",
     "BLOB",
     "CITEXT",
     "INTEGER",
@@ -426,6 +437,16 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
             },
             "nullable": true
           },
+          "ARRAY_ENUM_STRINGS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "hello",
+                "world"
+              ]
+            }
+          },
           "BLOB": {
             "type": "string",
             "format": "byte"
@@ -590,6 +611,7 @@ example of how to integrate the generated model schemas into a full OpenAPI 3.0 
           "updatedAt",
           "ARRAY_INTEGERS",
           "ARRAY_TEXTS",
+          "ARRAY_ENUM_STRINGS",
           "BLOB",
           "CITEXT",
           "INTEGER",
