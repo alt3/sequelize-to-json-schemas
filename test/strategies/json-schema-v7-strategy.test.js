@@ -7,7 +7,7 @@
  *   because these are already tested in the StrategyInterface test case
  *   which uses JSON Schema Draft-07 as the basis for testing.
  */
-const Ajv = require('ajv');
+const Ajv = require('ajv').default;
 const models = require('../models');
 const { JsonSchemaManager, JsonSchema7Strategy } = require('../../lib');
 
