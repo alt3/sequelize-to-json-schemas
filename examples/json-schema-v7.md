@@ -1,6 +1,6 @@
 # JSON Schema Draft-07
 
-These schemas were automatically generated on 2020-11-28
+These schemas were automatically generated on 2021-02-23
 using [these Sequelize models](../test/models) and the most recent version of
 sequelize-to-json-schemas. To confirm that these are indeed all valid schemas use:
 
@@ -66,6 +66,17 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
       ],
       "items": {
         "type": "string"
+      }
+    },
+    "ARRAY_ENUM_STRINGS": {
+      "$id": "https://api.example.com/properties/ARRAY_ENUM_STRINGS",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "hello",
+          "world"
+        ]
       }
     },
     "BLOB": {
@@ -264,6 +275,7 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
     "updatedAt",
     "ARRAY_INTEGERS",
     "ARRAY_TEXTS",
+    "ARRAY_ENUM_STRINGS",
     "BLOB",
     "CITEXT",
     "INTEGER",
@@ -501,6 +513,17 @@ document (by adding model schemas to `definitions`).
             "type": "string"
           }
         },
+        "ARRAY_ENUM_STRINGS": {
+          "$id": "https://api.example.com/properties/ARRAY_ENUM_STRINGS",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "hello",
+              "world"
+            ]
+          }
+        },
         "BLOB": {
           "$id": "https://api.example.com/properties/BLOB",
           "type": "string",
@@ -697,6 +720,7 @@ document (by adding model schemas to `definitions`).
         "updatedAt",
         "ARRAY_INTEGERS",
         "ARRAY_TEXTS",
+        "ARRAY_ENUM_STRINGS",
         "BLOB",
         "CITEXT",
         "INTEGER",

@@ -55,6 +55,13 @@ module.exports = (sequelize, { DataTypes }) => {
     Model.rawAttributes.ARRAY_ALLOWNULL_IMPLICIT = {
       type: DataTypes.ARRAY(DataTypes.TEXT),
     };
+
+    if (supportedDataType('ENUM')) {
+      Model.rawAttributes.ARRAY_ENUM_STRINGS = {
+        type: DataTypes.ARRAY(DataTypes.ENUM('hello', 'world')),
+        allowNull: false,
+      };
+    }
   }
 
   if (supportedDataType('BLOB')) {

@@ -135,6 +135,20 @@ describe('StrategyInterface', function () {
           expect(schema.properties.ARRAY_TEXTS.items.type).toEqual('string');
         });
       });
+
+      if (supportedDataType('ENUM')) {
+        describe('ARRAY_ENUM_STRINGS', function () {
+          it("has property 'type' of tyoe 'array", function () {
+            expect(schema.properties.ARRAY_ENUM_STRINGS.type).toEqual('array');
+          });
+          it("has property 'items.type' with value 'string'", function () {
+            expect(schema.properties.ARRAY_ENUM_STRINGS.items.type).toEqual('string');
+          });
+          it("has property 'items.enum' with length > 0", function () {
+            expect(schema.properties.ARRAY_ENUM_STRINGS.items.enum.length).toBeGreaterThan(0);
+          });
+        });
+      }
     }
 
     if (supportedDataType('CITEXT')) {
