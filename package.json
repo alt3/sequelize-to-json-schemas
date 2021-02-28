@@ -134,6 +134,7 @@
       "jest"
     ],
     "rules": {
+      "no-restricted-syntax": "off",
       "no-underscore-dangle": "off",
       "unicorn/no-null": "off",
       "unicorn/prefer-ternary": "off"
