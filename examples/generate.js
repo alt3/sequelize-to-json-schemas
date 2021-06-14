@@ -6,7 +6,7 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
 
-const fileSystem = require('fs');
+const fileSystem = require('node:fs');
 const moment = require('moment');
 const models = require('../test/models');
 const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('../lib');
