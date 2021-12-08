@@ -1,5 +1,5 @@
 [![NPM Version](https://img.shields.io/npm/v/@alt3/sequelize-to-json-schemas?style=flat-square)](https://www.npmjs.com/package/@alt3/sequelize-to-json-schemas)
-[![Build Status](https://img.shields.io/travis/alt3/sequelize-to-json-schemas/master.svg?style=flat-square)](https://travis-ci.org/alt3/sequelize-to-json-schemas)
+[![Build Status](https://img.shields.io/travis/alt3/sequelize-to-json-schemas/master.svg?style=flat-square)](https://app.travis-ci.com/alt3/sequelize-to-json-schemas)
 [![Known Vulnerabilities](https://snyk.io/test/github/alt3/sequelize-to-json-schemas/badge.svg)](https://snyk.io/test/github/alt3/sequelize-to-json-schemas)
 ![NPM Total Downloads](https://img.shields.io/npm/dt/@alt3/sequelize-to-json-schemas.svg?style=flat-square)
 [![Code Coverage](https://img.shields.io/codecov/c/github/alt3/sequelize-to-json-schemas.svg?style=flat-square)](https://codecov.io/gh/alt3/sequelize-to-json-schemas)
