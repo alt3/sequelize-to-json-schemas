@@ -11,7 +11,9 @@ describe('SchemaManager', function () {
     describe('Ensure default options:', function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user, strategy);
+      const schema = schemaManager.generate(models.user, strategy, {
+        renderIdProperty: true,
+      });
 
       it(`produce a HTTPS schema URI`, function () {
         expect(schema.$schema).toEqual('https://json-schema.org/draft-07/schema#');
@@ -53,7 +55,9 @@ describe('SchemaManager', function () {
         baseUri: 'https://alt3.io',
       });
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user, strategy);
+      const schema = schemaManager.generate(models.user, strategy, {
+        renderIdProperty: true,
+      });
 
       it(`produces absolute paths for models`, function () {
         expect(schema.$id).toEqual('https://alt3.io/user.json');
@@ -61,6 +65,27 @@ describe('SchemaManager', function () {
 
       it(`produces absolute paths for attribute properties`, function () {
         expect(schema.properties.id.$id).toEqual('https://alt3.io/properties/id');
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // make sure 'renderIdProperty' works as expected
+    // ------------------------------------------------------------------------
+    describe(`Ensure 'renderIdProperty' :`, function () {
+      const schemaManager = new JsonSchemaManager();
+      const strategy = new JsonSchema7Strategy();
+      const schemaWithoutId = schemaManager.generate(models.user, strategy);
+
+      it(`default value false does not render the '$id' field'`, function () {
+        expect(schemaWithoutId.properties.createdAt).not.toHaveProperty('$id');
+      });
+
+      const schemaWithId = schemaManager.generate(models.user, strategy, {
+        renderIdProperty: true,
+      });
+
+      it(`value true does render the '$id' field'`, function () {
+        expect(schemaWithId.properties.createdAt).toHaveProperty('$id');
       });
     });
 
@@ -88,7 +113,9 @@ describe('SchemaManager', function () {
         absolutePaths: false,
       });
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user, strategy);
+      const schema = schemaManager.generate(models.user, strategy, {
+        renderIdProperty: true,
+      });
 
       it(`ignores baseUri and produces relative paths for models`, function () {
         expect(schema.$id).toEqual('/user.json');

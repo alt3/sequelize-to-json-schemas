@@ -20,7 +20,9 @@ describe('OpenApi3Strategy', function () {
       disableComments: false,
     });
     const strategy = new OpenApi3Strategy();
-    const schema = schemaManager.generate(models.user, strategy);
+    const schema = schemaManager.generate(models.user, strategy, {
+      renderIdProperty: true,
+    });
 
     // ------------------------------------------------------------------------
     // make sure sequelize DataTypes render as expected

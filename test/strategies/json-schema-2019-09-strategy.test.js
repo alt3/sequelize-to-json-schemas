@@ -7,11 +7,13 @@
  *   because these are already tested in the StrategyInterface test case
  *   which uses JSON Schema Draft-07 as the basis for testing.
  */
-const Ajv = require('ajv').default;
-const models = require('../models');
-const { JsonSchemaManager, JsonSchema7Strategy } = require('../../lib');
+const Ajv2019 = require('ajv/dist/2019');
 
-describe('JsonSchema7Strategy', function () {
+const ajv = new Ajv2019();
+const models = require('../models');
+const { JsonSchemaManager, JsonSchema201909Strategy } = require('../../lib');
+
+describe('JsonSchema201909Strategy', function () {
   describe('Test output using default options', function () {
     // ------------------------------------------------------------------------
     // generate schema
@@ -19,7 +21,7 @@ describe('JsonSchema7Strategy', function () {
     const schemaManager = new JsonSchemaManager({
       disableComments: false,
     });
-    const strategy = new JsonSchema7Strategy();
+    const strategy = new JsonSchema201909Strategy();
     const schema = schemaManager.generate(models.user, strategy, {
       renderIdProperty: true,
     });
@@ -28,9 +30,9 @@ describe('JsonSchema7Strategy', function () {
     // make sure sequelize model properties render as expected
     // ------------------------------------------------------------------------
     describe('Ensure model properties are rendered as expected and thus schema.model:', function () {
-      const schemaUri = 'https://json-schema.org/draft-07/schema#';
+      const schemaUri = 'https://json-schema.org/draft/2019-09/schema#';
       it(`has property '$schema' with value '${schemaUri}'`, function () {
-        expect(schema.$schema).toEqual('https://json-schema.org/draft-07/schema#');
+        expect(schema.$schema).toEqual('https://json-schema.org/draft/2019-09/schema#');
       });
 
       it("schema has property '$id' with value '/user.json'", function () {
@@ -186,13 +188,11 @@ describe('JsonSchema7Strategy', function () {
     // confirm the document is valid JSON Schema Draft-07
     // ------------------------------------------------------------------------
     describe('Ensure that the resultant document:', function () {
-      it('successfully validates as JSON Schema Draft-07', async () => {
+      it('successfully validates as JSON Schema Draft 2019-09', async () => {
         expect.assertions(1);
 
         // validate document using ajv
-        const ajv = new Ajv();
-
-        const valid = ajv.validate('http://json-schema.org/draft-07/schema#', schema);
+        const valid = ajv.validate('https://json-schema.org/draft/2019-09/schema#', schema);
         if (!valid) {
           console.log(ajv.errors); // eslint-disable-line no-console
         }

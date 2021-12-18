@@ -9,7 +9,12 @@
 const fileSystem = require('fs');
 const moment = require('moment');
 const models = require('../test/models');
-const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('../lib');
+const {
+  JsonSchemaManager,
+  JsonSchema7Strategy,
+  JsonSchema201909Strategy,
+  OpenApi3Strategy,
+} = require('../lib');
 
 const targetFolder = './examples/';
 
@@ -117,6 +122,99 @@ fileSystem.writeFile(`${targetFolder}json-schema-v7.md`, markdown, function chec
 });
 
 console.log('Succesfully generated markdown sample output for JSON Schema Draft-07');
+
+// ----------------------------------------------------------------------------
+// Json Schema 2019-09
+// ----------------------------------------------------------------------------
+strategy = new JsonSchema201909Strategy();
+
+userSchema = schemaManager.generate(models.user, strategy, {
+  title: 'Custom User Title',
+  description: 'Custom User Description',
+});
+
+profileSchema = schemaManager.generate(models.profile, strategy);
+documentSchema = schemaManager.generate(models.document, strategy);
+companySchema = schemaManager.generate(models.company, strategy);
+friendshipSchema = schemaManager.generate(models.friendship, strategy);
+
+fullSchema = {
+  $schema: 'https://json-schema.org/draft-07/schema#',
+  definitions: {
+    user: userSchema,
+    profile: profileSchema,
+    document: documentSchema,
+    company: companySchema,
+    friendship: friendshipSchema,
+  },
+};
+
+markdown = `# JSON Schema Draft 2019-09
+${pageIntro}
+
+- [JSON Schema Validator](https://www.jsonschemavalidator.net/)
+- [ajv](https://github.com/epoberezkin/ajv)
+
+## User Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(userSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Profile Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(profileSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Document Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(documentSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Company Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(companySchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Friendship Model
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(friendshipSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+
+## Full Schema
+
+Please note that sequelize-to-json-schemas does NOT generate full schemas. This is just an
+example of how to integrate the generated model schemas into a full JSON Schema Draft 2019-09
+document (by adding model schemas to \`definitions\`).
+
+<!-- prettier-ignore-start -->
+\`\`\`json
+${JSON.stringify(fullSchema, null, 2)}
+\`\`\`
+<!-- prettier-ignore-end -->
+`;
+
+fileSystem.writeFile(`${targetFolder}json-schema-v2019-09.md`, markdown, function check(error) {
+  if (error) {
+    throw error;
+  }
+});
+
+console.log('Succesfully generated markdown sample output for JSON Schema Draft 2019-09');
 
 // ----------------------------------------------------------------------------
 // OpenAPI 3.0

@@ -12,9 +12,13 @@
 Convert Sequelize models into these JSON Schema variants (using the Strategy Pattern):
 
 - JSON Schema Draft-07 - [sample output](examples/json-schema-v7.md)
+- JSON Schema 2019-09 - [sample output](examples/json-schema-v2019-09.md)
 - OpenAPI 3.0 - [sample output](examples/openapi-v3.md)
 
-Compatible with Sequelize versions 4, 5 and 6.
+Compatible with:
+
+- Sequelize versions 4, 5 and 6
+- NodeJS version 14, 16 and 17
 
 ## Main Goals
 
@@ -38,10 +42,13 @@ npm install @alt3/sequelize-to-json-schemas --save
 const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('@alt3/sequelize-to-json-schemas');
 const schemaManager = new JsonSchemaManager();
 
-// now generate a JSON Schema Draft-07 model schema
+// to generate a JSON Schema Draft-07 schema for your model:
 let schema = schemaManager.generate(userModel, new JsonSchema7Strategy());
 
-// and/or the OpenAPI 3.0 equivalent
+// to generate a JSON Schema 2019-09 schema:
+let schema = schemaManager.generate(userModel, new JsonSchema7Strategy());
+
+// to generate the OpenAPI 3.0 equivalent
 schema = schemaManager.generate(userModel, new OpenApi3Strategy());
 ```
 <!-- prettier-ignore-end -->
@@ -67,6 +74,7 @@ const userSchema = schemaManager.generate(userModel, strategy, {
   description: 'Custom model description',
   exclude: ['someAttribute'],
   include: ['someAttribute'],
+  renderIdProperty: false, // true to render '$id' field for each schema property
   associations: true,
   excludeAssociations: ['someAssociation'],
   includeAssociations: ['someAssociation'],

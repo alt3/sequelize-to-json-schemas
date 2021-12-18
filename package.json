@@ -47,6 +47,7 @@
     "oas",
     "oasv3"
   ],
+  "dependencies": {},
   "devDependencies": {
     "@release-it/conventional-changelog": "^3.3.0",
     "acorn": "^8.6.0",
@@ -59,12 +60,12 @@
     "eslint-config-prettier": "^8.0.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jest": "^25.3.0",
-    "eslint-plugin-jsdoc": "^37.1.0",
+    "eslint-plugin-jsdoc": "^37.2.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-unicorn": "^39.0.0",
     "fs": "0.0.1-security",
     "husky": "^7.0.4",
-    "jest": "^25.0.0",
+    "jest": "^27.4.5",
     "jsdoc": "^3.6.6",
     "lint-staged": "^12.1.2",
     "lodash.clonedeep": "^4.5.0",

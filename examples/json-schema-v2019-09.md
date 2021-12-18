@@ -1,4 +1,4 @@
-# JSON Schema Draft-07
+# JSON Schema Draft 2019-09
 
 These schemas were automatically generated on 2021-12-18
 using [these Sequelize models](../test/models) and the most recent version of
@@ -12,10 +12,10 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
 <!-- prettier-ignore-start -->
 ```json
 {
-  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2019-09/schema#",
   "$id": "https://api.example.com/user.json",
-  "title": "Custom Title",
-  "description": "Custom Description",
+  "title": "Custom User Title",
+  "description": "Custom User Description",
   "type": "object",
   "properties": {
     "id": {
@@ -273,7 +273,7 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
 <!-- prettier-ignore-start -->
 ```json
 {
-  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2019-09/schema#",
   "$id": "https://api.example.com/profile.json",
   "title": "Profile",
   "type": "object",
@@ -308,7 +308,7 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
 <!-- prettier-ignore-start -->
 ```json
 {
-  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2019-09/schema#",
   "$id": "https://api.example.com/document.json",
   "title": "Document",
   "type": "object",
@@ -343,7 +343,7 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
 <!-- prettier-ignore-start -->
 ```json
 {
-  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2019-09/schema#",
   "$id": "https://api.example.com/company.json",
   "title": "Company",
   "type": "object",
@@ -371,7 +371,7 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
 <!-- prettier-ignore-start -->
 ```json
 {
-  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2019-09/schema#",
   "$id": "https://api.example.com/friendship.json",
   "title": "Friendship",
   "type": "object",
@@ -408,7 +408,7 @@ sequelize-to-json-schemas. To confirm that these are indeed all valid schemas us
 ## Full Schema
 
 Please note that sequelize-to-json-schemas does NOT generate full schemas. This is just an
-example of how to integrate the generated model schemas into a full JSON Schema Draft-07
+example of how to integrate the generated model schemas into a full JSON Schema Draft 2019-09
 document (by adding model schemas to `definitions`).
 
 <!-- prettier-ignore-start -->
@@ -417,10 +417,10 @@ document (by adding model schemas to `definitions`).
   "$schema": "https://json-schema.org/draft-07/schema#",
   "definitions": {
     "user": {
-      "$schema": "https://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2019-09/schema#",
       "$id": "https://api.example.com/user.json",
-      "title": "Custom Title",
-      "description": "Custom Description",
+      "title": "Custom User Title",
+      "description": "Custom User Description",
       "type": "object",
       "properties": {
         "id": {
@@ -671,7 +671,7 @@ document (by adding model schemas to `definitions`).
       ]
     },
     "profile": {
-      "$schema": "https://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2019-09/schema#",
       "$id": "https://api.example.com/profile.json",
       "title": "Profile",
       "type": "object",
@@ -699,7 +699,7 @@ document (by adding model schemas to `definitions`).
       ]
     },
     "document": {
-      "$schema": "https://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2019-09/schema#",
       "$id": "https://api.example.com/document.json",
       "title": "Document",
       "type": "object",
@@ -727,7 +727,7 @@ document (by adding model schemas to `definitions`).
       ]
     },
     "company": {
-      "$schema": "https://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2019-09/schema#",
       "$id": "https://api.example.com/company.json",
       "title": "Company",
       "type": "object",
@@ -748,7 +748,7 @@ document (by adding model schemas to `definitions`).
       ]
     },
     "friendship": {
-      "$schema": "https://json-schema.org/draft-07/schema#",
+      "$schema": "https://json-schema.org/draft/2019-09/schema#",
       "$id": "https://api.example.com/friendship.json",
       "title": "Friendship",
       "type": "object",

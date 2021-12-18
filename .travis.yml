@@ -2,11 +2,9 @@ language: node_js
 cache: npm
 
 node_js:
-  - 8
-  - 10
-  - 12
   - 14
-  - 15
+  - 16
+  - 17
 
 sudo: false
 
@@ -34,21 +32,21 @@ matrix:
     - node_js: 14
       env: TEST=0 COVERAGE=1
 
-    - stage: deploy
-      node_js: 15
-      env: TEST=0 COVERAGE=0 LINT=0
-      script:
-        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-        - git remote rm origin
-        - git remote add origin https://alt3:${GITHUB_TOKEN}@github.com/alt3/sequelize-to-json-schemas.git
-        - git symbolic-ref HEAD refs/heads/master
-        - npm run release
-      on:
-        branch: master
-      if: "branch = master AND type = push AND commit_message !~ /(?i:no-release)|^(?i:chore: release)/"
+    # - stage: deploy
+    #   node_js: 17
+    #   env: TEST=0 COVERAGE=0 LINT=0
+    #   script:
+    #     - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+    #     - git remote rm origin
+    #     - git remote add origin https://alt3:${GITHUB_TOKEN}@github.com/alt3/sequelize-to-json-schemas.git
+    #     - git symbolic-ref HEAD refs/heads/master
+    #     - npm run release
+    #   on:
+    #     branch: master
+    #   if: "branch = master AND type = push AND commit_message !~ /(?i:no-release)|^(?i:chore: release)/"
 
-  allow_failures:
-  - env: SEQUELIZE_VERSION=6
+  # allow_failures:
+  # - env: SEQUELIZE_VERSION=6
 
 before_script:
  - sh -c "if [ '$TEST' = '1' ]; then npm install sequelize@$SEQUELIZE_VERSION; fi"
