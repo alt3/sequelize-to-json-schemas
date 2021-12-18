@@ -69,6 +69,27 @@ describe('SchemaManager', function () {
     });
 
     // ------------------------------------------------------------------------
+    // make sure 'renderIdProperty' works as expected
+    // ------------------------------------------------------------------------
+    describe(`Ensure 'renderIdProperty' :`, function () {
+      const schemaManager = new JsonSchemaManager();
+      const strategy = new JsonSchema7Strategy();
+      const schemaWithoutId = schemaManager.generate(models.user, strategy);
+
+      it(`default value false does not render the '$id' field'`, function () {
+        expect(schemaWithoutId.properties.createdAt).not.toHaveProperty('$id');
+      });
+
+      const schemaWithId = schemaManager.generate(models.user, strategy, {
+        renderIdProperty: true,
+      });
+
+      it(`value true does render the '$id' field'`, function () {
+        expect(schemaWithId.properties.createdAt).toHaveProperty('$id');
+      });
+    });
+
+    // ------------------------------------------------------------------------
     // make sure option 'disableComments' works as expected
     // ------------------------------------------------------------------------
     describe(`Ensure false option 'disableComments':`, function () {

@@ -24,7 +24,7 @@ const json7strategy = new JsonSchema7Strategy();
 const userSchema7 = schemaManager.generate(models.user, json7strategy, {
   // title: 'MyUser',
   // description: 'My Description',
-  // renderIdProperty: false,
+  // renderIdProperty: true,
   // include: [
   //   '_STRING_',
   //   '_STRING_50_',
