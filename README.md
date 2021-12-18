@@ -42,10 +42,13 @@ npm install @alt3/sequelize-to-json-schemas --save
 const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('@alt3/sequelize-to-json-schemas');
 const schemaManager = new JsonSchemaManager();
 
-// now generate a JSON Schema Draft-07 model schema
+// to generate a JSON Schema Draft-07 schema for your model:
 let schema = schemaManager.generate(userModel, new JsonSchema7Strategy());
 
-// and/or the OpenAPI 3.0 equivalent
+// to generate a JSON Schema 2019-09 schema:
+let schema = schemaManager.generate(userModel, new JsonSchema7Strategy());
+
+// to generate the OpenAPI 3.0 equivalent
 schema = schemaManager.generate(userModel, new OpenApi3Strategy());
 ```
 <!-- prettier-ignore-end -->
