@@ -12,6 +12,7 @@
 Convert Sequelize models into these JSON Schema variants (using the Strategy Pattern):
 
 - JSON Schema Draft-07 - [sample output](examples/json-schema-v7.md)
+- JSON Schema 2019-09 - [sample output](examples/json-schema-v2019-09.md)
 - OpenAPI 3.0 - [sample output](examples/openapi-v3.md)
 
 Compatible with:
@@ -70,6 +71,7 @@ const userSchema = schemaManager.generate(userModel, strategy, {
   description: 'Custom model description',
   exclude: ['someAttribute'],
   include: ['someAttribute'],
+  renderIdProperty: false, // true to render '$id' field for each schema property
   associations: true,
   excludeAssociations: ['someAssociation'],
   includeAssociations: ['someAssociation'],
