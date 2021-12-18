@@ -11,7 +11,9 @@ describe('SchemaManager', function () {
     describe('Ensure default options:', function () {
       const schemaManager = new JsonSchemaManager();
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user, strategy);
+      const schema = schemaManager.generate(models.user, strategy, {
+        renderIdProperty: true,
+      });
 
       it(`produce a HTTPS schema URI`, function () {
         expect(schema.$schema).toEqual('https://json-schema.org/draft-07/schema#');
@@ -53,7 +55,9 @@ describe('SchemaManager', function () {
         baseUri: 'https://alt3.io',
       });
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user, strategy);
+      const schema = schemaManager.generate(models.user, strategy, {
+        renderIdProperty: true,
+      });
 
       it(`produces absolute paths for models`, function () {
         expect(schema.$id).toEqual('https://alt3.io/user.json');
@@ -88,7 +92,9 @@ describe('SchemaManager', function () {
         absolutePaths: false,
       });
       const strategy = new JsonSchema7Strategy();
-      const schema = schemaManager.generate(models.user, strategy);
+      const schema = schemaManager.generate(models.user, strategy, {
+        renderIdProperty: true,
+      });
 
       it(`ignores baseUri and produces relative paths for models`, function () {
         expect(schema.$id).toEqual('/user.json');

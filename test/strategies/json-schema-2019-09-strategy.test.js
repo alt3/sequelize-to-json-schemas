@@ -22,7 +22,9 @@ describe('JsonSchema201909Strategy', function () {
       disableComments: false,
     });
     const strategy = new JsonSchema201909Strategy();
-    const schema = schemaManager.generate(models.user, strategy);
+    const schema = schemaManager.generate(models.user, strategy, {
+      renderIdProperty: true,
+    });
 
     // ------------------------------------------------------------------------
     // make sure sequelize model properties render as expected
