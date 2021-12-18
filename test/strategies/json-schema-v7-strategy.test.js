@@ -31,7 +31,7 @@ describe('JsonSchema7Strategy', function () {
         expect(schema.$schema).toEqual('https://json-schema.org/draft-07/schema#');
       });
 
-      it("has property '$id' with value '/user.json'", function () {
+      it("schema has property '$id' with value '/user.json'", function () {
         expect(schema.$id).toEqual('/user.json');
       });
     });

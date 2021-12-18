@@ -33,7 +33,7 @@ describe('JsonSchema201909Strategy', function () {
         expect(schema.$schema).toEqual('https://json-schema.org/draft/2019-09/schema#');
       });
 
-      it("has property '$id' with value '/user.json'", function () {
+      it("schema has property '$id' with value '/user.json'", function () {
         expect(schema.$id).toEqual('/user.json');
       });
     });
