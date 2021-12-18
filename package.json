@@ -47,6 +47,7 @@
     "oas",
     "oasv3"
   ],
+  "dependencies": {},
   "devDependencies": {
     "@release-it/conventional-changelog": "^3.3.0",
     "acorn": "^8.6.0",

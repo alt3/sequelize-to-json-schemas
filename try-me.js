@@ -8,7 +8,7 @@
 const _cloneDeep = require('lodash.clonedeep');
 const SwaggerParser = require('swagger-parser');
 const models = require('./test/models');
-const { JsonSchemaManager, JsonSchema7Strategy, OpenApi3Strategy } = require('./lib');
+const { JsonSchemaManager, JsonSchema7Strategy, JsonSchema201909Strategy, OpenApi3Strategy } = require('./lib');
 
 // Initialize the SchemaManager with global configuration options
 const schemaManager = new JsonSchemaManager({
@@ -17,9 +17,11 @@ const schemaManager = new JsonSchemaManager({
   disableComments: false,
 });
 
+// ------------------------------------------------------------------------------------------------
 // Generate a JSON Schema Draft-07 schema for the user model
+// ------------------------------------------------------------------------------------------------
 const json7strategy = new JsonSchema7Strategy();
-const schema = schemaManager.generate(models.user, json7strategy, {
+const userSchema7 = schemaManager.generate(models.user, json7strategy, {
   // title: 'MyUser',
   // description: 'My Description',
   // include: [
@@ -35,16 +37,33 @@ const schema = schemaManager.generate(models.user, json7strategy, {
 // schema.definitions.profile = schemaManager.generate(models.profile, json7strategy);
 // schema.definitions.document = schemaManager.generate(models.document, json7strategy);
 
-
-console.log('JSON Schema v7:')
-// console.log(userSchema);
-console.log(JSON.stringify(schema, null, 2));
+console.log('='.repeat(80))
+console.log('JSON Schema Draft-07')
+console.log('='.repeat(80))
+console.log(JSON.stringify(userSchema7, null, 2));
 
 // console.log(models.user.associations);
 
-// ----------------------------------
-// Generate OpenAPI v3 schema
-// ----------------------------------
+// ------------------------------------------------------------------------------------------------
+// Generate a JSON Schema Draft-2109-09 schema
+// ------------------------------------------------------------------------------------------------
+const json201909strategy = new JsonSchema201909Strategy();
+const userSchema201909 = schemaManager.generate(models.user, json201909strategy, {
+  title: 'MyUser',
+  description: 'My Description',
+  exclude: [
+    '_UUIDV4_',
+  ]
+});
+
+console.log('='.repeat(80))
+console.log('Json Schema 2019-09');
+console.log('='.repeat(80))
+console.log(JSON.stringify(userSchema201909, null, 2));
+
+// ------------------------------------------------------------------------------------------------
+// Generate OpenAPI v3 schema and validate it using SwaggerParser
+// ------------------------------------------------------------------------------------------------
 const openapi3strategy = new OpenApi3Strategy();
 const userSchema = schemaManager.generate(models.user, openapi3strategy, {
   title: 'MyUser',
@@ -54,8 +73,10 @@ const userSchema = schemaManager.generate(models.user, openapi3strategy, {
   ]
 });
 
-console.log('OpenAPI v3:');
-// console.log(userSchema);
+console.log('='.repeat(80))
+console.log('OpenAPI v3')
+console.log('='.repeat(80))
+console.log(userSchema);
 
 // OpenApi requires more than just the model schema for validation so we insert it into the wrapper
 const wrapper = require('./test/strategies/openapi-v3-validation-wrapper');
@@ -69,7 +90,9 @@ wrapper.components.schemas.friendship = schemaManager.generate(
   openapi3strategy,
 );
 
-console.log('Validation schema as JSON string:');
+console.log('='.repeat(80))
+console.log('OpenAPI validation schema as JSON string:');
+console.log('='.repeat(80))
 console.log(JSON.stringify(wrapper, null, 2));
 
 console.log('Validating generated full schema against swagger-parser:');
